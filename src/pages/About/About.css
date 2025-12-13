@@ -1,0 +1,339 @@
+.about-page {
+    width: 100%;
+    background: var(--white);
+}
+
+.about-hero {
+    padding: 80px 115px;
+    max-width: 1530px;
+    margin: 0 auto;
+    background: var(--white);
+    position: relative;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    top: 1491px;
+    left: 0;
+    width: 1633px;
+    height: 889px;
+    background: rgba(83, 82, 82, 0.2);
+    opacity: 0.2;
+    z-index: 0;
+}
+
+.about-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.about-badge {
+    display: inline-block;
+    background: var(--gradient-primary);
+    border-radius: 27px;
+    padding: 12px 38px 10px 33px;
+    margin-bottom: 20px;
+}
+
+.about-badge span {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.17;
+    color: var(--white);
+}
+
+.about-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 80px;
+    line-height: 1.17;
+    color: var(--black);
+    margin-bottom: 30px;
+}
+
+.about-description {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.17;
+    letter-spacing: 0.16em;
+    color: rgba(0, 0, 0, 0.97);
+    text-align: center;
+    max-width: 959px;
+    margin: 0 auto;
+}
+
+.vision-mission-section {
+    padding: 80px 115px;
+    max-width: 1530px;
+    margin: 0 auto;
+    background: var(--white);
+}
+
+.vision-mission-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 60px;
+}
+
+.vision-card,
+.mission-card {
+    border: 1px solid rgba(0, 0, 0, 0.77);
+    border-radius: 54px;
+    padding: 60px;
+    position: relative;
+    background: var(--white);
+}
+
+.vision-icon,
+.mission-icon {
+    width: 109px;
+    height: 107px;
+    background: #3ECCDB;
+    border-radius: 19px;
+    opacity: 0.43;
+    margin-bottom: 30px;
+}
+
+.vision-title,
+.mission-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 60px;
+    line-height: 1.17;
+    color: var(--black);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.vision-text,
+.mission-text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.17;
+    color: var(--black);
+    text-align: left;
+}
+
+.team-section {
+    padding: 80px 115px;
+    max-width: 1530px;
+    margin: 0 auto;
+    background: var(--white);
+}
+
+.team-section .section-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 70px;
+    line-height: 1.17;
+    color: var(--black);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.team-section .section-description {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.17;
+    letter-spacing: 0.16em;
+    color: rgba(0, 0, 0, 0.97);
+    text-align: center;
+    max-width: 1049px;
+    margin: 0 auto 60px;
+}
+
+.team-hero {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 80px;
+    padding: 40px;
+    background: linear-gradient(-44deg, rgba(86, 94, 211, 1) 31%, rgba(173, 151, 226, 1) 100%);
+    border-radius: 39px;
+    opacity: 0.21;
+}
+
+.team-hero-image {
+    width: 354px;
+    height: 349px;
+    background: #D9D9D9;
+    border: 1px solid var(--black);
+    border-radius: 41px;
+    flex-shrink: 0;
+}
+
+.team-hero-info {
+    flex: 1;
+}
+
+.team-role {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 1.17;
+    color: var(--black);
+    margin-bottom: 20px;
+}
+
+.team-name {
+    font-family: 'Anek Latin', sans-serif;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 1.1;
+    color: rgba(0, 0, 0, 0.88);
+    margin-bottom: 10px;
+}
+
+.team-position {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.17;
+    color: rgba(62, 31, 239, 0.69);
+}
+
+.team-categories {
+    margin-bottom: 80px;
+}
+
+.team-category-title {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 1.18;
+    color: var(--black);
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1410px;
+    margin: 0 auto;
+}
+
+.team-member-card {
+    background: var(--white);
+    border-radius: 56px;
+    overflow: hidden;
+    box-shadow: 2px 4px 13.1px 3px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.team-member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 2px 8px 20px 5px rgba(0, 0, 0, 0.3);
+}
+
+.member-image {
+    width: 100%;
+    height: 315px;
+    background: #D9D9D9;
+    border-radius: 56px 56px 0 0;
+}
+
+.member-info {
+    background: #D4D4D4;
+    padding: 20px 49px;
+    border-radius: 0 0 56px 56px;
+}
+
+.member-name {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 1.17;
+    color: var(--black);
+}
+
+.alumni-section {
+    padding: 40px;
+    background: #E0E6FA;
+    border-radius: 21px;
+    filter: blur(5px);
+    margin-top: 40px;
+}
+
+.alumni-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.alumni-card {
+    background: radial-gradient(circle at 50% 50%, rgba(143, 147, 239, 1) 0%, rgba(213, 205, 255, 1) 100%);
+    border: 1px solid rgba(151, 149, 255, 0.57);
+    border-radius: 24px;
+    padding: 30px;
+    text-align: center;
+    min-height: 189px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alumni-avatar {
+    width: 139px;
+    height: 139px;
+    background: #D9D9D9;
+    border: 1px solid #434CFF;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+@media (max-width: 1200px) {
+    .about-hero,
+    .vision-mission-section,
+    .team-section {
+        padding: 60px 40px;
+    }
+    
+    .vision-mission-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .alumni-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero,
+    .vision-mission-section,
+    .team-section {
+        padding: 40px 20px;
+    }
+    
+    .about-title {
+        font-size: 48px;
+    }
+    
+    .vision-title,
+    .mission-title {
+        font-size: 40px;
+    }
+    
+    .team-grid,
+    .alumni-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-hero {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+

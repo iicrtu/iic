@@ -1,0 +1,34 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --white: #FFFFFF;
+    --black: #000000;
+    --text-dark: #2A2525;
+    --text-gray: rgba(0, 0, 0, 0.54);
+    --text-light-gray: rgba(0, 0, 0, 0.76);
+    --gradient-primary: linear-gradient(243deg, rgba(60, 135, 255, 1) 0%, rgba(242, 105, 222, 1) 100%);
+    --gradient-hero-1: linear-gradient(-44deg, rgba(86, 94, 211, 1) 20%, rgba(173, 151, 226, 1) 59%);
+    --gradient-hero-2: linear-gradient(-44deg, rgba(86, 94, 211, 1) 20%, rgba(173, 151, 226, 1) 72%);
+    --gradient-title: linear-gradient(90deg, rgba(199, 112, 230, 1) 0%, rgba(69, 133, 253, 1) 36%);
+    --gradient-stats: linear-gradient(255deg, rgba(229, 57, 204, 1) 7%, rgba(68, 78, 172, 1) 70%);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--white);
+    color: var(--black);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+

@@ -1,0 +1,331 @@
+.startups-page {
+    width: 100%;
+    background: var(--white);
+}
+
+.startups-hero {
+    padding: 80px 115px 60px;
+    max-width: 1530px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+.startups-hero::before {
+    content: '';
+    position: absolute;
+    top: 1446px;
+    left: -51px;
+    width: 1633px;
+    height: 608px;
+    background: rgba(83, 82, 82, 0.2);
+    opacity: 0.2;
+    z-index: 0;
+}
+
+.portfolio-badge {
+    display: inline-block;
+    background: var(--gradient-primary);
+    border-radius: 27px;
+    padding: 12px 38px 10px 33px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.portfolio-badge span {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.17;
+    color: var(--white);
+}
+
+.stats-section {
+    padding: 40px 115px;
+    max-width: 1530px;
+    margin: 0 auto;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.stat-card {
+    border-radius: 37px;
+    padding: 103px 12px 39px;
+    text-align: center;
+    color: var(--white);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.stat-card:hover {
+    transform: scale(1.05);
+}
+
+.stat-value-large {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 1.17;
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.stat-label-large {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 33px;
+    line-height: 1.17;
+    color: var(--white);
+}
+
+.startups-list-section {
+    padding: 60px 115px 80px;
+    max-width: 1530px;
+    margin: 0 auto;
+}
+
+.startups-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.startup-card-detailed {
+    background: var(--white);
+    border: 1px solid rgba(0, 0, 0, 0.74);
+    border-radius: 51px;
+    display: grid;
+    grid-template-columns: 425px 1fr;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.startup-card-detailed:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.startup-image-section {
+    position: relative;
+    background: rgba(0, 0, 0, 0.14);
+    overflow: hidden;
+}
+
+.startup-image-large {
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    background: rgba(0, 0, 0, 0.45);
+    position: relative;
+}
+
+.startup-details-section {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.startup-header {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.startup-status-badge {
+    background: var(--gradient-primary);
+    border-radius: 23px;
+    padding: 12px 27px 13px 33px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.17;
+    color: var(--white);
+}
+
+.startup-category-tag {
+    background: var(--white);
+    border: 1px solid rgba(0, 0, 0, 0.52);
+    border-radius: 5px;
+    padding: 7px 14px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.17;
+    color: var(--black);
+}
+
+.startup-name-large {
+    font-family: 'Secular One', sans-serif;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 1.46;
+    color: var(--black);
+    margin-bottom: 10px;
+}
+
+.startup-description-large {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.17;
+    letter-spacing: 0.2em;
+    color: var(--black);
+    margin-bottom: 20px;
+}
+
+.startup-stats-detailed {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-box-detailed {
+    background: #D9D9D9;
+    border-radius: 13px;
+    padding: 12px 20px;
+    text-align: center;
+    min-width: 136px;
+}
+
+.stat-value-gradient {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.17;
+    background: var(--gradient-stats);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 5px;
+}
+
+.stat-label-text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.17;
+    background: var(--gradient-stats);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.startup-info-detailed {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    display: flex;
+    gap: 20px;
+}
+
+.info-label {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.17;
+    color: rgba(0, 0, 0, 0.75);
+    min-width: 80px;
+}
+
+.info-value {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.17;
+    color: var(--black);
+}
+
+.info-value-link {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.17;
+    color: #4D3DFF;
+    text-decoration: none;
+}
+
+.info-value-link:hover {
+    text-decoration: underline;
+}
+
+.achievements-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.17;
+    color: var(--black);
+    margin-bottom: 10px;
+}
+
+.learn-more-btn {
+    background: var(--white);
+    border: 1px solid rgba(0, 0, 0, 0.52);
+    border-radius: 5px;
+    padding: 7px 14px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.17;
+    color: var(--black);
+    cursor: pointer;
+    align-self: flex-start;
+    transition: all 0.3s;
+}
+
+.learn-more-btn:hover {
+    background: var(--black);
+    color: var(--white);
+    transform: scale(1.05);
+}
+
+@media (max-width: 1200px) {
+    .startups-hero,
+    .stats-section,
+    .startups-list-section {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .startup-card-detailed {
+        grid-template-columns: 1fr;
+    }
+    
+    .startup-image-large {
+        min-height: 300px;
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .startups-hero,
+    .stats-section,
+    .startups-list-section {
+        padding: 40px 20px;
+    }
+    
+    .startup-name-large {
+        font-size: 40px;
+    }
+    
+    .stat-value-large {
+        font-size: 36px;
+    }
+}
+

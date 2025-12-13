@@ -1,0 +1,63 @@
+.App {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--white);
+}
+
+/* Section Styles */
+section {
+    padding: 80px 115px;
+    max-width: 1530px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 1.17;
+    color: var(--black);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section-description {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.17;
+    color: var(--text-light-gray);
+    text-align: center;
+    max-width: 534px;
+    margin: 0 auto 60px;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+    section {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+}
+
+@media (max-width: 1200px) {
+    section {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 60px 20px;
+    }
+    
+    .section-title {
+        font-size: 48px;
+    }
+    
+    .section-description {
+        font-size: 18px;
+    }
+}
+

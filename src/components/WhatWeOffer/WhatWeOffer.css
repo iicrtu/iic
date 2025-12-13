@@ -1,0 +1,77 @@
+.what-we-offer {
+    background: var(--white);
+    padding: 80px 115px;
+}
+
+.offer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1410px;
+    margin: 0 auto;
+}
+
+.offer-card {
+    background: var(--white);
+    border: 1px solid rgba(0, 0, 0, 0.63);
+    border-radius: 45px;
+    padding: 40px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.offer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+    width: 130px;
+    height: 116px;
+    border-radius: 19px;
+    margin: 0 auto 20px;
+    opacity: 0.43;
+}
+
+.card-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.17;
+    color: var(--black);
+    margin-bottom: 15px;
+}
+
+.card-description {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.21;
+    color: var(--black);
+    text-align: left;
+}
+
+@media (max-width: 1200px) {
+    .what-we-offer {
+        padding: 60px 40px;
+    }
+    
+    .offer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .what-we-offer {
+        padding: 60px 20px;
+    }
+    
+    .offer-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-title {
+        font-size: 28px;
+    }
+}
+
