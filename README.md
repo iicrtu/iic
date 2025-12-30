@@ -2,7 +2,7 @@
 
 A modern React application for the Innovation & Incubation Cell (IIC) website, built to match the Figma design exactly.
 
-## 🚀 Features
+## Features
 
 - **React 18** - Latest React with hooks and modern patterns
 - **Component-Based Architecture** - Modular, reusable components
