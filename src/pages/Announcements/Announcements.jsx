@@ -1,56 +1,23 @@
 import React from 'react';
 import './Announcements.css';
+import { ANNOUNCEMENTS_HERO, CATEGORIES, ANNOUNCEMENTS_DATA, LABELS } from '../../constants/announcementsConstants';
 
 const Announcements = () => {
-    const categories = [
-        { count: '1', label: 'WORKSHOP' },
-        { count: '4', label: 'NEW UPDATES' },
-        { count: '3', label: 'INTERNSHIP' },
-        { count: '4', label: 'COMPETETION' }
-    ];
-
-    const announcements = [
-        {
-            id: 1,
-            type: 'SIP',
-            title: 'Summer Internship Program',
-            description: 'Apply for our exclusive Summer Internship Program with top tech companies. Get hands-on experience and .......',
-            posted: 'November 20, 2025',
-            deadline: 'March 20, 2026'
-        },
-        {
-            id: 2,
-            type: 'SIP',
-            title: 'Summer Internship Program',
-            description: 'Apply for our exclusive Summer Internship Program with top tech companies. Get hands-on experience and .......',
-            posted: 'November 20, 2025',
-            deadline: 'March 20, 2026'
-        },
-        {
-            id: 3,
-            type: 'SIP',
-            title: 'Summer Internship Program',
-            description: 'Apply for our exclusive Summer Internship Program with top tech companies. Get hands-on experience and .......',
-            posted: 'November 20, 2025',
-            deadline: 'March 20, 2026'
-        }
-    ];
-
     return (
         <div className="announcements-page">
             <section className="announcements-hero">
                 <div className="stay-updated-badge">
-                    <span>Stay Upated</span>
+                    <span>{ANNOUNCEMENTS_HERO.badge}</span>
                 </div>
-                <h1 className="section-title">_Announcements</h1>
+                <h1 className="section-title">{ANNOUNCEMENTS_HERO.title}</h1>
                 <p className="section-description">
-                    Discover latest opportunities, competitions, workshops, and important announcements. Don't miss out on these amazing chances to grow!
+                    {ANNOUNCEMENTS_HERO.description}
                 </p>
             </section>
 
             <section className="categories-section">
                 <div className="categories-grid">
-                    {categories.map((category, index) => (
+                    {CATEGORIES.map((category, index) => (
                         <div key={index} className="category-card">
                             <div className="category-count">{category.count}</div>
                             <div className="category-label">{category.label}</div>
@@ -61,7 +28,7 @@ const Announcements = () => {
 
             <section className="announcements-list-section">
                 <div className="announcements-list-container">
-                    {announcements.map((announcement) => (
+                    {ANNOUNCEMENTS_DATA.map((announcement) => (
                         <div key={announcement.id} className="announcement-card">
                             <div className="announcement-header">
                                 <div className="announcement-type-badge">{announcement.type}</div>
@@ -71,16 +38,16 @@ const Announcements = () => {
                                 <p className="announcement-description">{announcement.description}</p>
                                 <div className="announcement-dates">
                                     <div className="date-item">
-                                        <span className="date-label">Posted:</span>
+                                        <span className="date-label">{LABELS.postedLabel}</span>
                                         <span className="date-value">{announcement.posted}</span>
                                     </div>
                                     <div className="date-item">
-                                        <span className="date-label">Deadline :</span>
+                                        <span className="date-label">{LABELS.deadlineLabel}</span>
                                         <span className="date-value">{announcement.deadline}</span>
                                     </div>
                                 </div>
                                 <button className="explore-more-btn">
-                                    <span>Explore More</span>
+                                    <span>{LABELS.exploreMoreBtn}</span>
                                     <svg width="23" height="29" viewBox="0 0 23 29" fill="none">
                                         <path d="M8.63 7.25L14.38 14.5L8.63 21.75" stroke="#1E1E1E" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
                                     </svg>

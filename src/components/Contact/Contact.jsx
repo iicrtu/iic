@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Contact.css';
 import instagramIcon from '../../images/instagram-icon.png';
 import linkedinIcon from '../../images/linkedin-icon.png';
+import { CONTACT_SECTION, CONTACT_INFO, CONTACT_FORM, SOCIAL_SECTION } from '../../constants/contactConstants';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -22,13 +23,13 @@ const Contact = () => {
         e.preventDefault();
         
         if (!formData.name || !formData.email || !formData.message) {
-            alert('Please fill in all fields');
+            alert(CONTACT_FORM.errorMessage);
             return;
         }
         
         // Here you would typically send the data to a server
         console.log('Form submitted:', formData);
-        alert('Thank you for your message! We will get back to you soon.');
+        alert(CONTACT_FORM.successMessage);
         
         // Reset form
         setFormData({
@@ -40,37 +41,37 @@ const Contact = () => {
 
     return (
         <section className="contact-section">
-            <h2 className="section-title">Get In Touch</h2>
+            <h2 className="section-title">{CONTACT_SECTION.title}</h2>
             <p className="section-description">
-                Have questions or want to join E-Cell? We'd love to hear from you!
+                {CONTACT_SECTION.description}
             </p>
             <div className="contact-container">
                 <div className="contact-info">
-                    <h3 className="contact-subtitle">Contact Information</h3>
-                    <p className="contact-text">Reach out to us through any of these channels.</p>
+                    <h3 className="contact-subtitle">{CONTACT_INFO.subtitle}</h3>
+                    <p className="contact-text">{CONTACT_INFO.text}</p>
                     <div className="contact-details">
                         <div className="contact-item">
-                            <span className="contact-label">Email</span>
-                            <span className="contact-value">iicrtu@gmail.com</span>
+                            <span className="contact-label">{CONTACT_INFO.email.label}</span>
+                            <span className="contact-value">{CONTACT_INFO.email.value}</span>
                         </div>
                         <div className="contact-item">
-                            <span className="contact-label">Phone</span>
-                            <span className="contact-value">+002828737338</span>
+                            <span className="contact-label">{CONTACT_INFO.phone.label}</span>
+                            <span className="contact-value">{CONTACT_INFO.phone.value}</span>
                         </div>
                         <div className="contact-item">
-                            <span className="contact-label">Location</span>
-                            <span className="contact-value">PTP HALL,PNB BUILDING</span>
+                            <span className="contact-label">{CONTACT_INFO.location.label}</span>
+                            <span className="contact-value">{CONTACT_INFO.location.value}</span>
                         </div>
                     </div>
                 </div>
                 <div className="contact-form-section">
-                    <h3 className="contact-subtitle">Send us a Message</h3>
-                    <p className="contact-text">Fill out the form and we'll get back to you soon</p>
+                    <h3 className="contact-subtitle">{CONTACT_FORM.subtitle}</h3>
+                    <p className="contact-text">{CONTACT_FORM.text}</p>
                     <form className="contact-form" onSubmit={handleSubmit}>
                         <input 
                             type="text" 
                             name="name"
-                            placeholder="Name" 
+                            placeholder={CONTACT_FORM.placeholders.name}
                             className="form-input"
                             value={formData.name}
                             onChange={handleChange}
@@ -79,7 +80,7 @@ const Contact = () => {
                         <input 
                             type="email" 
                             name="email"
-                            placeholder="Email" 
+                            placeholder={CONTACT_FORM.placeholders.email}
                             className="form-input"
                             value={formData.email}
                             onChange={handleChange}
@@ -87,27 +88,25 @@ const Contact = () => {
                         />
                         <textarea 
                             name="message"
-                            placeholder="Tell us about your idea" 
+                            placeholder={CONTACT_FORM.placeholders.message}
                             className="form-textarea"
                             value={formData.message}
                             onChange={handleChange}
                             required
                         ></textarea>
-                        <button type="submit" className="send-btn">SEND</button>
+                        <button type="submit" className="send-btn">{CONTACT_FORM.buttonText}</button>
                     </form>
                 </div>
                 <div className="social-section">
-                    <h3 className="contact-subtitle">Follow Us</h3>
-                    <p className="contact-text">Stay updated with our latest events and activities</p>
+                    <h3 className="contact-subtitle">{SOCIAL_SECTION.subtitle}</h3>
+                    <p className="contact-text">{SOCIAL_SECTION.text}</p>
                     <div className="social-links">
-                        <a href="#" className="social-link" target="_blank" rel="noopener noreferrer">
-                            <img src={instagramIcon} alt="Instagram" />
-                            <span>Instagram</span>
-                        </a>
-                        <a href="#" className="social-link" target="_blank" rel="noopener noreferrer">
-                            <img src={linkedinIcon} alt="LinkedIn" />
-                            <span>LinkedIn</span>
-                        </a>
+                        {SOCIAL_SECTION.links.map((link, index) => (
+                            <a key={index} href={link.url} className="social-link" target="_blank" rel="noopener noreferrer">
+                                <img src={index === 0 ? instagramIcon : linkedinIcon} alt={link.alt} />
+                                <span>{link.name}</span>
+                            </a>
+                        ))}
                     </div>
                 </div>
             </div>

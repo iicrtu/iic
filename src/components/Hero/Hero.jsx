@@ -1,6 +1,7 @@
 import React from 'react';
 import './Hero.css';
 import heroImage from '../../images/hero-image.png';
+import { HERO_CONTENT } from '../../constants/heroConstants';
 
 const Hero = () => {
     return (
@@ -12,16 +13,16 @@ const Hero = () => {
             <div className="hero-content">
                 <div className="hero-badge">
                     <div className="badge-bg"></div>
-                    <span className="badge-text">Empowering Student Entrepreneurs</span>
+                    <span className="badge-text">{HERO_CONTENT.badge}</span>
                 </div>
-                <h1 className="hero-title">Welcome To IIC</h1>
+                <h1 className="hero-title">{HERO_CONTENT.title}</h1>
                 <p className="hero-description">
-                    The Entrepreneurship Cell of our college - fostering innovation, building startups, and creating tomorrow's leaders today.
+                    {HERO_CONTENT.description}
                 </p>
-                <button className="join-us-btn">JOIN US</button>
+                <button className="join-us-btn">{HERO_CONTENT.buttonText}</button>
             </div>
             <div className="hero-image">
-                <img src={heroImage} alt="Hero" />
+                <img src={heroImage} alt={HERO_CONTENT.imageAlt} />
             </div>
         </section>
     );
