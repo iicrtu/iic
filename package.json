@@ -1,7 +1,7 @@
 {
   "name": "iic-website",
   "version": "1.0.0",
-  "description": "Innovation & Incubation Cell Website - Landing Page",
+  "description": "Innovation & Incubation Cell",
   "private": true,
   "dependencies": {
     "react": "^18.2.0",
