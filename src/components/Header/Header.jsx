@@ -34,17 +34,20 @@ const Header = () => {
                     <Link to="/" className="nav-link">
                         HOME
                     </Link>
-                    <Link to="/team" className="nav-link">
-                        TEAM
-                    </Link>
                     <Link to="/about" className="nav-link">
                         ABOUT US
                     </Link>
-                    <Link to="/startups" className="nav-link">
+                    {/* <Link to="/startups" className="nav-link">
                         STARTUPS
                     </Link>
                     <Link to="/events" className="nav-link">
                         EVENTS
+                    </Link> */}
+                    <Link to="/internships" className="nav-link">
+                        INTERNSHIPS
+                    </Link>
+                    <Link to="/announcements" className="nav-link">
+                        ANNOUNCEMENTS
                     </Link>
                     <button className="login-btn">LOGIN</button>
                 </nav>
