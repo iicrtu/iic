@@ -1,0 +1,53 @@
+// Contact Component Constants
+
+export const CONTACT_SECTION = {
+  title: 'Get In Touch',
+  description: 'Have questions or want to join E-Cell? We\'d love to hear from you!'
+};
+
+export const CONTACT_INFO = {
+  subtitle: 'Contact Information',
+  text: 'Reach out to us through any of these channels.',
+  email: {
+    label: 'Email',
+    value: 'iicrtu@gmail.com'
+  },
+  phone: {
+    label: 'Phone',
+    value: '+002828737338'
+  },
+  location: {
+    label: 'Location',
+    value: 'PTP HALL,PNB BUILDING'
+  }
+};
+
+export const CONTACT_FORM = {
+  subtitle: 'Send us a Message',
+  text: 'Fill out the form and we\'ll get back to you soon',
+  placeholders: {
+    name: 'Name',
+    email: 'Email',
+    message: 'Tell us about your idea'
+  },
+  buttonText: 'SEND',
+  successMessage: 'Thank you for your message! We will get back to you soon.',
+  errorMessage: 'Please fill in all fields'
+};
+
+export const SOCIAL_SECTION = {
+  subtitle: 'Follow Us',
+  text: 'Stay updated with our latest events and activities',
+  links: [
+    {
+      name: 'Instagram',
+      url: '#',
+      alt: 'Instagram'
+    },
+    {
+      name: 'LinkedIn',
+      url: '#',
+      alt: 'LinkedIn'
+    }
+  ]
+};
