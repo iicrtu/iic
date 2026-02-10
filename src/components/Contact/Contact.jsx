@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Contact.css';
-import instagramIcon from '../../images/instagram-icon.png';
-import linkedinIcon from '../../images/linkedin-icon.png';
+import instagramIcon from '../../assets/instagram-icon.png';
+import linkedinIcon from '../../assets/linkedin-icon.png';
 import { CONTACT_SECTION, CONTACT_INFO, CONTACT_FORM, SOCIAL_SECTION } from '../../constants/contactConstants';
 
 const Contact = () => {
