@@ -1,52 +1,74 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
-import footerLogo from '../../assets/footer-logo.png';
+import {
+  FOOTER_BRAND,
+  FOOTER_QUICK_LINKS,
+  FOOTER_CONTACT_INFO,
+  FOOTER_SOCIAL,
+  FOOTER_BOTTOM
+} from '../../constants/footerConstants';
 
 const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer-container">
                 <div className="footer-brand">
-                    <Link to="/">
-                        <img src={footerLogo} alt="IIC Logo" className="footer-logo" />
-                    </Link>
-                    <h3 className="footer-title">INNOVATION & INCUBATION CELL</h3>
-                    <p className="footer-tagline">
-                        Empowering the next generation of entrepreneurs through innovation, mentorship, and community.
-                    </p>
+                    <div className="footer-brand-header">
+                        <img src={FOOTER_BRAND.logo} alt="IIC Logo" className="footer-logo" />
+                        <h3 className="footer-title">{FOOTER_BRAND.title}</h3>
+                    </div>
+                    <p className="footer-tagline">{FOOTER_BRAND.tagline}</p>
+                    
+                    {/* Social Icons */}
+                    <div className="footer-social">
+                        {FOOTER_SOCIAL.links.map((social, index) => (
+                            <a
+                                key={index}
+                                href={social.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="footer-social-link"
+                            >
+                                <img src={social.icon} alt={social.alt} className="footer-social-icon" />
+                            </a>
+                        ))}
+                    </div>
                 </div>
                 <div className="footer-links">
                     <div className="footer-column">
-                        <h4 className="footer-heading">QUICK LINKS</h4>
+                        <h4 className="footer-heading">{FOOTER_QUICK_LINKS.heading}</h4>
                         <ul className="footer-list">
-                            <li><Link to="/">HOME</Link></li>
-                            <li><Link to="/about">ABOUT US</Link></li>
-                            <li><Link to="/events">EVENTS</Link></li>
-                            <li><Link to="/startups">STARTUPS</Link></li>
-                            <li><Link to="/internships">INTERNSHIPS</Link></li>
-                            <li><Link to="/announcements">ANNOUCEMENT</Link></li>
+                            {FOOTER_QUICK_LINKS.links.map((link, index) => (
+                                <li key={index}>
+                                    <Link to={link.path}>{link.text}</Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div className="footer-column">
-                        <h4 className="footer-heading">CONTACT INFO</h4>
+                        <h4 className="footer-heading">{FOOTER_CONTACT_INFO.heading}</h4>
                         <ul className="footer-list">
-                            <li>ecell@college.edu</li>
-                            <li>+91 12345 67890</li>
-                            <li>PNB Building, RTU</li>
+                            {FOOTER_CONTACT_INFO.items.map((item, index) => (
+                                <li key={index}>{item.text}</li>
+                            ))}
                         </ul>
                     </div>
                 </div>
             </div>
             <div className="footer-bottom">
-                <div className="footer-line"></div>
+                <img src={FOOTER_BOTTOM.divider} alt="" className="footer-divider" />
                 <div className="footer-bottom-content">
-                    <p className="footer-copyright">© 2025 E-Cell. All rights reserved.</p>
+                    <p className="footer-copyright">{FOOTER_BOTTOM.copyright}</p>
                     <div className="footer-legal">
-                        <a href="#privacy">Privacy Policy</a>
-                        <a href="#terms">Terms of Service</a>
-                        <a href="#cookies">Cookie Policy</a>
+                        {FOOTER_BOTTOM.legalLinks.map((link, index) => (
+                            <Link key={index} to={link.path}>{link.text}</Link>
+                        ))}
                     </div>
+                </div>
+                <div className="footer-credits">
+                    <p>Designed by Aditya</p>
+                    <p>Made with ❤️ by Somya and Suhani</p>
                 </div>
             </div>
         </footer>
