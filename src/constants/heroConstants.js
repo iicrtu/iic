@@ -2,8 +2,10 @@
 
 export const HERO_CONTENT = {
   badge: 'Empowering Student Entrepreneurs',
-  title: 'Welcome To IIC',
+  titlePart1: 'Welcome To ',
+  titlePart2: 'IIC',
   description: 'The Entrepreneurship Cell of our college - fostering innovation, building startups, and creating tomorrow\'s leaders today.',
-  buttonText: 'JOIN US',
+  primaryButtonText: 'JOIN US',
+  secondaryButtonText: 'EXPLORE MORE',
   imageAlt: 'Hero'
 };

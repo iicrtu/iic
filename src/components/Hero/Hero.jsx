@@ -15,14 +15,35 @@ const Hero = () => {
                     <div className="badge-bg"></div>
                     <span className="badge-text">{HERO_CONTENT.badge}</span>
                 </div>
-                <h1 className="hero-title">{HERO_CONTENT.title}</h1>
+                <h1 className="hero-title">
+                    {HERO_CONTENT.titlePart1}
+                    <span className="hero-title-gradient">{HERO_CONTENT.titlePart2}</span>
+                </h1>
                 <p className="hero-description">
                     {HERO_CONTENT.description}
                 </p>
-                <button className="join-us-btn">{HERO_CONTENT.buttonText}</button>
+                <div className="hero-buttons">
+                    <button className="explore-more-btn">{HERO_CONTENT.secondaryButtonText}</button>
+                    <button className="join-us-btn">{HERO_CONTENT.primaryButtonText}</button>
+                </div>
             </div>
-            <div className="hero-image">
-                <img src={heroImage} alt={HERO_CONTENT.imageAlt} />
+            <div className="hero-right">
+                <div className="gradient-blur blur-circle-1"></div>
+                <div className="gradient-blur blur-circle-2"></div>
+                <div className="hero-cards-container">
+                    <div className="hero-card hero-card-white">
+                        <span className="card-label">INNOVATION</span>
+                    </div>
+                    <div className="hero-card hero-card-white">
+                        <span className="card-label">GROWTH</span>
+                    </div>
+                    <div className="hero-card hero-card-white">
+                        <span className="card-label">COMMUNITY</span>
+                    </div>
+                    <div className="hero-card hero-card-white">
+                        <span className="card-label">SUCCESS</span>
+                    </div>
+                </div>
             </div>
         </section>
     );
