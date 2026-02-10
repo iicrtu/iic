@@ -51,13 +51,20 @@
 
 .hero-badge {
     position: relative;
+    width: 330px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
 }
 
 .badge-bg {
     position: absolute;
-    width: 330px;
-    height: 43px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: #DFBEFF;
     border-radius: 38px;
     opacity: 0.48;
@@ -68,9 +75,9 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 20px;
-    line-height: 1.17;
+    line-height: normal;
     color: #6300A5;
-    padding: 10px 7px;
+    white-space: nowrap;
 }
 
 .hero-title {
@@ -82,6 +89,13 @@
     margin-bottom: 20px;
 }
 
+.hero-title-gradient {
+    background: linear-gradient(90deg, #0004FF 0%, #FF5DEF 86.058%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .hero-description {
     font-family: 'Roboto Flex', sans-serif;
     font-weight: 400;
@@ -89,6 +103,12 @@
     line-height: 1.17;
     color: rgba(0, 0, 0, 0.78);
     margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
 .join-us-btn {
@@ -111,16 +131,123 @@
     transform: scale(1.05);
 }
 
-.hero-image {
+.explore-more-btn {
+    background: linear-gradient(256.22deg, #3C87FF 0%, #F269DE 118.83%);
+    border: none;
+    border-radius: 7px;
+    padding: 12px 27px 13px 33px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.19;
+    color: var(--white);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.explore-more-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(60, 135, 255, 0.4);
+}
+
+.hero-right {
     position: relative;
+    z-index: 1;
+    width: 600px;
+    height: 396px;
+    border-radius: 39px;
+}
+
+.hero-right::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-46.18deg, rgba(86, 94, 211, 0.5) 20.865%, rgba(173, 151, 226, 0.5) 72.416%);
+    border-radius: 39px;
+    opacity: 0.21;
+    z-index: -1;
+}
+
+.gradient-blur {
+    position: absolute;
+    border-radius: 198px;
+    filter: blur(81.3px);
+    opacity: 0.78;
+    z-index: 0;
+}
+
+.blur-circle-1 {
+    width: 550px;
+    height: 337px;
+    background: linear-gradient(-44.05deg, rgba(86, 94, 211, 0.5) 20.865%, rgba(173, 151, 226, 0.5) 72.416%);
+    top: 69px;
+    left: 7px;
+}
+
+.blur-circle-2 {
+    width: 510px;
+    height: 339px;
+    background: linear-gradient(-46.39deg, rgba(86, 94, 211, 0.5) 21.05%, rgba(173, 151, 226, 0.5) 59.921%);
+    top: 2px;
+    left: 35px;
+}
+
+.hero-cards-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 240px 235px;
+    grid-template-rows: 135px 135px;
+    gap: 45px 30px;
+    width: 100%;
+    height: 100%;
+    padding: 36px 35px;
     z-index: 1;
 }
 
-.hero-image img {
-    width: 203px;
-    height: 151px;
-    border-radius: 63px;
+.hero-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 23px;
+    overflow: hidden;
+}
+
+.hero-card-image {
+    background: transparent;
+    padding: 0;
+}
+
+.hero-card-image img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    display: block;
+    border-radius: 23px;
+}
+
+.hero-card-image .card-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.hero-card-white {
+    background: white;
+}
+
+.card-label {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: normal;
+    color: black;
+    white-space: nowrap;
 }
 
 @media (max-width: 1200px) {
@@ -138,6 +265,17 @@
     .hero-title {
         font-size: 60px;
     }
+    
+    .hero-right {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        aspect-ratio: 600 / 396;
+    }
+    
+    .hero-cards-container {
+        padding: 6% 5.8%;
+    }
 }
 
 @media (max-width: 768px) {
@@ -151,6 +289,24 @@
     
     .hero-description {
         font-size: 18px;
+    }
+    
+    .hero-right {
+        max-width: 100%;
+    }
+    
+    .hero-cards-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 20px 15px;
+    }
+    
+    .hero-card {
+        min-height: 100px;
+    }
+    
+    .card-label {
+        font-size: 16px;
     }
     
     .circle-1,
