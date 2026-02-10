@@ -46,21 +46,44 @@ const Contact = () => {
                 {CONTACT_SECTION.description}
             </p>
             <div className="contact-container">
-                <div className="contact-info">
-                    <h3 className="contact-subtitle">{CONTACT_INFO.subtitle}</h3>
+                <div className="contact-left-column">
+                    <div className="contact-info">
+                        <h3 className="contact-subtitle">{CONTACT_INFO.subtitle}</h3>
                     <p className="contact-text">{CONTACT_INFO.text}</p>
                     <div className="contact-details">
                         <div className="contact-item">
-                            <span className="contact-label">{CONTACT_INFO.email.label}</span>
-                            <span className="contact-value">{CONTACT_INFO.email.value}</span>
+                            <div className="contact-icon"></div>
+                            <div className="contact-info-content">
+                                <span className="contact-label">{CONTACT_INFO.email.label}</span>
+                                <span className="contact-value">{CONTACT_INFO.email.value}</span>
+                            </div>
                         </div>
                         <div className="contact-item">
-                            <span className="contact-label">{CONTACT_INFO.phone.label}</span>
-                            <span className="contact-value">{CONTACT_INFO.phone.value}</span>
+                            <div className="contact-icon"></div>
+                            <div className="contact-info-content">
+                                <span className="contact-label">{CONTACT_INFO.phone.label}</span>
+                                <span className="contact-value">{CONTACT_INFO.phone.value}</span>
+                            </div>
                         </div>
                         <div className="contact-item">
-                            <span className="contact-label">{CONTACT_INFO.location.label}</span>
-                            <span className="contact-value">{CONTACT_INFO.location.value}</span>
+                            <div className="contact-icon"></div>
+                            <div className="contact-info-content">
+                                <span className="contact-label">{CONTACT_INFO.location.label}</span>
+                                <span className="contact-value">{CONTACT_INFO.location.value}</span>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div className="social-section">
+                        <h3 className="contact-subtitle">{SOCIAL_SECTION.subtitle}</h3>
+                        <p className="contact-text">{SOCIAL_SECTION.text}</p>
+                        <div className="social-links">
+                            {SOCIAL_SECTION.links.map((link, index) => (
+                                <a key={index} href={link.url} className="social-link" target="_blank" rel="noopener noreferrer">
+                                    <img src={index === 0 ? instagramIcon : linkedinIcon} alt={link.alt} />
+                                    <span>{link.name}</span>
+                                </a>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -68,46 +91,43 @@ const Contact = () => {
                     <h3 className="contact-subtitle">{CONTACT_FORM.subtitle}</h3>
                     <p className="contact-text">{CONTACT_FORM.text}</p>
                     <form className="contact-form" onSubmit={handleSubmit}>
-                        <input 
-                            type="text" 
-                            name="name"
-                            placeholder={CONTACT_FORM.placeholders.name}
-                            className="form-input"
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                        />
-                        <input 
-                            type="email" 
-                            name="email"
-                            placeholder={CONTACT_FORM.placeholders.email}
-                            className="form-input"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                        />
-                        <textarea 
-                            name="message"
-                            placeholder={CONTACT_FORM.placeholders.message}
-                            className="form-textarea"
-                            value={formData.message}
-                            onChange={handleChange}
-                            required
-                        ></textarea>
+                        <div className="form-group">
+                            <label className="form-label">{CONTACT_FORM.placeholders.name}</label>
+                            <input 
+                                type="text" 
+                                name="name"
+                                placeholder={`Your ${CONTACT_FORM.placeholders.name}`}
+                                className="form-input"
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">{CONTACT_FORM.placeholders.email}</label>
+                            <input 
+                                type="email" 
+                                name="email"
+                                placeholder={CONTACT_FORM.placeholders.email}
+                                className="form-input"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">Message</label>
+                            <textarea 
+                                name="message"
+                                placeholder={CONTACT_FORM.placeholders.message}
+                                className="form-textarea"
+                                value={formData.message}
+                                onChange={handleChange}
+                                required
+                            ></textarea>
+                        </div>
                         <button type="submit" className="send-btn">{CONTACT_FORM.buttonText}</button>
                     </form>
-                </div>
-                <div className="social-section">
-                    <h3 className="contact-subtitle">{SOCIAL_SECTION.subtitle}</h3>
-                    <p className="contact-text">{SOCIAL_SECTION.text}</p>
-                    <div className="social-links">
-                        {SOCIAL_SECTION.links.map((link, index) => (
-                            <a key={index} href={link.url} className="social-link" target="_blank" rel="noopener noreferrer">
-                                <img src={index === 0 ? instagramIcon : linkedinIcon} alt={link.alt} />
-                                <span>{link.name}</span>
-                            </a>
-                        ))}
-                    </div>
                 </div>
             </div>
         </section>
