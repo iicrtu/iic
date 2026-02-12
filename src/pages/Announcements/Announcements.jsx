@@ -1,6 +1,7 @@
 import React from 'react';
+import {Link}from "react-router-dom";
 import './Announcements.css';
-import { ANNOUNCEMENTS_HERO, CATEGORIES, ANNOUNCEMENTS_DATA, LABELS } from '../../constants/announcementsConstants';
+import { ANNOUNCEMENTS_HERO, ANNOUNCEMENTS_DATA, LABELS } from '../../constants/announcementsConstants';
 
 const Announcements = () => {
     return (
@@ -15,16 +16,7 @@ const Announcements = () => {
                 </p>
             </section>
 
-            <section className="categories-section">
-                <div className="categories-grid">
-                    {CATEGORIES.map((category, index) => (
-                        <div key={index} className="category-card">
-                            <div className="category-count">{category.count}</div>
-                            <div className="category-label">{category.label}</div>
-                        </div>
-                    ))}
-                </div>
-            </section>
+               
 
             <section className="announcements-list-section">
                 <div className="announcements-list-container">
@@ -46,12 +38,12 @@ const Announcements = () => {
                                         <span className="date-value">{announcement.deadline}</span>
                                     </div>
                                 </div>
-                                <button className="explore-more-btn">
+                                <Link to="/apply" className="explore-more-btn">
                                     <span>{LABELS.exploreMoreBtn}</span>
                                     <svg width="23" height="29" viewBox="0 0 23 29" fill="none">
                                         <path d="M8.63 7.25L14.38 14.5L8.63 21.75" stroke="#1E1E1E" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
                                     </svg>
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     ))}
