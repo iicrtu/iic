@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
@@ -9,7 +10,7 @@ import EventsPage from './pages/EventsPage/EventsPage';
 import StartupsPage from './pages/StartupsPage/StartupsPage';
 import Internships from './pages/Internships/Internships';
 import Announcements from './pages/Announcements/Announcements';
-
+import Apply from "./pages/Announcements/apply";
 function App() {
   return (
     <Router>
@@ -22,6 +23,7 @@ function App() {
           <Route path="/startups" element={<StartupsPage />} />
           <Route path="/internships" element={<Internships />} />
           <Route path="/announcements" element={<Announcements />} />
+          <Route path="/apply" element={<Apply />} />
         </Routes>
         <Footer />
       </div>

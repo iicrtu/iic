@@ -6,12 +6,7 @@ export const ANNOUNCEMENTS_HERO = {
   description: 'Discover latest opportunities, competitions, workshops, and important announcements. Don\'t miss out on these amazing chances to grow!'
 };
 
-export const CATEGORIES = [
-  { count: '1', label: 'WORKSHOP' },
-  { count: '4', label: 'NEW UPDATES' },
-  { count: '3', label: 'INTERNSHIP' },
-  { count: '4', label: 'COMPETETION' }
-];
+
 
 export const ANNOUNCEMENTS_DATA = [
   {
@@ -41,7 +36,7 @@ export const ANNOUNCEMENTS_DATA = [
 ];
 
 export const LABELS = {
-  exploreMoreBtn: 'Explore More',
+  exploreMoreBtn: 'Apply Now',
   postedLabel: 'Posted:',
   deadlineLabel: 'Deadline :'
 };
