@@ -208,7 +208,18 @@
     line-height: 1.5;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1440px) {
+    .contact-section {
+        padding: 50px 50px;
+    }
+    
+    .contact-container {
+        grid-template-columns: 480px 480px;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 1200px) {
     .contact-section {
         padding: 50px 40px;
     }
@@ -216,22 +227,107 @@
     .contact-container {
         grid-template-columns: 1fr;
         max-width: 640px;
+        gap: 25px;
+    }
+    
+    .contact-left-column {
+        gap: 25px;
+    }
+}
+
+@media (max-width: 968px) {
+    .contact-section {
+        padding: 45px 35px;
+    }
+    
+    .contact-container {
+        max-width: 580px;
+    }
+    
+    .contact-subtitle {
+        font-size: 22px;
+    }
+    
+    .form-label {
+        font-size: 22px;
     }
 }
 
 @media (max-width: 768px) {
     .contact-section {
-        padding: 60px 20px;
+        padding: 40px 30px;
     }
     
     .contact-info,
     .contact-form-section,
     .social-section {
-        padding: 30px;
+        padding: 25px;
+        border-radius: 25px;
     }
     
     .contact-subtitle {
-        font-size: 28px;
+        font-size: 24px;
+    }
+    
+    .form-label {
+        font-size: 24px;
+    }
+    
+    .contact-left-column {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-section {
+        padding: 35px 20px;
+    }
+    
+    .contact-info,
+    .contact-form-section,
+    .social-section {
+        padding: 20px;
+        border-radius: 22px;
+    }
+    
+    .contact-subtitle {
+        font-size: 22px;
+    }
+    
+    .form-label {
+        font-size: 22px;
+    }
+    
+    .social-links {
+        flex-direction: column;
+    }
+    
+    .social-link {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 360px) {
+    .contact-section {
+        padding: 30px 15px;
+    }
+    
+    .contact-info,
+    .contact-form-section,
+    .social-section {
+        padding: 18px;
+    }
+    
+    .contact-subtitle {
+        font-size: 20px;
+    }
+    
+    .form-label {
+        font-size: 20px;
+    }
+    
+    .send-btn {
+        font-size: 20px;
     }
 }
 
