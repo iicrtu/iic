@@ -1,4 +1,7 @@
 // Contact Component Constants
+import mailIcon from '../assets/email.webp';
+import phoneIcon from '../assets/telephone.webp';
+import locationIcon from '../assets/gps.webp';
 
 export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xlgwjanb';
 
@@ -12,15 +15,18 @@ export const CONTACT_INFO = {
   text: 'Reach out to us through any of these channels.',
   email: {
     label: 'Email',
-    value: 'iicrtu@gmail.com'
+    value: 'iicrtu@gmail.com',
+    icon: mailIcon
   },
   phone: {
     label: 'Phone',
-    value: '+002828737338'
+    value: '+002828737338',
+    icon: phoneIcon
   },
   location: {
     label: 'Location',
-    value: 'PTP HALL,PNB BUILDING'
+    value: 'PTP HALL,PNB BUILDING',
+    icon: locationIcon
   }
 };
 

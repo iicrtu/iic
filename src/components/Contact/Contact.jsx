@@ -100,21 +100,21 @@ const Contact = () => {
                     <p className="contact-text">{CONTACT_INFO.text}</p>
                     <div className="contact-details">
                         <div className="contact-item">
-                            <div className="contact-icon"></div>
+                            <img src={CONTACT_INFO.email.icon} alt="email" className="contact-icon" />
                             <div className="contact-info-content">
                                 <span className="contact-label">{CONTACT_INFO.email.label}</span>
                                 <span className="contact-value">{CONTACT_INFO.email.value}</span>
                             </div>
                         </div>
                         <div className="contact-item">
-                            <div className="contact-icon"></div>
+                            <img src={CONTACT_INFO.phone.icon} alt="phone" className="contact-icon" />
                             <div className="contact-info-content">
                                 <span className="contact-label">{CONTACT_INFO.phone.label}</span>
                                 <span className="contact-value">{CONTACT_INFO.phone.value}</span>
                             </div>
                         </div>
                         <div className="contact-item">
-                            <div className="contact-icon"></div>
+                            <img src={CONTACT_INFO.location.icon} alt="location" className="contact-icon" />
                             <div className="contact-info-content">
                                 <span className="contact-label">{CONTACT_INFO.location.label}</span>
                                 <span className="contact-value">{CONTACT_INFO.location.value}</span>
