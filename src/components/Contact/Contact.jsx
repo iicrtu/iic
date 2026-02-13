@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import './Contact.css';
 import instagramIcon from '../../assets/instagram-icon.png';
 import linkedinIcon from '../../assets/linkedin-icon.png';
-import { CONTACT_SECTION, CONTACT_INFO, CONTACT_FORM, SOCIAL_SECTION } from '../../constants/contactConstants';
+import whatsappIcon from '../../assets/whatsapp-icon.png';
+import { CONTACT_SECTION, CONTACT_INFO, CONTACT_FORM, SOCIAL_SECTION, FORMSPREE_ENDPOINT } from '../../constants/contactConstants';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -10,6 +12,7 @@ const Contact = () => {
         email: '',
         message: ''
     });
+    const [status, setStatus] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -19,28 +22,73 @@ const Contact = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
         if (!formData.name || !formData.email || !formData.message) {
-            alert(CONTACT_FORM.errorMessage);
+            toast.error(CONTACT_FORM.errorMessage);
             return;
         }
         
-        // Here you would typically send the data to a server
-        console.log('Form submitted:', formData);
-        alert(CONTACT_FORM.successMessage);
+        setStatus('sending');
         
-        // Reset form
-        setFormData({
-            name: '',
-            email: '',
-            message: ''
-        });
+        try {
+            const response = await fetch(FORMSPREE_ENDPOINT, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            
+            if (response.ok) {
+                setStatus('success');
+                toast.success(CONTACT_FORM.successMessage);
+                setFormData({
+                    name: '',
+                    email: '',
+                    message: ''
+                });
+            } else {
+                setStatus('error');
+                toast.error('There was an error sending your message. Please try again.');
+            }
+        } catch (error) {
+            setStatus('error');
+            toast.error('There was an error sending your message. Please try again.');
+        }
     };
 
     return (
-        <section className="contact-section">
+        <>
+            <Toaster 
+                position="top-center"
+                toastOptions={{
+                    duration: 3000,
+                    style: {
+                        background: '#fff',
+                        color: '#000',
+                        fontFamily: 'Roboto, sans-serif',
+                        fontSize: '16px',
+                        padding: '16px',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                    },
+                    success: {
+                        iconTheme: {
+                            primary: '#10b981',
+                            secondary: '#fff',
+                        },
+                    },
+                    error: {
+                        iconTheme: {
+                            primary: '#ef4444',
+                            secondary: '#fff',
+                        },
+                    },
+                }}
+            />
+            <section className="contact-section">
             <h2 className="section-title">{CONTACT_SECTION.title}</h2>
             <p className="section-description">
                 {CONTACT_SECTION.description}
@@ -78,12 +126,15 @@ const Contact = () => {
                         <h3 className="contact-subtitle">{SOCIAL_SECTION.subtitle}</h3>
                         <p className="contact-text">{SOCIAL_SECTION.text}</p>
                         <div className="social-links">
-                            {SOCIAL_SECTION.links.map((link, index) => (
-                                <a key={index} href={link.url} className="social-link" target="_blank" rel="noopener noreferrer">
-                                    <img src={index === 0 ? instagramIcon : linkedinIcon} alt={link.alt} />
-                                    <span>{link.name}</span>
-                                </a>
-                            ))}
+                            {SOCIAL_SECTION.links.map((link, index) => {
+                                const icons = [instagramIcon, linkedinIcon, whatsappIcon];
+                                return (
+                                    <a key={index} href={link.url} className="social-link" target="_blank" rel="noopener noreferrer">
+                                        <img src={icons[index]} alt={link.alt} />
+                                        <span>{link.name}</span>
+                                    </a>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
@@ -126,11 +177,14 @@ const Contact = () => {
                                 required
                             ></textarea>
                         </div>
-                        <button type="submit" className="send-btn">{CONTACT_FORM.buttonText}</button>
+                        <button type="submit" className="send-btn" disabled={status === 'sending'}>
+                            {status === 'sending' ? 'SENDING...' : CONTACT_FORM.buttonText}
+                        </button>
                     </form>
                 </div>
             </div>
         </section>
+        </>
     );
 };
 
