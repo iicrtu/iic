@@ -50,7 +50,10 @@ const Footer = () => {
                         <h4 className="footer-heading">{FOOTER_CONTACT_INFO.heading}</h4>
                         <ul className="footer-list">
                             {FOOTER_CONTACT_INFO.items.map((item, index) => (
-                                <li key={index}>{item.text}</li>
+                                <li key={index} className="footer-contact-item">
+                                    {item.icon && <img src={item.icon} alt={item.type} className="footer-contact-icon" />}
+                                    <span>{item.text}</span>
+                                </li>
                             ))}
                         </ul>
                     </div>

@@ -22,7 +22,7 @@ export const EVENTS_DATA = [
   },
   {
     id: 'idea-spark',
-    tag: 'WORKSHOP',
+    tag: 'COMPETITION',
     badge: 'Upcoming',
     title: 'IDEA SPARK',
     year: '2025',
@@ -33,7 +33,7 @@ export const EVENTS_DATA = [
   },
   {
     id: 'linkedin',
-    tag: 'COMPETETION',
+    tag: 'WORKSHOP',
     badge: 'Upcoming',
     title: 'LINKEDIN',
     year: '2025',
