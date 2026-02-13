@@ -110,6 +110,19 @@
     color: #000000;
 }
 
+.footer-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-contact-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
 .footer-bottom {
     max-width: 1530px;
     margin: 0 auto;

@@ -1,4 +1,7 @@
 // Footer Component Constants
+import mailIcon from '../assets/email.webp';
+import phoneIcon from '../assets/telephone.webp';
+import locationIcon from '../assets/gps.webp';
 
 export const FOOTER_BRAND = {
   logo: 'https://www.figma.com/api/mcp/asset/05a96098-9b9c-46d0-9588-93e5a41c6574',
@@ -21,9 +24,9 @@ export const FOOTER_QUICK_LINKS = {
 export const FOOTER_CONTACT_INFO = {
   heading: 'CONTACT INFO',
   items: [
-    { text: 'ecell@college.edu', type: 'email' },
-    { text: '+91 12345 67890', type: 'phone' },
-    { text: 'PNB Building, RTU', type: 'location' }
+    { text: 'ecell@college.edu', type: 'email', icon: mailIcon },
+    { text: '+91 12345 67890', type: 'phone', icon: phoneIcon },
+    { text: 'PNB Building, RTU', type: 'location', icon: locationIcon }
   ]
 };
 

@@ -59,8 +59,7 @@
 .contact-icon {
     width: 35px;
     height: 35px;
-    background: rgba(86, 65, 65, 0.33);
-    opacity: 0.43;
+    object-fit: contain;
     border-radius: 4px;
     flex-shrink: 0;
 }
