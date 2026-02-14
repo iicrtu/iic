@@ -52,8 +52,14 @@ const Footer = () => {
                             {FOOTER_CONTACT_INFO.items.map((item, index) => (
                                 <li key={index} className="footer-contact-item">
                                     {item.icon && <img src={item.icon} alt={item.type} className="footer-contact-icon" />}
-                                    <span>{item.text}</span>
-                                </li>
+                                    {item.type === 'email' ? (
+                                        <a href={`mailto:${item.text}`} className="footer-contact-link">{item.text}</a>
+                                    ) : item.type === 'phone' ? (
+                                        <a href={`tel:${item.text.replace(/\s+/g, '')}`} className="footer-contact-link">{item.text}</a>
+                                    ) : (
+                                        <span>{item.text}</span>
+                                    )}
+                        </li>
                             ))}
                         </ul>
                     </div>
