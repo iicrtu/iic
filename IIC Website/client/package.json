@@ -1,0 +1,22 @@
+{
+  "name": "iic-website",
+  "version": "1.0.0",
+  "description": "Innovation & Incubation Cell",
+  "private": true,
+  "dependencies": {
+    "nodemailer": "^8.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.4",
+    "vite": "^7.3.1"
+  }
+}

@@ -1,0 +1,90 @@
+.oo-wrap {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 16px;
+}
+
+.oo-card {
+  width: 100%;
+  max-width: 820px;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 18px;
+  padding: 18px;
+  background: #fff;
+}
+
+.oo-title {
+  margin: 0 0 6px;
+  font-family: "Roboto", sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.oo-subtitle {
+  margin: 0 0 14px;
+  font-family: "Anek Latin", sans-serif;
+  color: rgba(0,0,0,0.65);
+}
+
+.oo-error {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  color: #991b1b;
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  font-family: "Anek Latin", sans-serif;
+}
+
+.oo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.oo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.oo-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: "Anek Latin", sans-serif;
+  font-size: 13px;
+}
+
+.oo-field input,
+.oo-field textarea {
+  border: 1px solid rgba(0,0,0,0.18);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.oo-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.oo-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 820px) {
+  .oo-grid {
+    grid-template-columns: 1fr;
+  }
+}

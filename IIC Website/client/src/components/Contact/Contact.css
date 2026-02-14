@@ -1,0 +1,260 @@
+.contact-section {
+    background: var(--white);
+    padding: 60px 80px;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 640px 638px;
+    gap: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.contact-left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.contact-info,
+.contact-form-section,
+.social-section {
+    background: var(--white);
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    border-radius: 34px;
+    padding: 30px;
+}
+
+.contact-subtitle {
+    font-family: 'Anek Latin', sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--black);
+    margin-bottom: 12px;
+}
+
+.contact-text {
+    font-family: 'Anek Latin', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.61);
+    margin-bottom: 20px;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.contact-icon {
+    width: 35px;
+    height: 35px;
+    background: rgba(86, 65, 65, 0.33);
+    opacity: 0.43;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.contact-info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contact-label {
+    font-family: 'Anek Latin', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--black);
+}
+
+.contact-value {
+    font-family: 'Anek Latin', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-label {
+    font-family: 'Anek Latin', sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--black);
+}
+
+.form-input,
+.form-textarea {
+    background: #E5E5E5;
+    border: none;
+    border-radius: 15px;
+    padding: 12px 16px;
+    font-family: 'Anek Latin', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--black);
+    resize: none;
+    transition: background 0.3s;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    background: #D9D9D9;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: var(--black);
+    opacity: 1;
+}
+
+.form-textarea {
+    min-height: 96px;
+}
+
+.send-btn {
+    background: #5C8FFF;
+    border: none;
+    border-radius: 15px;
+    padding: 12px 30px;
+    font-family: 'Anek Latin', sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--white);
+    cursor: pointer;
+    width: 100%;
+    max-height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.send-btn:hover {
+    background: #0028CC;
+    transform: scale(1.05);
+}
+
+.social-links {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--black);
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    border-radius: 7px;
+    padding: 8px 14px;
+    height: 40px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.social-link:hover {
+    background: rgba(0, 0, 0, 0.05);
+    transform: translateX(5px);
+}
+
+.social-link img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.social-link span {
+    font-family: 'Anek Latin', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+@media (max-width: 1400px) {
+    .contact-section {
+        padding: 50px 40px;
+    }
+    
+    .contact-container {
+        grid-template-columns: 1fr;
+        max-width: 640px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 60px 20px;
+    }
+    
+    .contact-info,
+    .contact-form-section,
+    .social-section {
+        padding: 30px;
+    }
+    
+    .contact-subtitle {
+        font-size: 28px;
+    }
+}
+
+.contact-status {
+  margin: 10px 0 14px;
+  padding: 12px 16px;
+  border-radius: 15px;
+  font-family: 'Anek Latin', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.contact-status-ok {
+  background: rgba(16, 185, 129, 0.14);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #047857;
+}
+
+.contact-status-err {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.22);
+  color: #991b1b;
+}
+
+.send-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.send-btn:disabled:hover {
+  background: #5C8FFF;
+  transform: none;
+}

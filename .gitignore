@@ -1,30 +1,16 @@
-# Dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# Testing
-/coverage
-
-# Production
-/build
-
-# Misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# IDE
-.vscode
-.idea
-*.swp
-*.swo
-*~
-
-
+IIC Website/client/node_modules/
+IIC Website/client/build/
+IIC Website/client/dist/
+IIC Website/client/.next/
+IIC Website/server/node_modules/
+IIC Website/server/dist/
+IIC Website/server/build/
+IIC Website/.env
+IIC Website/client/node_modules/
+IIC Website/client/build/
+IIC Website/client/dist/
+IIC Website/client/.next/
+IIC Website/server/node_modules/
+IIC Website/server/dist/
+IIC Website/server/build/
+IIC Website/.env

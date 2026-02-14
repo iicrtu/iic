@@ -1,0 +1,159 @@
+.gf-wrap {
+  min-height: calc(100vh - 80px);
+  background: #f5f6f8;
+  padding-bottom: 40px;
+}
+
+.gf-top {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #f5f6f8;
+}
+
+.gf-topbar {
+  height: 10px;
+  background: #673ab7;
+}
+
+.gf-header {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 18px 16px 12px;
+}
+
+.gf-title {
+  margin: 0 0 4px;
+  font-family: "Roboto", sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: #202124;
+}
+
+.gf-subtitle {
+  margin: 0;
+  font-family: "Anek Latin", sans-serif;
+  color: rgba(0,0,0,0.65);
+}
+
+.gf-form {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.gf-error {
+  background: #fce8e6;
+  border: 1px solid #fad2cf;
+  color: #a50e0e;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-family: "Anek Latin", sans-serif;
+}
+
+.gf-section {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.gf-section-head {
+  padding: 14px 14px 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.gf-section-title {
+  margin: 0 0 4px;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #202124;
+}
+
+.gf-section-hint {
+  margin: 0;
+  font-family: "Anek Latin", sans-serif;
+  font-size: 13px;
+  color: rgba(0,0,0,0.62);
+}
+
+.gf-section-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: "Anek Latin", sans-serif;
+  font-size: 13px;
+}
+
+.gf-label {
+  color: #202124;
+}
+
+.gf-required {
+  color: #d93025;
+  font-weight: 700;
+}
+
+.gf-field input,
+.gf-field select,
+.gf-field textarea {
+  width: 100%;
+  border: 1px solid rgba(0,0,0,0.22);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 14px;
+  background: #fff;
+}
+
+.gf-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 0.6fr;
+  gap: 12px;
+}
+
+.gf-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 6px 0;
+}
+
+.gf-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: #673ab7;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.gf-btn-outline {
+  background: #fff;
+  color: #202124;
+  border: 1px solid rgba(0,0,0,0.22);
+}
+
+.gf-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .gf-row {
+    grid-template-columns: 1fr;
+  }
+}
