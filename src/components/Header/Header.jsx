@@ -5,6 +5,7 @@ import logo from '../../assets/logo.png';
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
     const location = useLocation();
 
     useEffect(() => {
@@ -20,7 +21,24 @@ const Header = () => {
     // Scroll to top when route changes
     useEffect(() => {
         window.scrollTo(0, 0);
+        setMenuOpen(false); // Close menu on route change
     }, [location]);
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
+    // Prevent body scroll when menu is open
+    useEffect(() => {
+        if (menuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [menuOpen]);
 
     return (
         <header className={`header ${scrolled ? 'scrolled' : ''}`}>
@@ -30,19 +48,26 @@ const Header = () => {
                     <div className="line"></div>
                     <div className="logo-text">IIC</div>
                 </Link>
-                <nav className="nav-menu">
+                
+                {/* Hamburger Menu Icon */}
+                <button 
+                    className={`hamburger ${menuOpen ? 'active' : ''}`} 
+                    onClick={toggleMenu}
+                    aria-label="Toggle menu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                {/* Desktop Navigation */}
+                <nav className="nav-menu desktop-menu">
                     <Link to="/" className="nav-link">
                         HOME
                     </Link>
                     <Link to="/about" className="nav-link">
                         ABOUT US
                     </Link>
-                    {/* <Link to="/startups" className="nav-link">
-                        STARTUPS
-                    </Link>
-                    <Link to="/events" className="nav-link">
-                        EVENTS
-                    </Link> */}
                     <Link to="/internships" className="nav-link">
                         INTERNSHIPS
                     </Link>
@@ -51,6 +76,26 @@ const Header = () => {
                     </Link>
                     <button className="login-btn">LOGIN</button>
                 </nav>
+
+                {/* Mobile Navigation */}
+                <nav className={`nav-menu mobile-menu ${menuOpen ? 'open' : ''}`}>
+                    <Link to="/" className="nav-link" onClick={toggleMenu}>
+                        HOME
+                    </Link>
+                    <Link to="/about" className="nav-link" onClick={toggleMenu}>
+                        ABOUT US
+                    </Link>
+                    <Link to="/internships" className="nav-link" onClick={toggleMenu}>
+                        INTERNSHIPS
+                    </Link>
+                    <Link to="/announcements" className="nav-link" onClick={toggleMenu}>
+                        ANNOUNCEMENTS
+                    </Link>
+                    <button className="login-btn" onClick={toggleMenu}>LOGIN</button>
+                </nav>
+
+                {/* Overlay */}
+                {menuOpen && <div className="menu-overlay" onClick={toggleMenu}></div>}
             </div>
         </header>
     );

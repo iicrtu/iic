@@ -3,9 +3,11 @@ import mailIcon from '../assets/email.webp';
 import phoneIcon from '../assets/telephone.webp';
 import locationIcon from '../assets/gps.webp';
 
+export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xlgwjanb';
+
 export const CONTACT_SECTION = {
   title: 'Get In Touch',
-  description: 'Have questions or want to join E-Cell? We\'d love to hear from you!'
+  description: 'Have questions or want to join IIC? We\'d love to hear from you!'
 };
 
 export const CONTACT_INFO = {
@@ -54,6 +56,11 @@ export const SOCIAL_SECTION = {
       name: 'LinkedIn',
       url: 'https://linkedin.com/company/iic_rtu/',
       alt: 'LinkedIn'
+    },
+    {
+      name: 'WhatsApp',
+      url: '#',
+      alt: 'WhatsApp'
     }
   ]
 };
