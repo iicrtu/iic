@@ -2,8 +2,10 @@ import React from 'react';
 import './Hero.css';
 import heroImage from '../../assets/hero-image.png';
 import { HERO_CONTENT } from '../../constants/heroConstants';
+import {useNavigate} from "react-router-dom";
 
 const Hero = () => {
+    const navigate = useNavigate();
     return (
         <section id="home" className="hero">
             <div className="hero-background">
@@ -23,7 +25,7 @@ const Hero = () => {
                     {HERO_CONTENT.description}
                 </p>
                 <div className="hero-buttons">
-                    <button className="explore-more-btn">{HERO_CONTENT.secondaryButtonText}</button>
+                    <button className="explore-more-btn" onClick={() => navigate('/about')}>{HERO_CONTENT.secondaryButtonText}</button>
                     <button className="join-us-btn">{HERO_CONTENT.primaryButtonText}</button>
                 </div>
             </div>

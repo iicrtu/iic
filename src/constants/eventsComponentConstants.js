@@ -1,4 +1,7 @@
 // Events Component Constants (for Home page)
+import graduationHatIcon from '../assets/graduation-hat.png';
+import ideaIcon from '../assets/idea.png';
+import partnersIcon from '../assets/partners.png';
 
 export const EVENTS_SECTION = {
   title: 'Our Events',
@@ -12,7 +15,8 @@ export const EVENTS_DATA = [
   {
     id: 'internship-fair',
     tag: 'SUMMIT',
-    badge: 'Upcoming',
+    tagIcon: graduationHatIcon,
+    badge: 'Summit',
     title: 'INTERNSHIP FAIR',
     year: '2025',
     description:
@@ -23,7 +27,12 @@ export const EVENTS_DATA = [
   {
     id: 'idea-spark',
     tag: 'COMPETITION',
+<<<<<<< HEAD
     badge: 'Upcoming',
+=======
+    tagIcon: ideaIcon,
+    badge: 'Competition',
+>>>>>>> 059821a (Added sliding what we offer cards and added links)
     title: 'IDEA SPARK',
     year: '2025',
     description:
@@ -34,7 +43,12 @@ export const EVENTS_DATA = [
   {
     id: 'linkedin',
     tag: 'WORKSHOP',
+<<<<<<< HEAD
     badge: 'Upcoming',
+=======
+    tagIcon: partnersIcon,
+    badge: 'Workshop',
+>>>>>>> 059821a (Added sliding what we offer cards and added links)
     title: 'LINKEDIN',
     year: '2025',
     description:

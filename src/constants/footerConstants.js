@@ -24,7 +24,11 @@ export const FOOTER_QUICK_LINKS = {
 export const FOOTER_CONTACT_INFO = {
   heading: 'CONTACT INFO',
   items: [
+<<<<<<< HEAD
     { text: 'ecell@college.edu', type: 'email', icon: mailIcon },
+=======
+    { text: 'iicrtu@gmail.com', type: 'email', icon: mailIcon },
+>>>>>>> 059821a (Added sliding what we offer cards and added links)
     { text: '+91 12345 67890', type: 'phone', icon: phoneIcon },
     { text: 'PNB Building, RTU', type: 'location', icon: locationIcon }
   ]
@@ -35,13 +39,13 @@ export const FOOTER_SOCIAL = {
     {
       name: 'Instagram',
       icon: 'https://www.figma.com/api/mcp/asset/4d8a7702-8be5-414b-b9de-c3ad7f5aaf2c',
-      url: '#',
+      url: 'https://instagram.com/iic_rtu',
       alt: 'Instagram'
     },
     {
       name: 'LinkedIn',
       icon: 'https://www.figma.com/api/mcp/asset/f2583708-83ba-49e5-bb0e-5f963c1af527',
-      url: '#',
+      url: 'https://linkedin.com/company/iic_rtu/',
       alt: 'LinkedIn'
     }
   ]

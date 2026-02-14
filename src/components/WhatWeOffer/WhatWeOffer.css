@@ -3,20 +3,160 @@
     padding: 80px 115px;
 }
 
+.what-we-offer .section-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.title-part1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 1.17;
+    color: var(--black);
+}
+
+.title-part2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 1.17;
+    background: var(--gradient-title);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .offer-grid {
-    display: grid;
+    display: none; /* hidden on desktop when carousel is active; shown on small screens */
     grid-template-columns: repeat(3, 1fr);
     gap: 108px 20px;
     max-width: 1300px;
 }
 
+/* Carousel styles (desktop) */
+.offers-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 380px;
+    margin: 28px auto 40px;
+    perspective: 1200px;
+}
+
+.carousel-slide {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-style: preserve-3d;
+    transform-origin: center center;
+    transition: transform 700ms cubic-bezier(.22,.9,.35,1), opacity 700ms ease, visibility 700ms ease;
+    width: 420px;
+    display: flex;
+    align-items: stretch;
+    backface-visibility: hidden;
+}
+
+.carousel-slide .offer-card {
+    width: 100%;
+    height: 100%;
+    border-radius: 28px;
+    transition: box-shadow 0.35s ease, transform 0.35s ease;
+}
+
 .offer-card {
     background: var(--white);
-    border: 1px solid rgba(0, 0, 0, 0.63);
-    border-radius: 45px;
-    padding: 25px 30px 35px;
+    border: 2px solid rgba(0,0,0,0.08);
+    padding: 32px 30px;
     text-align: left;
-    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+/* Active/Center card - clearly visible */
+.carousel-slide[style*="opacity: 1"] .offer-card {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    border-color: rgba(60, 135, 255, 0.3);
+}
+
+.carousel-slide[style*="opacity: 1"] .card-icon {
+    opacity: 1;
+}
+
+.carousel-slide[style*="opacity: 1"] .card-icon .icon-element {
+    opacity: 1;
+}
+
+.carousel-slide[style*="opacity: 1"] .card-number {
+    opacity: 1;
+}
+
+.carousel-slide[style*="opacity: 1"] .card-title,
+.carousel-slide[style*="opacity: 1"] .card-description {
+    color: var(--black);
+    opacity: 1;
+}
+
+/* Background cards - 30% less visible than active card */
+.carousel-slide[style*="opacity: 0.7"] .offer-card {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.1);
+    filter: grayscale(10%);
+}
+
+.carousel-slide[style*="opacity: 0.7"] .card-icon {
+    opacity: 0.6;
+}
+
+.carousel-slide[style*="opacity: 0.7"] .card-icon .icon-element {
+    opacity: 0.6;
+}
+
+.carousel-slide[style*="opacity: 0.7"] .card-number {
+    opacity: 0.2;
+}
+
+.carousel-slide[style*="opacity: 0.7"] .card-title,
+.carousel-slide[style*="opacity: 0.7"] .card-description {
+    color: rgba(0, 0, 0, 0.7);
+    opacity: 0.7;
+}
+
+/* Fixed segmented progress bar under carousel */
+.carousel-segments {
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 8px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+}
+
+.carousel-segments .segment {
+    flex: 1 1 0;
+    height: 6px;
+    background: rgba(0,0,0,0.06);
+    border-radius: 6px;
+    transition: background 360ms ease, transform 360ms cubic-bezier(.22,.9,.35,1);
+    cursor: pointer;
+}
+
+.carousel-segments .segment.active {
+    background: linear-gradient(90deg, #3C87FF 0%, #F269DE 100%);
+    transform: scaleX(1.05) translateY(-1px);
 }
 
 .offer-card:hover {
@@ -30,6 +170,30 @@
     border-radius: 19px;
     margin-bottom: 46px;
     opacity: 0.43;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-icon .icon-element {
+    font-size: 60px;
+    color: white;
+    z-index: 2;
+    animation: shine 3s ease-in-out infinite;
+}
+
+.card-number {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    background: var(--gradient-title);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0.3;
+    line-height: 1;
 }
 
 .card-title {
@@ -49,17 +213,14 @@
     color: var(--black);
 }
 
-@media (max-width: 1440px) {
-    .what-we-offer {
-        padding: 70px 80px;
+@keyframes shine {
+    0%, 100% {
+        filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+        transform: scale(1);
     }
-    
-    .offer-grid {
-        gap: 80px 20px;
-    }
-    
-    .card-title {
-        font-size: 30px;
+    50% {
+        filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+        transform: scale(1.05);
     }
 }
 
@@ -68,93 +229,71 @@
         padding: 60px 60px;
     }
     
-    .offer-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 60px 20px;
+    .offers-carousel {
+        max-width: 900px;
+        height: 320px;
+        margin-bottom: 50px;
     }
     
-    .card-title {
-        font-size: 28px;
+    .carousel-slide {
+        width: 320px;
     }
     
-    .card-icon {
-        width: 110px;
-        height: 100px;
-        margin-bottom: 35px;
-    }
-}
-
-@media (max-width: 968px) {
-    .what-we-offer {
-        padding: 50px 40px;
-    }
-    
-    .offer-grid {
-        gap: 50px 20px;
-    }
-    
-    .card-title {
-        font-size: 26px;
-    }
-    
-    .card-description {
-        font-size: 17px;
-    }
-}
-
-@media (max-width: 768px) {
-    .what-we-offer {
-        padding: 40px 30px;
-    }
-    
-    .offer-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-    
-    .offer-card {
-        border-radius: 35px;
-        padding: 20px 28px 30px;
-    }
-    
-    .card-title {
-        font-size: 28px;
+    .carousel-segments {
+        bottom: -45px;
     }
     
     .card-icon {
         width: 100px;
         height: 90px;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
-}
-
-@media (max-width: 480px) {
-    .what-we-offer {
-        padding: 35px 20px;
+    
+    .card-icon .icon-element {
+        font-size: 45px;
+    }
+    
+    .card-number {
+        font-size: 24px;
     }
     
     .offer-grid {
-        gap: 30px;
-    }
-    
-    .card-title {
-        font-size: 26px;
-    }
-    
-    .card-description {
-        font-size: 16px;
-    }
-    
-    .card-icon {
-        width: 90px;
-        height: 80px;
-        margin-bottom: 25px;
+        display: none;
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 768px) {
     .what-we-offer {
-        padding: 30px 15px;
+        padding: 40px 20px;
+    }
+    
+    .offers-carousel {
+        max-width: 100%;
+        height: 280px;
+        margin: 20px auto 50px;
+    }
+    
+    .carousel-slide {
+        width: 280px;
+        height: 300px;
+    }
+    
+    .carousel-segments {
+        bottom: -45px;
+    }
+    
+    .card-icon {
+        width: 80px;
+        height: 70px;
+        margin-bottom: 15px;
+    }
+    
+    .card-icon .icon-element {
+        font-size: 35px;
+    }
+    
+    .card-number {
+        font-size: 20px;
     }
     
     .card-title {
@@ -162,7 +301,52 @@
     }
     
     .card-description {
-        font-size: 15px;
+        font-size: 16px;
+    }
+    
+    .offer-grid {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .what-we-offer {
+        padding: 30px 15px;
+    }
+    
+    .offers-carousel {
+        height: 240px;
+        margin-bottom: 50px;
+    }
+    
+    .carousel-slide {
+        width: 240px;
+    }
+    
+    .carousel-segments {
+        bottom: -45px;
+    }
+    
+    .card-icon {
+        width: 60px;
+        height: 55px;
+        margin-bottom: 10px;
+    }
+    
+    .card-icon .icon-element {
+        font-size: 28px;
+    }
+    
+    .card-number {
+        font-size: 18px;
+    }
+    
+    .card-title {
+        font-size: 20px;
+    }
+    
+    .card-description {
+        font-size: 14px;
     }
 }
 
