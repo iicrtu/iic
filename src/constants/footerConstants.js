@@ -24,11 +24,7 @@ export const FOOTER_QUICK_LINKS = {
 export const FOOTER_CONTACT_INFO = {
   heading: 'CONTACT INFO',
   items: [
-<<<<<<< HEAD
-    { text: 'ecell@college.edu', type: 'email', icon: mailIcon },
-=======
     { text: 'iicrtu@gmail.com', type: 'email', icon: mailIcon },
->>>>>>> 059821a (Added sliding what we offer cards and added links)
     { text: '+91 12345 67890', type: 'phone', icon: phoneIcon },
     { text: 'PNB Building, RTU', type: 'location', icon: locationIcon }
   ]

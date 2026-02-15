@@ -27,12 +27,8 @@ export const EVENTS_DATA = [
   {
     id: 'idea-spark',
     tag: 'COMPETITION',
-<<<<<<< HEAD
-    badge: 'Upcoming',
-=======
     tagIcon: ideaIcon,
     badge: 'Competition',
->>>>>>> 059821a (Added sliding what we offer cards and added links)
     title: 'IDEA SPARK',
     year: '2025',
     description:
@@ -43,12 +39,8 @@ export const EVENTS_DATA = [
   {
     id: 'linkedin',
     tag: 'WORKSHOP',
-<<<<<<< HEAD
-    badge: 'Upcoming',
-=======
     tagIcon: partnersIcon,
     badge: 'Workshop',
->>>>>>> 059821a (Added sliding what we offer cards and added links)
     title: 'LINKEDIN',
     year: '2025',
     description:
