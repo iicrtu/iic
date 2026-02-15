@@ -4,7 +4,7 @@ export const HERO_CONTENT = {
   badge: 'Empowering Student Entrepreneurs',
   titlePart1: 'Welcome To ',
   titlePart2: 'IIC',
-  description: 'The Entrepreneurship Cell of our college - fostering innovation, building startups, and creating tomorrow\'s leaders today.',
+  description: 'The Entrepreneurship Cell of RTU Kota - fostering innovation, building startups, and creating tomorrow\'s leaders today.',
   primaryButtonText: 'JOIN US',
   secondaryButtonText: 'EXPLORE MORE',
   imageAlt: 'Hero'

@@ -30,28 +30,46 @@
 }
 
 .about-badge {
-    display: inline-block;
-    background: var(--gradient-primary);
-    border-radius: 27px;
+    display: inline-flex;
+    width: 180px;
+    height: 47px;
     padding: 12px 38px 10px 33px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 27px;
+    background: linear-gradient(266deg, #3C87FF 0%, #F269DE 118.83%);
     margin-bottom: 20px;
 }
 
 .about-badge span {
+    color: #FFF;
     font-family: 'Roboto', sans-serif;
-    font-weight: 400;
     font-size: 20px;
-    line-height: 1.17;
-    color: var(--white);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: flex;
+    width: 106px;
+    height: 21px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .about-title {
+    margin: 0 auto 30px;
+    color: #000;
     font-family: 'Roboto', sans-serif;
-    font-weight: 400;
     font-size: 80px;
-    line-height: 1.17;
-    color: var(--black);
-    margin-bottom: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+
+.about-title .highlight {
+    color: #F269DE;
 }
 
 .about-description {
@@ -74,49 +92,79 @@
 }
 
 .vision-mission-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 60px;
     margin-top: 60px;
 }
 
 .vision-card,
 .mission-card {
-    border: 1px solid rgba(0, 0, 0, 0.77);
-    border-radius: 54px;
-    padding: 60px;
+    display: flex;
+    align-items: flex-start;
+    gap: 60px;
+    width: 100%;
     position: relative;
-    background: var(--white);
 }
 
-.vision-icon,
-.mission-icon {
+.vision-card-box,
+.mission-card-box {
+    width: 640px;
+    height: 438px;
+    border-radius: 54px;
+    border: 1px solid rgba(0, 0, 0, 0.77);
+    background: #FFF;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 40px;
+    flex-shrink: 0;
+}
+
+.icon-background {
     width: 109px;
     height: 107px;
-    background: #3ECCDB;
+    background: rgba(62, 204, 219, 0.43);
     border-radius: 19px;
-    opacity: 0.43;
-    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-background .icon {
+    width: 60px;
+    height: 60px;
+}
+
+.mission-card {
+    flex-direction: row-reverse;
+}
+
+.vision-content,
+.mission-content {
+    flex: 1;
 }
 
 .vision-title,
 .mission-title {
+    color: #000;
     font-family: 'Roboto', sans-serif;
-    font-weight: 500;
     font-size: 60px;
-    line-height: 1.17;
-    color: var(--black);
-    text-align: center;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
     margin-bottom: 30px;
+    text-align: left;
 }
 
 .vision-text,
 .mission-text {
+    color: #000;
     font-family: 'Roboto', sans-serif;
-    font-weight: 400;
     font-size: 24px;
-    line-height: 1.17;
-    color: var(--black);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
     text-align: left;
 }
 
@@ -128,13 +176,18 @@
 }
 
 .team-section .section-title {
+    margin: 0 auto 30px;
+    color: #000;
     font-family: 'Roboto', sans-serif;
-    font-weight: 400;
     font-size: 70px;
-    line-height: 1.17;
-    color: var(--black);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
     text-align: center;
-    margin-bottom: 30px;
+}
+
+.team-section .section-title .highlight {
+    color: #F269DE;
 }
 
 .team-section .section-description {
