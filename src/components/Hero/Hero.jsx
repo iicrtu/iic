@@ -33,16 +33,16 @@ const Hero = () => {
                 <div className="gradient-blur blur-circle-1"></div>
                 <div className="gradient-blur blur-circle-2"></div>
                 <div className="hero-cards-container">
-                    <div className="hero-card hero-card-white">
+                    <div className="hero-card hero-card-white1">
                         <span className="card-label">INNOVATION</span>
                     </div>
-                    <div className="hero-card hero-card-white">
+                    <div className="hero-card hero-card-white2">
                         <span className="card-label">GROWTH</span>
                     </div>
-                    <div className="hero-card hero-card-white">
+                    <div className="hero-card hero-card-white3">
                         <span className="card-label">COMMUNITY</span>
                     </div>
-                    <div className="hero-card hero-card-white">
+                    <div className="hero-card hero-card-white4">
                         <span className="card-label">SUCCESS</span>
                     </div>
                 </div>
