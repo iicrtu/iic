@@ -20,14 +20,227 @@ export const TEAM_SECTION = {
   sectionTitle: 'Our Team',
   description:[ 'Meet the team behind IIC —\n students who don’t just talk about innovation, but build it.\n From technology and marketing to operations and strategy, our members bring\n diverse skills with one shared goal: turning ideas into action.'],
   chairman: {
-    role: 'Chairmen',
+    role: 'Chairman',
     name: 'Dr. Manish Chaturvedi',
-    position: 'Chairmen, IIC'
+    position: 'Chairman, IIC',
+    image: 'Chairman.jpeg',
+    linkedin: 'https://linkedin.com',
+    email: 'manish@example.com'
   },
-  coreTeamTitle: 'CORE TEAM',
   alumniTitle: 'OUR ALUMINI',
-  // Placeholder for team member name - update with actual team data
-  placeholderMemberName: 'Aditya Choudhary',
-  coreTeamCount: 9,
+  coreTeam: [
+     {
+      name: 'Shubh Marwadi',
+      position: 'President',
+      image: 'Shubh.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'shubh@example.com'
+    },
+    {
+      name: 'Priya Patidar',
+      position: 'Secretary',
+      image: 'Priya.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'priya@example.com'
+    },
+     {
+      name: 'Aryan Agarwal',
+      position: 'Coordinator',
+      image: 'Aryan.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'aryan@example.com'
+    },
+     
+     {
+      name: 'Drishti Sharma',
+      position: 'Coordinator',
+      image: 'Drishti.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'drishti@example.com'
+    },
+    {
+      name: 'Somanshu Gupta',
+      position: 'Coordinator',
+      image: 'Somanshu.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'somanshu@example.com'
+    },
+    {
+      name: 'Yash Maheshwari',
+      position: 'Co-Coordinator',
+      image: 'Yash.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'yash@example.com'
+    },
+    {
+      name: 'Lakshya Sharma',
+      position: 'Coordinator',
+      image: 'Lakshya.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'lakshya@example.com'
+    },
+    {
+      name: 'Vipul Dabaria',
+      position: 'Coordinator',
+      image: 'Vipul.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'vipul@example.com'
+    },
+    
+    {
+      name: 'Kartik Maheshwari',
+      position: 'Coordinator',
+      image: 'Kartik.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'kartik@example.com'
+    },
+    {
+      name: 'Vaibhav Purbia',
+      position: 'Coordinator',
+      image: 'Vaibhav.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'vaibhav@example.com'
+    },
+    {
+      name: 'Shahanaj Khan',
+      position: 'Coordinator',
+      image: 'Shahanaj.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'shahanaj@example.com'
+    },
+    {
+      name: 'Ridhima Shekhawat',
+      position: 'Coordinator',
+      image: 'Ridhima.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'ridhima@example.com'
+    },
+    {
+      name: 'Nishita Singh',
+      position: 'Coordinator',
+      image: 'Nishita.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'nishita@example.com'
+    },
+    {
+      name: 'Aditya Raj',
+      position: 'Coordinator',
+      image: 'Aditya.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'aditya@example.com'
+    },
+    {
+      name: 'Laksh Saronja',
+      position: 'Coordinator',
+      image: 'Laksh.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'laksh@example.com'
+    },
+    {
+      name: 'Harshit Kumawat',
+      position: 'Coordinator',
+      image: 'Harshit.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'harshit@example.com'
+    },
+    {
+      name: 'Chitvansh Agarwal',
+      position: 'Core Member',
+      image: 'Chitvansh.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'chitvansh@example.com'
+    },
+    {
+      name: 'Somya Pancholi',
+      position: 'Core Member',
+      image: 'Somya.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'somya@example.com'
+    },
+    {
+      name: 'Suhani Choudhary',
+      position: 'Core Member',
+      image: 'Suhani.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'suhani@example.com'
+    },
+    {
+      name: 'Harshita Chauhan',
+      position: 'Core Member',
+      image: 'Harshita.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'harshita@example.com'
+    },
+    {
+      name: 'Aditya Choudhary',
+      position: 'Core Member',
+      image: 'Aditya2.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'aditya@example.com'
+    },
+    {
+      name: 'Siya Rangwani',
+      position: 'Core Member',
+      image: 'Siya.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'siya@example.com'
+    },
+    {
+      name: 'Nishtha Jain',
+      position: 'Core Member',
+      image: 'Nishtha.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'nishtha@example.com'
+    },
+    
+    
+    {
+      name: 'Harshit Prajapat',
+      position: 'Core Member',
+      image: 'Harshit2.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'harshit@example.com'
+    },
+    
+    {
+      name: 'Yasharth Pratap Singh',
+      position: 'Core Member',
+      image: 'Yasharth.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'yasharth@example.com'
+    },
+    {
+      name: 'Syed Azhar Ali',
+      position: 'Core Member',
+      image: 'Azhar.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'syed@example.com'
+    },
+    
+    
+    {
+      name: 'Palak Yaduvanshi',
+      position: 'Core Member',
+      image: 'Palak.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'palak@example.com'
+    },
+    
+    {
+      name: 'Sita',
+      position: 'Core Member',
+      image: 'Sita.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'sita@example.com'
+    },
+    {
+      name: 'Priyanshi Swami',
+      position: 'Core Member',
+      image: 'Priyanshi.jpeg',
+      linkedin: 'https://linkedin.com',
+      email: 'priyanshi@example.com'
+    },
+    
+  ],
   alumniCount: 4
 };

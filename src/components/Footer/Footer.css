@@ -115,7 +115,21 @@
     align-items: center;
     gap: 12px;
 }
+.footer-contact-link {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.54);
+    font-family: 'Anek Latin', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 30px;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+    cursor: pointer;
+}
 
+.footer-contact-link:hover {
+    color: rgba(60, 135, 255, 0.8);
+    text-decoration: underline;
+}
 .footer-contact-icon {
     width: 20px;
     height: 20px;

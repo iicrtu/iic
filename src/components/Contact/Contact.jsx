@@ -103,14 +103,18 @@ const Contact = () => {
                             <img src={CONTACT_INFO.email.icon} alt="email" className="contact-icon" />
                             <div className="contact-info-content">
                                 <span className="contact-label">{CONTACT_INFO.email.label}</span>
-                                <span className="contact-value">{CONTACT_INFO.email.value}</span>
+                                <a href={`mailto:${CONTACT_INFO.email.value}`} className="contact-value contact-link">
+                                    {CONTACT_INFO.email.value}
+                                </a>
                             </div>
                         </div>
                         <div className="contact-item">
                             <img src={CONTACT_INFO.phone.icon} alt="phone" className="contact-icon" />
                             <div className="contact-info-content">
                                 <span className="contact-label">{CONTACT_INFO.phone.label}</span>
-                                <span className="contact-value">{CONTACT_INFO.phone.value}</span>
+                                <a href={`tel:${CONTACT_INFO.phone.value.replace(/\s+/g, '')}`} className="contact-value contact-link">
+                                    {CONTACT_INFO.phone.value}
+                                </a>
                             </div>
                         </div>
                         <div className="contact-item">

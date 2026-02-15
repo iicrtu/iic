@@ -49,7 +49,7 @@ export const SOCIAL_SECTION = {
   links: [
     {
       name: 'Instagram',
-      url: 'https://www.instagram.com/iic_rtu/',
+      url: 'https://instagram.com/iic_rtu',
       alt: 'Instagram'
     },
     {
