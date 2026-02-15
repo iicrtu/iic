@@ -11,7 +11,7 @@ export const ANNOUNCEMENTS_HERO = {
 export const ANNOUNCEMENTS_DATA = [
   {
     id: 1,
-    type: 'SIP',
+    year:'1st Year',
     title: 'Summer Internship Program',
     description: 'Apply for our exclusive Summer Internship Program with top tech companies. Get hands-on experience and .......',
     posted: 'November 20, 2025',
@@ -19,7 +19,7 @@ export const ANNOUNCEMENTS_DATA = [
   },
   {
     id: 2,
-    type: 'SIP',
+    year:'2nd Year',
     title: 'Summer Internship Program',
     description: 'Apply for our exclusive Summer Internship Program with top tech companies. Get hands-on experience and .......',
     posted: 'November 20, 2025',
@@ -27,7 +27,7 @@ export const ANNOUNCEMENTS_DATA = [
   },
   {
     id: 3,
-    type: 'SIP',
+    year:'3rd Year',
     title: 'Summer Internship Program',
     description: 'Apply for our exclusive Summer Internship Program with top tech companies. Get hands-on experience and .......',
     posted: 'November 20, 2025',

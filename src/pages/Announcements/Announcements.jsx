@@ -23,7 +23,7 @@ const Announcements = () => {
                     {ANNOUNCEMENTS_DATA.map((announcement) => (
                         <div key={announcement.id} className="announcement-card">
                             <div className="announcement-header">
-                                <div className="announcement-type-badge">{announcement.type}</div>
+                                <div className="announcement-type-badge">{announcement.year}</div>
                             </div>
                             <div className="announcement-content">
                                 <h2 className="announcement-title">{announcement.title}</h2>
