@@ -51,6 +51,8 @@
   padding: 34px 45px;
   text-align: left;
   transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 10px 30px rgba(190, 112, 210, 0.6);
+  transition: 0.3s ease;
 }
 
 .startup-card:hover {
