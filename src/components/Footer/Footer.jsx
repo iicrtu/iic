@@ -60,7 +60,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="footer-bottom">
-                <img src={FOOTER_BOTTOM.divider} alt="" className="footer-divider" />
+                <div className="footer-divider"></div>
                 <div className="footer-bottom-content">
                     <p className="footer-copyright">{FOOTER_BOTTOM.copyright}</p>
                     <div className="footer-legal">
