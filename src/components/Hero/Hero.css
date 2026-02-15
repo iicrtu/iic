@@ -216,6 +216,10 @@
     justify-content: center;
     border-radius: 23px;
     overflow: hidden;
+    height: 160px;
+   background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
 }
 
 .hero-card-image {
@@ -238,18 +242,46 @@
     transform: translate(-50%, -50%);
     z-index: 2;
 }
+.hero-card-white1 {
+    background-image:url("./heroimg/innovation.jpeg") ;
+   
 
-.hero-card-white {
-    background: white;
 }
+.hero-card-white2 {
+    background-image:url("./heroimg/growth.jpeg") ;
+   
+
+}
+.hero-card-white3 {
+    background-image:url("./heroimg/community1.avif") ;
+   
+
+}
+.hero-card-white4 {
+    background-image:url("./heroimg/success.jpeg") ;
+   
+
+}
+.hero-card::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+  z-index: 1;
+  background: rgba(rgb(225, 220, 220), green, blue, alpha);
+}
+
+
+
 
 .card-label {
     font-family: 'Roboto', sans-serif;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 20px;
     line-height: normal;
     color: black;
     white-space: nowrap;
+    z-index: 2;
+    position:relative;
 }
 
 @media (max-width: 1200px) {
