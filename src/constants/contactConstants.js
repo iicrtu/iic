@@ -15,12 +15,12 @@ export const CONTACT_INFO = {
   text: 'Reach out to us through any of these channels.',
   email: {
     label: 'Email',
-    value: 'iicrtu@gmail.com',
+    value: 'iic.rtuk@gmail.com',
     icon: mailIcon
   },
   phone: {
     label: 'Phone',
-    value: '+002828737338',
+    value: '+91 95096 69213',
     icon: phoneIcon
   },
   location: {
@@ -54,12 +54,12 @@ export const SOCIAL_SECTION = {
     },
     {
       name: 'LinkedIn',
-      url: 'https://linkedin.com/company/iic_rtu/',
+      url: 'https://in.linkedin.com/company/iic-rtu',
       alt: 'LinkedIn'
     },
     {
       name: 'WhatsApp',
-      url: '#',
+      url: 'https://chat.whatsapp.com/CH5OToMXHt1C4cSbqcG90L?mode=gi_t',
       alt: 'WhatsApp'
     }
   ]

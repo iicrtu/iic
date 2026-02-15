@@ -10,10 +10,7 @@ const About = () => {
                     <div className="about-badge">
                         <span>{ABOUT_HERO.badge}</span>
                     </div>
-                    <h1 className="about-title">
-                        <span className="title-part1">About </span>
-                        <span className="title-part2">E-Cell</span>
-                    </h1>
+                    <h1 className="about-title">About <span className="highlight">E-Cell</span></h1>
                     <p className="about-description">
                         {ABOUT_HERO.description}
                     </p>
@@ -23,29 +20,48 @@ const About = () => {
             <section className="vision-mission-section">
                 <div className="vision-mission-container">
                     <div className="vision-card">
-                        <div className="vision-icon"></div>
-                        <h2 className="vision-title">{VISION.title}</h2>
-                        <p className="vision-text">
-                            {VISION.text}
-                        </p>
+                        <div className="vision-card-box">
+                            <div className="icon-background">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none" className="icon">
+                                    {/* Eye icon for Vision */}
+                                    <ellipse cx="30" cy="30" rx="20" ry="12" stroke="white" strokeWidth="2.5" fill="none"/>
+                                    <circle cx="30" cy="30" r="7" stroke="white" strokeWidth="2.5" fill="none"/>
+                                    <circle cx="30" cy="30" r="4" fill="white"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div className="vision-content">
+                            <h2 className="vision-title">{VISION.title}</h2>
+                            <p className="vision-text">
+                                {VISION.text}
+                            </p>
+                        </div>
                     </div>
                     <div className="mission-card">
-                        <div className="mission-icon"></div>
-                        <h2 className="mission-title">{MISSION.title}</h2>
-                        <p className="mission-text">
-                            {MISSION.text}
-                        </p>
+                        <div className="mission-card-box">
+                            <div className="icon-background">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none" className="icon">
+                                    {/* Rocket icon for Mission */}
+                                    <path d="M30 10 L30 42" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
+                                    <path d="M30 10 L22 20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
+                                    <path d="M30 10 L38 20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
+                                    <ellipse cx="30" cy="25" rx="8" ry="12" stroke="white" strokeWidth="2.5" fill="none"/>
+                                    <path d="M22 38 L18 48 L22 46 L30 50 L38 46 L42 48 L38 38" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div className="mission-content">
+                            <h2 className="mission-title">{MISSION.title}</h2>
+                            <p className="mission-text">
+                                {MISSION.text}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <section className="team-section">
-                <h2 className="section-title">
-                    <span className="title-part1">Our </span>
-                    <span className="title-part2">Team</span>
-                    <span className="core-underline"></span> 
-                    </h2>
-                    
+                <h2 className="section-title">Our <span className="highlight">Team</span></h2>
                 <p className="section-description">
                     {TEAM_SECTION.description}
                 </p>
