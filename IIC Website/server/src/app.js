@@ -11,8 +11,10 @@ import { healthRouter } from "./routes/health.routes.js";
 import { contactRouter } from "./routes/contact.routes.js";
 import { notFound, errorHandler } from "./middleware/error.middleware.js";
 import { orgProfileRouter } from "./routes/orgProfile.routes.js";
+import { orgRouter } from "./routes/org.routes.js";
 import { internshipsRouter } from "./routes/internships.routes.js";
 import { studentRouter } from "./routes/student.routes.js";
+import { applicationsRouter } from "./routes/applications.routes.js";
 
 export function createApp() {
   const app = express();
@@ -37,8 +39,10 @@ export function createApp() {
   app.use("/api/health", healthRouter);
   app.use("/api/contact", contactRouter);
   app.use("/api/org-profile", orgProfileRouter);
+  app.use("/api/org", orgRouter);
   app.use("/api/internships", internshipsRouter);
   app.use("/api/student", studentRouter);
+  app.use("/api/applications", applicationsRouter);
   app.use(notFound);
   app.use(errorHandler);
 

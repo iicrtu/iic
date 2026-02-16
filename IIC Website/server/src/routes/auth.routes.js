@@ -14,11 +14,13 @@ function isProd() {
 }
 
 function cookieOptions({ maxAgeMs }) {
+  const prod = isProd();
   return {
     httpOnly: true,
-    sameSite: "lax",
-    secure: isProd(),
+    sameSite: prod ? "none" : "lax",
+    secure: prod, 
     maxAge: maxAgeMs,
+    path: "/",
   };
 }
 
@@ -43,7 +45,7 @@ authRouter.get("/google", (req, res, next) => {
     return passport.authenticate("google", {
       scope: ["profile", "email"],
       session: false,
-      prompt: "select_account", 
+      prompt: "select_account",
     })(req, res, next);
   } catch (e) {
     return next(e);
@@ -68,8 +70,9 @@ authRouter.get(
 
       res.clearCookie("pendingRole", {
         httpOnly: true,
-        sameSite: "lax",
+        sameSite: isProd() ? "none" : "lax",
         secure: isProd(),
+        path: "/",
       });
 
       const token = signToken({ userId: user._id });
@@ -120,7 +123,6 @@ authRouter.get(
       } else {
         if (!user.email) console.warn("[mail] skipped: user.email missing");
       }
-
       if (user.role === "organisation") {
         if (!user.orgProfileCompleted) {
           return res.redirect(`${process.env.FRONTEND_URL}/onboarding/organisation`);
@@ -152,8 +154,9 @@ authRouter.get("/me", requireAuth, (req, res) => {
 authRouter.post("/logout", (_req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: isProd() ? "none" : "lax",
     secure: isProd(),
+    path: "/",
   });
   res.json({ ok: true });
 });

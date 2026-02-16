@@ -9,7 +9,7 @@
 .oo-card {
   width: 100%;
   max-width: 820px;
-  border: 1px solid rgba(0,0,0,0.12);
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 18px;
   padding: 18px;
   background: #fff;
@@ -25,7 +25,7 @@
 .oo-subtitle {
   margin: 0 0 14px;
   font-family: "Anek Latin", sans-serif;
-  color: rgba(0,0,0,0.65);
+  color: rgba(0, 0, 0, 0.65);
 }
 
 .oo-error {
@@ -60,11 +60,18 @@
 
 .oo-field input,
 .oo-field textarea {
-  border: 1px solid rgba(0,0,0,0.18);
+  border: 1px solid rgba(0, 0, 0, 0.18);
   border-radius: 12px;
   padding: 10px 12px;
   font-family: inherit;
   font-size: 14px;
+}
+
+.oo-field input:focus,
+.oo-field textarea:focus {
+  outline: none;
+  border-color: rgba(103, 58, 183, 0.55);
+  box-shadow: 0 0 0 4px rgba(103, 58, 183, 0.12);
 }
 
 .oo-btn {
@@ -81,6 +88,18 @@
 .oo-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.oo-hint {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.55);
+  font-family: "Anek Latin", sans-serif;
+}
+
+.oo-hint-warn {
+  color: #991b1b;
 }
 
 @media (max-width: 820px) {
