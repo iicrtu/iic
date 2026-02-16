@@ -9,10 +9,11 @@ export const EVENTS_HERO = {
 export const EVENTS_DATA = [
   {
     id: 1,
-    featured: true,
-    badge: 'Upcoming',
+    featured: false,
+    badge: '',
     tag: 'SUMMIT',
     title: 'INTERNSHIP FAIR',
+    badge: 'Upcoming',
     year: '2025',
     description:
       'an event organized to connect students with startups, companies, and organizations that are offering internship opportunities. It\'s like a mini job fair, but focused mainly on internships, especially with startups or innovative ventures.',
@@ -22,6 +23,7 @@ export const EVENTS_DATA = [
     id: 2,
     featured: false,
     tags: ['WORKSHOP', 'COMPETETION'],
+    badge: 'Completed',
     title: 'IDEA SPARK',
     year: '2025',
     description:
@@ -39,6 +41,19 @@ export const EVENTS_DATA = [
       'A LinkedIn Session organized by a college E-Cell (Entrepreneurship Cell) is a professional networking and personal branding workshop designed to help students build a strong LinkedIn profile, expand their network, and learn how to use LinkedIn effectively for career or startup opportunities.',
     location: 'PTP HALL,PNB BUILDING',
   },
+  {
+    id: 'startup-school',
+    tag: 'WORKSHOP',
+    badge: 'Completed',
+    
+    title: 'STARTUP SCHOOL',
+    year: '2025',
+    description:
+      'A startup pitching workshop where students learn to present their business ideas to investors.',
+    date: 'Nov 12-14, 2025',
+    location: 'PTP HALL,PNB BUILDING',
+  }
+ 
 ];
 
 export const LABELS = {
