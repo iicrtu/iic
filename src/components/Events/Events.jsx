@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Link } from 'react-router-dom';
 import { FiCalendar, FiMapPin } from 'react-icons/fi';
 import './Events.css';
