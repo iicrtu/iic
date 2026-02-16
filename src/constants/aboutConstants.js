@@ -24,7 +24,7 @@ export const TEAM_SECTION = {
     name: 'Dr. Manish Chaturvedi',
     position: 'Chairman, IIC',
     image: 'Chairman.jpeg',
-    linkedin: 'https://linkedin.com',
+    linkedin: 'https://linkedin.com/in/manishchaturvedi98499',
     email: 'manish@example.com'
   },
   alumniTitle: 'OUR ALUMINI',
@@ -62,65 +62,65 @@ export const TEAM_SECTION = {
       name: 'Somanshu Gupta',
       position: 'Coordinator',
       image: 'Somanshu.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'somanshu@example.com'
+      linkedin: 'https://linkedin.com/in/contactsomanshu',
+      email: 'gupta.somanshu20@gmail.com'
     },
     {
       name: 'Yash Maheshwari',
       position: 'Co-Coordinator',
       image: 'Yash.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'yash@example.com'
+      linkedin: 'https://www.linkedin.com/in/yashmaheshwari0904?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
+      email: 'yashmaheshwari0904@gmail.com'
     },
     {
       name: 'Lakshya Sharma',
       position: 'Coordinator',
       image: 'Lakshya.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'lakshya@example.com'
+      linkedin: 'https://www.linkedin.com/in/lakshyasharma1729',
+      email: 'Lakshyaprlk@gmail.com'
     },
     {
       name: 'Vipul Dabaria',
       position: 'Coordinator',
       image: 'Vipul.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'vipul@example.com'
+      linkedin: 'https://www.linkedin.com/in/vipul-dabaria-8317a1304/',
+      email: 'vipuldabaria@gmail.com'
     },
     
     {
       name: 'Kartik Maheshwari',
       position: 'Coordinator',
       image: 'Kartik.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'kartik@example.com'
+      linkedin: 'https://www.linkedin.com/in/kartik411/',
+      email: 'contact.mkartik@gmail.com'
     },
     {
       name: 'Vaibhav Purbia',
       position: 'Coordinator',
       image: 'Vaibhav.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'vaibhav@example.com'
+      linkedin: 'https://www.linkedin.com/in/vaibhav-purbia-495351327',
+      email: 'vaibhavpurbiavk18@gmail.com'
     },
     {
       name: 'Shahanaj Khan',
       position: 'Coordinator',
       image: 'Shahanaj.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'shahanaj@example.com'
+      linkedin: 'https://www.linkedin.com/in/shahanaj-khan/ ',
+      email: 'khanshahanaj621@gmail.com'
     },
     {
       name: 'Ridhima Shekhawat',
       position: 'Coordinator',
       image: 'Ridhima.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'ridhima@example.com'
+      linkedin: 'https://www.linkedin.com/in/ridhima-shekhawat-992b47339?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
+      email: 'ridhimashekhawat205@gmail.com'
     },
     {
       name: 'Nishita Singh',
       position: 'Coordinator',
       image: 'Nishita.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'nishita@example.com'
+      linkedin: ' https://www.linkedin.com/in/nishitasingh30',
+      email: 'nishita.singh539@gmail.com'
     },
     {
       name: 'Aditya Raj',
@@ -133,64 +133,64 @@ export const TEAM_SECTION = {
       name: 'Laksh Saronja',
       position: 'Coordinator',
       image: 'Laksh.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'laksh@example.com'
+      linkedin: 'https://www.linkedin.com/in/laksh-saronja ',
+      email: ' lakshsaronja014@gmail.com'
     },
     {
       name: 'Harshit Kumawat',
       position: 'Coordinator',
       image: 'Harshit.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'harshit@example.com'
+      linkedin: 'https://www.linkedin.com/in/harshitkumawat1317?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      email: ' harshit.kumawat1317@gmail.com'
     },
     {
       name: 'Chitvansh Agarwal',
       position: 'Core Member',
       image: 'Chitvansh.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'chitvansh@example.com'
+      linkedin: 'https://www.linkedin.com/in/chitvansh-agrawal-61bb4524b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      email: 'agrawalchitvansh@gmail.com'
     },
     {
       name: 'Somya Pancholi',
       position: 'Core Member',
       image: 'Somya.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'somya@example.com'
+      linkedin: 'https://linkedin.com/in/somyapancholi',
+      email: 'asomiy100@gmail.com'
     },
     {
       name: 'Suhani Choudhary',
       position: 'Core Member',
       image: 'Suhani.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'suhani@example.com'
+      linkedin: 'https://www.linkedin.com/in/suhani-c-5414ba319/',
+      email: '777suhani.c@gmail.com'
     },
     {
       name: 'Harshita Chauhan',
       position: 'Core Member',
       image: 'Harshita.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'harshita@example.com'
+      linkedin: 'https://www.linkedin.com/in/harshita-chauhan-0aba17338?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      email: 'harshitachauhan109@gmail.com'
     },
     {
       name: 'Aditya Choudhary',
       position: 'Core Member',
       image: 'Aditya2.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'aditya@example.com'
+      linkedin: 'https://www.linkedin.com/in/adityachoudhary194?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      email: 'aditya194choudhary@gmail.com'
     },
     {
       name: 'Siya Rangwani',
       position: 'Core Member',
       image: 'Siya.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'siya@example.com'
+      linkedin: 'https://www.linkedin.com/in/siya-rangwani-53753a2b0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      email: 'siyarangwani3@gmail.com'
     },
     {
       name: 'Nishtha Jain',
       position: 'Core Member',
       image: 'Nishtha.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'nishtha@example.com'
+      linkedin: 'https://www.linkedin.com/in/nishtha-jain-45a80933a?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+      email: 'nishthajain1809@gmail.com'
     },
     
     
@@ -198,23 +198,23 @@ export const TEAM_SECTION = {
       name: 'Harshit Prajapat',
       position: 'Core Member',
       image: 'Harshit2.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'harshit@example.com'
+      linkedin: 'https://www.linkedin.com/in/harshit-prajapat-88aa18331?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      email: 'harshit5prajapat@gmail.com'
     },
     
     {
       name: 'Yasharth Pratap Singh',
       position: 'Core Member',
       image: 'Yasharth.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'yasharth@example.com'
+      linkedin: 'https://www.linkedin.com/in/yasharth-pratap-singh?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+      email: 'yasharthpratap2005@gmail.com'
     },
     {
       name: 'Syed Azhar Ali',
       position: 'Core Member',
       image: 'Azhar.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'syed@example.com'
+      linkedin: 'https://www.linkedin.com/in/azhar-syed-602277272?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+      email: 'azharsyed72138@gmail.com'
     },
     
     
@@ -222,23 +222,23 @@ export const TEAM_SECTION = {
       name: 'Palak Yaduvanshi',
       position: 'Core Member',
       image: 'Palak.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'palak@example.com'
+      linkedin: 'https://www.linkedin.com/in/palak-yaduvanshi-bba2b1344?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      email: 'yaduvanshipalak349@gmail.com'
     },
     
     {
       name: 'Sita',
       position: 'Core Member',
       image: 'Sita.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'sita@example.com'
+      linkedin: 'https://www.linkedin.com/in/sita-saini-528a19347?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      email: 'sitasaini0235@gmail.com'
     },
     {
       name: 'Priyanshi Swami',
       position: 'Core Member',
       image: 'Priyanshi.jpeg',
-      linkedin: 'https://linkedin.com',
-      email: 'priyanshi@example.com'
+      linkedin: 'https://www.linkedin.com/in/priyanshi-swami-a4a930340?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      email: 'ps5087443@gmail.com'
     },
     
   ],
