@@ -1,6 +1,7 @@
 .what-we-offer {
     background: var(--white);
     padding: 80px 115px;
+    overflow-x: hidden;
 }
 
 .what-we-offer .section-title {
