@@ -1,22 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React,{useState,useEffect} from 'react';
 import './Hero.css';
-import heroImage from '../../assets/img1.png';
-import { HERO_CONTENT } from "../../constants/heroConstants";
-import {useNavigate} from "react-router-dom";
-import {motion, AnimatePresence} from "framer-motion";
+import linkedin from "../../assets/linkedin.jpeg";
+import ideasp from "../../assets/ideasp.jpeg";
+import intern from "../../assets/intern.jpeg";
+
+import { HERO_CONTENT } from '../../constants/heroConstants';
 
 const Hero = () => {
-    const navigate = useNavigate();
-    const rotatingWords = ['Innovate', 'Build', 'Scale', 'Transform', 'Launch'];
-    const [currentRotatingWordIndex, setCurrentRotatingWordIndex] = useState(0);
-    // Rotating words effect
+    const images =[linkedin,ideasp,intern];
+    const[current,setCurrent]=useState(0);
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentRotatingWordIndex((prev) => (prev + 1) % rotatingWords.length);
-        }, 3000);
-        return () => clearInterval(interval);
-    }, []);
-    
+        const interval =setInterval(() => {
+            setCurrent(prev =>(prev+1)% images.length);
+        },2500
+    );
+    return () => clearInterval(interval);
+    },[]);
     return (
         <section id="home" className="hero">
             <div className="hero-background">
@@ -55,20 +54,20 @@ const Hero = () => {
                 </div>
 
                 <div className="hero-buttons">
-                    <button className="explore-more-btn" onClick={() => navigate('/about')}>{HERO_CONTENT.secondaryButtonText}</button>
+                    <button className="explore-more-btn">{HERO_CONTENT.secondaryButtonText}</button>
                     <button className="join-us-btn">{HERO_CONTENT.primaryButtonText}</button>
                 </div>
-                <div className="hero-right">
-            <div className="hero-img-box">
-                <img src={heroImage} alt="IIC"/>
             </div>
+            <div className="hero-right">
+                <div className="gradient-blur blur-circle-1"></div>
+                <div className="gradient-blur blur-circle-2"></div>
+              
             </div>
-            
-           
+            <div className ="hero-img-wrapper">
+                <img src ={images[current]} alt="IIC" className="hero-slider" />
+            </div>
         </section>
 );
 };
 
 export default Hero;
-
-
