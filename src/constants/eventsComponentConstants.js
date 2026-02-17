@@ -48,16 +48,16 @@ export const EVENTS_DATA = [
     date: 'March 15-16, 2025',
     location: 'PTP HALL,PNB BUILDING',
   },
-  {
-    id: 'startup-school',
-    tag: 'WORKSHOP',
-    tagIcon: partnersIcon,
-    badge: 'Workshop',
-    title: 'STARTUP SCHOOL',
-    year: '2025',
-    description:
-      'A startup pitching workshop where students learn to present their business ideas to investors.',
-    date: 'Nov 12-14, 2025',
-    location: 'PTP HALL,PNB BUILDING',
-  }
+  // {
+  //   id: 'startup-school',
+  //   tag: 'WORKSHOP',
+  //   tagIcon: partnersIcon,
+  //   badge: 'Workshop',
+  //   title: 'STARTUP SCHOOL',
+  //   year: '2025',
+  //   description:
+  //     'A startup pitching workshop where students learn to present their business ideas to investors.',
+  //   date: 'Nov 12-14, 2025',
+  //   location: 'PTP HALL,PNB BUILDING',
+  // }
 ];

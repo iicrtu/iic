@@ -6,7 +6,7 @@ export const INTERNSHIPS_HERO = {
 };
 
 export const ACTION_BUTTONS = [
-  { label: 'DOWNLOAD BROUCHER', type: 'primary' },
+  { label: 'DOWNLOAD BROCHURE', type: 'primary' },
   /*{ label: 'DOWNLOAD BROUCHER', type: 'secondary' },*/
   { label: 'RESUME TEMPLATE', type: 'tertiary' },
   /*{ label: 'REGISTER AS COMPANY', type: 'gradient' }*/
