@@ -2,6 +2,11 @@
     width: 100%;
     background: var(--white);
 }
+.section-title{
+    font-size: 72px;
+    font-weight: 700;
+    color: rgba(157, 98, 191, 0.82);
+}
 
 .events-hero {
     padding: 80px 115px 60px;
@@ -15,6 +20,33 @@
     max-width: 1530px;
     margin: 0 auto;
 }
+.all-events .event-card-large{
+    display:flex;
+    gap:40px;
+    align-items: center;
+    padding: 30px;
+}
+.all-events .events-left {
+    width: 280px;
+    height: 240px;
+    flex-shrink: 0;
+}
+.all-events .events-right {
+  flex:1;
+}
+.all-events .events-left img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+
+}
+.event-image img{
+    width:100%;
+    height:180px;
+    object-fit: cover;
+   border-radius: 18px;
+}
 
 .events-list-container {
     display: flex;
@@ -24,12 +56,13 @@
 
 .event-card-large {
     background: var(--white);
-    border: 1px solid var(--black);
+    
     border-radius: 39px;
-    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(174, 108, 191, 0.6);
+    transition: 0.3s ease;
     transition: transform 0.3s, box-shadow 0.3s;
 }
-
+/* 
 .event-card-large.featured {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -37,7 +70,7 @@
 
 .event-card-large.non-featured {
     display: block;
-}
+} */
 
 .event-card-large:hover {
     transform: translateY(-5px);
@@ -106,7 +139,7 @@
     font-weight: 500;
     font-size: 36px;
     line-height: 1.1;
-    color: rgba(48, 81, 180, 0.82);
+    color: rgba(157, 98, 191, 0.82);
     margin-bottom: 10px;
 }
 
@@ -115,7 +148,7 @@
     font-weight: 500;
     font-size: 28px;
     line-height: 1.1;
-    color: rgba(48, 81, 180, 0.82);
+    color: rgba(69, 92, 177, 0.82);
     margin-bottom: 8px;
 }
 
@@ -174,13 +207,13 @@
     color: rgba(0, 0, 0, 0.69);
     margin-bottom: 15px;
 }
-
+/* 
 .event-image-large {
     width: 100%;
     height: 100%;
     background: #D9D9D9;
     min-height: 441px;
-}
+} */
 
 .know-more-btn {
     background: var(--gradient-primary);
@@ -208,14 +241,19 @@
         padding-right: 40px;
     }
     
-    .event-card-large {
-        grid-template-columns: 1fr;
-    }
     
     .event-image-large {
         min-height: 300px;
-        order: -1;
+        
     }
+.all-events .event-card-large{
+    flex-direction: column;
+    align-items: flex-start;
+}
+.all-events .events-left{
+    width:100%;
+    height:220px;
+}
 }
 
 @media (max-width: 768px) {

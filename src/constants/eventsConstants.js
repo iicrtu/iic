@@ -1,5 +1,10 @@
 // Events Page Constants
 
+import logo from "../assets/logo.png";
+
+import linkedin from "../assets/linkedin.jpeg";
+import ideasp from "../assets/ideasp.jpeg";
+import intern from "../assets/intern.jpeg";
 export const EVENTS_HERO = {
   title: 'Our Events',
   description:
@@ -18,6 +23,8 @@ export const EVENTS_DATA = [
     description:
       'an event organized to connect students with startups, companies, and organizations that are offering internship opportunities. It\'s like a mini job fair, but focused mainly on internships, especially with startups or innovative ventures.',
     location: 'PTP HALL,PNB BUILDING',
+    image:intern,
+    
   },
   {
     id: 2,
@@ -29,6 +36,8 @@ export const EVENTS_DATA = [
     description:
       'IDEASPARK is typically a startup idea pitching or ideation competition — a platform where students present innovative business ideas and get feedback, mentorship, and sometimes even funding or incubation support.',
     location: 'PTP HALL,PNB BUILDING',
+    image:ideasp,
+    
   },
   {
     id: 3,
@@ -40,6 +49,8 @@ export const EVENTS_DATA = [
     description:
       'A LinkedIn Session organized by a college E-Cell (Entrepreneurship Cell) is a professional networking and personal branding workshop designed to help students build a strong LinkedIn profile, expand their network, and learn how to use LinkedIn effectively for career or startup opportunities.',
     location: 'PTP HALL,PNB BUILDING',
+    image:linkedin,
+ 
   },
   {
     id: 'startup-school',
@@ -52,6 +63,7 @@ export const EVENTS_DATA = [
       'A startup pitching workshop where students learn to present their business ideas to investors.',
     date: 'Nov 12-14, 2025',
     location: 'PTP HALL,PNB BUILDING',
+    image:logo,
   }
  
 ];

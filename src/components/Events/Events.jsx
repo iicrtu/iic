@@ -8,7 +8,7 @@ import {
   EVENTS_DATA,
 } from '../../constants/eventsComponentConstants';
 
-const EventCard = ({ tag, tagIcon, badge, title, year, description, date, location }) => (
+const EventCard = ({ tag, tagIcon, badge, title, year, description, date, location}) => (
   <div className="event-card">
     <div className="event-card-header">
       {tagIcon ? (
@@ -33,28 +33,25 @@ const EventCard = ({ tag, tagIcon, badge, title, year, description, date, locati
         <p className="event-location">{location}</p>
       </div>
     </div>
-  </div>
-);
-
-const Events = () => {
-  return (
-    <section id="events" className="events-section">
-      <h2 className="section-title">
-        <span className="title-part1">Our</span>
-        <span className="title-part2">Events</span>
-      </h2>
-      <p className="section-description">{EVENTS_SECTION.description}</p>
-      <div className="events-grid">
-        {EVENTS_DATA.map((event) => (
-          <EventCard key={event.id} {...event} />
-        ))}
-      </div>
-      <Link to={EVENTS_SECTION.viewAllLink} className="view-all-btn">
-        {EVENTS_SECTION.viewAllButtonText}
-      </Link>
-    </section>
+    </div>
+ 
   );
-};
+  const Events = () => {
+    return (
+      <section id="events" className="events-section">
+        <div className="events-grid">
+          {EVENTS_DATA.map((event) => (
+            <EventCard key={event.id} {...event} />
+          ))}
+        </div>
+  
+        <Link to={EVENTS_SECTION.viewAllLink} className="view-all-btn">
+          {EVENTS_SECTION.viewAllButtonText}
+        </Link>
+      </section>
+    );
+  };
+
 
 export default Events;
 
