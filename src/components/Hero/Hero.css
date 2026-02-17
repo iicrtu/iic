@@ -237,7 +237,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(-46.18deg, rgba(86, 94, 211, 0.5) 20.865%, rgba(173, 151, 226, 0.5) 72.416%);
+   
     border-radius: 39px;
     opacity: 0.21;
     z-index: -1;
@@ -274,7 +274,7 @@
         padding: 80px 60px;
     }
 }
-
+ */
 @media (max-width: 1200px) {
     .hero {
         flex-direction: column;
@@ -310,8 +310,7 @@
         width: 100%;
         max-width: 600px;
         height: auto;
-        aspect-ratio: 600 / 396;
-    }
+       
     
     .hero-image-container {
         width: calc(100% - 70px);
@@ -397,6 +396,7 @@
     .circle-2 {
         display: none;
     }
+   
 }
 
 

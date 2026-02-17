@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React,{useState,useEffect} from 'react';
 import './Hero.css';
 import ideasp from '../../assets/ideasp.jpeg';
 import intern from '../../assets/intern.jpeg';
@@ -67,7 +67,7 @@ const Hero = () => {
                 </div>
 
                 <div className="hero-buttons">
-                    <button className="explore-more-btn" onClick={() => navigate('/about')}>{HERO_CONTENT.secondaryButtonText}</button>
+                    <button className="explore-more-btn">{HERO_CONTENT.secondaryButtonText}</button>
                     <button className="join-us-btn">{HERO_CONTENT.primaryButtonText}</button>
                 </div>
             </div>
@@ -84,5 +84,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-
