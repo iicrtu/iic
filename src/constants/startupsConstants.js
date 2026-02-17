@@ -40,6 +40,7 @@ export const STARTUPS_DATA = [
   {
     id: 1,
     name: 'SEVAK',
+    image: 'Startup.jpeg',
     description: 'Connection between household main and people who want them',
     badge: 'Growing',
     status: 'Growing',
@@ -56,6 +57,7 @@ export const STARTUPS_DATA = [
   {
     id: 2,
     name: 'SEVAK',
+    image: 'Startup.jpeg',
     description: 'Connection between household main and people who want them',
     badge: 'Growing',
     status: 'Growing',
@@ -72,6 +74,7 @@ export const STARTUPS_DATA = [
   {
     id: 3,
     name: 'SEVAK',
+    image: 'Startup.jpeg',
     description: 'Connection between household main and people who want them',
     badge: 'Growing',
     status: 'Growing',
