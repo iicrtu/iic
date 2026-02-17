@@ -1,21 +1,35 @@
 import React,{useState,useEffect} from 'react';
 import './Hero.css';
-import linkedin from "../../assets/linkedin.jpeg";
-import ideasp from "../../assets/ideasp.jpeg";
-import intern from "../../assets/intern.jpeg";
-
-import { HERO_CONTENT } from '../../constants/heroConstants';
+import ideasp from '../../assets/ideasp.jpeg';
+import intern from '../../assets/intern.jpeg';
+import linkedin from '../../assets/linkedin.jpeg';
+import { HERO_CONTENT } from "../../constants/heroConstants";
+import {useNavigate} from "react-router-dom";
+import {motion, AnimatePresence} from "framer-motion";
 
 const Hero = () => {
-    const images =[linkedin,ideasp,intern];
-    const[current,setCurrent]=useState(0);
+    const navigate = useNavigate();
+    const rotatingWords = ['Innovate', 'Build', 'Scale', 'Transform', 'Launch'];
+    const heroImages = [ideasp, intern, linkedin];
+    const [currentRotatingWordIndex, setCurrentRotatingWordIndex] = useState(0);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    
+    // Rotating words effect
     useEffect(() => {
-        const interval =setInterval(() => {
-            setCurrent(prev =>(prev+1)% images.length);
-        },2500
-    );
-    return () => clearInterval(interval);
-    },[]);
+        const interval = setInterval(() => {
+            setCurrentRotatingWordIndex((prev) => (prev + 1) % rotatingWords.length);
+        }, 3000);
+        return () => clearInterval(interval);
+    }, []);
+    
+    // Rotating images effect
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+        }, 5000);
+        return () => clearInterval(interval);
+    }, []);
+    
     return (
         <section id="home" className="hero">
             <div className="hero-background">
@@ -27,7 +41,6 @@ const Hero = () => {
                     <div className="badge-bg"></div>
                     <span className="badge-text">
                         {HERO_CONTENT.badge}</span>
-                </div>
                 </div>
                 <h1 className="hero-title">
                     {HERO_CONTENT.titlePart1}
@@ -58,13 +71,13 @@ const Hero = () => {
                     <button className="join-us-btn">{HERO_CONTENT.primaryButtonText}</button>
                 </div>
             </div>
+            
             <div className="hero-right">
                 <div className="gradient-blur blur-circle-1"></div>
                 <div className="gradient-blur blur-circle-2"></div>
-              
-            </div>
-            <div className ="hero-img-wrapper">
-                <img src ={images[current]} alt="IIC" className="hero-slider" />
+                <div className="hero-image-container">
+                    <img src={heroImages[currentImageIndex]} alt="IIC" className="hero-rotating-image"/>
+                </div>
             </div>
         </section>
 );
