@@ -1,0 +1,128 @@
+.onboarding-page {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background: #f8f9fa;
+}
+
+.onboarding-card {
+  width: 100%;
+  max-width: 600px;
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.onboarding-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 28px;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.onboarding-subtitle {
+  font-family: "Anek Latin", sans-serif;
+  font-size: 15px;
+  color: rgba(0,0,0,0.65);
+  margin-bottom: 30px;
+}
+
+.onboarding-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2A2525;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px 14px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 8px;
+  font-family: "Anek Latin", sans-serif;
+  font-size: 15px;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.skip-btn,
+.submit-btn {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skip-btn {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.skip-btn:hover {
+  background: #d1d5db;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  .onboarding-card {
+    padding: 30px 20px;
+  }
+
+  .onboarding-title {
+    font-size: 24px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+}
