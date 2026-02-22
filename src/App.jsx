@@ -11,6 +11,11 @@ import StartupsPage from './pages/StartupsPage/StartupsPage';
 import Internships from './pages/Internships/Internships';
 import Announcements from './pages/Announcements/Announcements';
 import Apply from "./pages/Announcements/apply";
+import Login from "./pages/Login/Login";
+import DashboardStudent from "./pages/DashboardStudent/DashboardStudent";
+import DashboardOrganisation from "./pages/DashboardOrganisation/DashboardOrganisation";
+import OrgOnboarding from "./pages/OrgOnboarding/OrgOnboarding";
+
 function App() {
   return (
     <Router>
@@ -24,6 +29,10 @@ function App() {
           <Route path="/internships" element={<Internships />} />
           <Route path="/announcements" element={<Announcements />} />
           <Route path="/apply" element={<Apply />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard/student" element={<DashboardStudent />} />
+          <Route path="/dashboard/organisation" element={<DashboardOrganisation />} />
+          <Route path="/onboarding/organisation" element={<OrgOnboarding />} />
         </Routes>
         <Footer />
       </div>
