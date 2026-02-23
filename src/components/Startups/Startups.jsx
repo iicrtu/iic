@@ -25,7 +25,7 @@ const StartupCard = ({ name, description, badge, stats, info }) => (
     <div className="startup-info">
       <span>{info.year}</span>
       <span>{info.members}</span>
-      <span>{info.funding}</span>
+      
     </div>
   </div>
 );

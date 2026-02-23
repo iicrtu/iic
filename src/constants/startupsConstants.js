@@ -48,7 +48,6 @@ export const STARTUPS_DATA = [
     stats: { users: '10K+', growth: '110%' },
     info: {
       year: '2022',
-      funding: '50L',
       members: '3 Members',
       founders: 'Rahul Sharma & Priya Gupta',
       website: 'www.sevak.com',
@@ -65,7 +64,6 @@ export const STARTUPS_DATA = [
     stats: { users: '10K+', growth: '110%' },
     info: {
       year: '2022',
-      funding: '50L',
       members: '3 Members',
       founders: 'Rahul Sharma & Priya Gupta',
       website: 'www.sevak.com',
@@ -82,7 +80,6 @@ export const STARTUPS_DATA = [
     stats: { users: '10K+', growth: '110%' },
     info: {
       year: '2022',
-      funding: '50L',
       members: '3 Members',
       founders: 'Rahul Sharma & Priya Gupta',
       website: 'www.sevak.com',
