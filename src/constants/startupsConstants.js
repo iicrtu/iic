@@ -85,6 +85,22 @@ export const STARTUPS_DATA = [
       website: 'www.sevak.com',
     },
   },
+  {
+    id: 3,
+    name: 'SEVAK',
+    image: 'Startup.jpeg',
+    description: 'Connection between household main and people who want them',
+    badge: 'Growing',
+    status: 'Growing',
+    category: 'Tech',
+    stats: { users: '10K+', growth: '110%' },
+    info: {
+      year: '2022',
+      members: '3 Members',
+      founders: 'Rahul Sharma & Priya Gupta',
+      website: 'www.sevak.com',
+    },
+  },
 ];
 
 export const LABELS = {

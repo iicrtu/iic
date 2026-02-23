@@ -41,7 +41,7 @@ const Startups = () => {
         {STARTUPS_HOME_SECTION.description}
       </p>
       <div className="startups-grid">
-        {STARTUPS_DATA.map((startup) => (
+        {STARTUPS_DATA.slice(0, 3).map((startup) => (
           <StartupCard key={startup.id} {...startup} />
         ))}
       </div>
