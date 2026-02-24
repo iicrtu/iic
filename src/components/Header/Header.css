@@ -149,6 +149,7 @@
     min-width: 180px;
     overflow: hidden;
     animation: dropdownFadeIn 0.2s ease;
+    z-index: 1000;
 }
 
 @keyframes dropdownFadeIn {
