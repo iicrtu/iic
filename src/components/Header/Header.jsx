@@ -47,8 +47,26 @@ const Header = () => {
         setShowDropdown(false); // Close dropdown on route change
     }, [location]);
 
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (showDropdown && !event.target.closest('.user-menu')) {
+                setShowDropdown(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [showDropdown]);
+
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
+    };
+
+    const toggleDropdown = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setShowDropdown(!showDropdown);
     };
 
     const handleLogout = async () => {
@@ -120,17 +138,32 @@ const Header = () => {
                         <div className="user-menu">
                             <button 
                                 className="user-btn"
-                                onClick={() => setShowDropdown(!showDropdown)}
+                                onClick={toggleDropdown}
                                 title={user.name}
+                                type="button"
                             >
                                 {getFirstName(user.name)}
                             </button>
                             {showDropdown && (
                                 <div className="user-dropdown">
-                                    <button onClick={() => navigate(user.role === 'student' ? '/dashboard/student' : '/dashboard/organisation')}>
+                                    <button 
+                                        type="button"
+                                        onClick={() => {
+                                            setShowDropdown(false);
+                                            navigate(user.role === 'student' ? '/dashboard/student' : '/dashboard/organisation');
+                                        }}
+                                    >
                                         Dashboard
                                     </button>
-                                    <button onClick={handleLogout}>Logout</button>
+                                    <button 
+                                        type="button"
+                                        onClick={() => {
+                                            setShowDropdown(false);
+                                            handleLogout();
+                                        }}
+                                    >
+                                        Logout
+                                    </button>
                                 </div>
                             )}
                         </div>

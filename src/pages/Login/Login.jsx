@@ -51,7 +51,10 @@ const Login = () => {
           <button
             type="button"
             className={`role-btn ${role === "student" ? "active" : ""}`}
-            onClick={() => setRole("student")}
+            onClick={() => {
+              setRole("student");
+              setError("");
+            }}
             disabled={loading}
           >
             I'm a Student
@@ -61,7 +64,10 @@ const Login = () => {
           <button
             type="button"
             className={`role-btn ${role === "organisation" ? "active" : ""}`}
-            onClick={() => setRole("organisation")}
+            onClick={() => {
+              setRole("organisation");
+              setError("");
+            }}
             disabled={loading}
           >
             I'm an Organisation
