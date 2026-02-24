@@ -27,6 +27,7 @@ const Header = () => {
             try {
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
                     credentials: "include",
+                    cache: "no-cache",
                 });
                 if (response.ok) {
                     const data = await response.json();
