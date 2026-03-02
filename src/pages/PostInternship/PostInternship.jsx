@@ -11,6 +11,7 @@ const PostInternship = () => {
   const [error, setError] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [currentSection, setCurrentSection] = useState(1);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   // Form fields
   const [profile, setProfile] = useState("");
@@ -178,7 +179,12 @@ const PostInternship = () => {
         return;
       }
 
-      navigate("/dashboard/organisation");
+      if (isEditing) {
+        navigate("/dashboard/organisation");
+      } else {
+        setSubmitSuccess(true);
+        setLoading(false);
+      }
     } catch (error) {
       console.error("Error saving internship:", error);
       setError("An error occurred. Please try again.");
@@ -188,6 +194,25 @@ const PostInternship = () => {
 
   return (
     <div className="post-internship-page">
+      {submitSuccess ? (
+        <div className="post-internship-card" style={{ textAlign: "center", padding: "60px 40px" }}>
+          <div style={{ fontSize: "56px", marginBottom: "20px" }}>✅</div>
+          <h2 className="post-internship-title" style={{ fontSize: "24px", marginBottom: "12px" }}>
+            Submitted for Review
+          </h2>
+          <p style={{ fontFamily: "'Anek Latin', sans-serif", fontSize: "16px", color: "#6b7280", lineHeight: 1.6, marginBottom: "32px" }}>
+            Your internship has been submitted for admin review.<br />
+            You'll be notified once it's approved and goes live.
+          </p>
+          <button
+            className="next-btn"
+            style={{ maxWidth: "280px", margin: "0 auto" }}
+            onClick={() => navigate("/dashboard/organisation")}
+          >
+            Go to Dashboard
+          </button>
+        </div>
+      ) : (
       <div className="post-internship-card">
         <h1 className="post-internship-title">
           {isEditing ? "Edit Internship" : "Post New Internship"}
@@ -420,6 +445,7 @@ const PostInternship = () => {
           </div>
         </form>
       </div>
+      )}
     </div>
   );
 };

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./DashboardOrganisation.css";
 
+const API = import.meta.env.VITE_API_URL;
+
 const DashboardOrganisation = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -11,6 +13,14 @@ const DashboardOrganisation = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [deleteModal, setDeleteModal] = useState({ show: false, id: null, name: "" });
   const [deleting, setDeleting] = useState(false);
+
+  // Applications panel state
+  const [appsPanel, setAppsPanel] = useState(null); // { internshipId, internshipName }
+  const [panelApps, setPanelApps] = useState([]);
+  const [panelLoading, setPanelLoading] = useState(false);
+  const [rejectModal, setRejectModal] = useState({ show: false, id: null, name: "" });
+  const [rejectReason, setRejectReason] = useState("");
+  const [actionLoading, setActionLoading] = useState(null); // app id currently loading
 
   useEffect(() => {
     const fetchData = async () => {
@@ -105,18 +115,101 @@ const DashboardOrganisation = () => {
   };
 
   const getStatusDisplay = (status) => {
-    switch (status) {
-      case "live":
-        return <span className="status-badge status-live">Live</span>;
-      case "under_review":
-        return <span className="status-badge status-review">Under Review</span>;
-      case "closed":
-        return <span className="status-badge status-closed">Closed</span>;
-      case "draft":
-        return <span className="status-badge status-draft">Draft</span>;
-      default:
-        return <span className="status-badge">{status}</span>;
+    const map = {
+      posted: { cls: "status-posted", label: "Posted" },
+      under_review: { cls: "status-review", label: "Under Review" },
+      rejected: { cls: "status-rejected", label: "Rejected" },
+      closed: { cls: "status-closed", label: "Closed" },
+      draft: { cls: "status-draft", label: "Draft" },
+    };
+    const s = map[status] || { cls: "", label: status };
+    return <span className={`status-badge ${s.cls}`}>{s.label}</span>;
+  };
+
+  /* ── Applications panel helpers ──────────────────────── */
+  const openAppsPanel = async (internship) => {
+    setAppsPanel({ internshipId: internship._id, internshipName: internship.profile });
+    setPanelLoading(true);
+    try {
+      const res = await fetch(
+        `${API}/api/applications/internship/${internship._id}`,
+        { credentials: "include" }
+      );
+      if (res.ok) {
+        const data = await res.json();
+        setPanelApps(data.applications || []);
+      }
+    } catch (err) {
+      console.error("Error fetching applications:", err);
+    } finally {
+      setPanelLoading(false);
     }
+  };
+
+  const closeAppsPanel = () => {
+    setAppsPanel(null);
+    setPanelApps([]);
+  };
+
+  const handleSelect = async (appId) => {
+    setActionLoading(appId);
+    try {
+      const res = await fetch(`${API}/api/applications/${appId}/select`, {
+        method: "PATCH",
+        credentials: "include",
+      });
+      if (res.ok) {
+        setPanelApps((prev) =>
+          prev.map((a) => (a._id === appId ? { ...a, status: "selected" } : a))
+        );
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
+  const openRejectModal = (app) => {
+    setRejectModal({ show: true, id: app._id, name: app.student?.fullName || "Student" });
+    setRejectReason("");
+  };
+
+  const confirmReject = async () => {
+    if (!rejectReason.trim()) return;
+    setActionLoading(rejectModal.id);
+    try {
+      const res = await fetch(`${API}/api/applications/${rejectModal.id}/reject`, {
+        method: "PATCH",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ reason: rejectReason }),
+      });
+      if (res.ok) {
+        setPanelApps((prev) =>
+          prev.map((a) =>
+            a._id === rejectModal.id
+              ? { ...a, status: "rejected", rejectedBy: "organization", rejectionReason: rejectReason }
+              : a
+          )
+        );
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setActionLoading(null);
+      setRejectModal({ show: false, id: null, name: "" });
+    }
+  };
+
+  const getAppBadge = (status) => {
+    const m = {
+      approved: { cls: "orgapp-approved", label: "Approved" },
+      selected: { cls: "orgapp-selected", label: "Selected" },
+      rejected: { cls: "orgapp-rejected", label: "Rejected" },
+    };
+    const s = m[status] || { cls: "", label: status };
+    return <span className={`orgapp-badge ${s.cls}`}>{s.label}</span>;
   };
 
   if (loading) {
@@ -268,7 +361,16 @@ const DashboardOrganisation = () => {
                       </td>
                       <td>{getStatusDisplay(internship.status)}</td>
                       <td className="applications-count">
-                        {internship.applicationsCount || 0}
+                        {internship.status === "posted" && (internship.applicationsCount || 0) > 0 ? (
+                          <button
+                            className="apps-count-btn"
+                            onClick={() => openAppsPanel(internship)}
+                          >
+                            {internship.applicationsCount} &nbsp;▸
+                          </button>
+                        ) : (
+                          internship.applicationsCount || 0
+                        )}
                       </td>
                       <td>
                         <div className="action-buttons">
@@ -302,7 +404,21 @@ const DashboardOrganisation = () => {
             <div className="stat-icon">📝</div>
             <div className="stat-info">
               <h3>{internships.length}</h3>
-              <p>Posted Internships</p>
+              <p>Total Internships</p>
+            </div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-icon">✅</div>
+            <div className="stat-info">
+              <h3>{internships.filter((i) => i.status === "posted").length}</h3>
+              <p>Posted</p>
+            </div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-icon">⏳</div>
+            <div className="stat-info">
+              <h3>{internships.filter((i) => i.status === "under_review").length}</h3>
+              <p>Under Review</p>
             </div>
           </div>
           <div className="stat-card">
@@ -310,13 +426,6 @@ const DashboardOrganisation = () => {
             <div className="stat-info">
               <h3>{internships.reduce((sum, i) => sum + (i.applicationsCount || 0), 0)}</h3>
               <p>Applications Received</p>
-            </div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-icon">✅</div>
-            <div className="stat-info">
-              <h3>{internships.filter(i => i.status === "live").length}</h3>
-              <p>Active Internships</p>
             </div>
           </div>
         </div>
@@ -342,16 +451,107 @@ const DashboardOrganisation = () => {
           </div>
         )}
 
-        {/* Coming Soon Section */}
-        <div className="coming-soon">
-          <h3>🚀 Coming Soon</h3>
-          <ul>
-            <li>Post internship opportunities</li>
-            <li>Review student applications</li>
-            <li>Manage ongoing internships</li>
-            <li>Analytics and insights</li>
-          </ul>
-        </div>
+        {/* Applications Panel */}
+        {appsPanel && (
+          <div className="apps-panel-overlay" onClick={closeAppsPanel}>
+            <div className="apps-panel" onClick={(e) => e.stopPropagation()}>
+              <div className="apps-panel-header">
+                <h3>Applications — {appsPanel.internshipName}</h3>
+                <button className="apps-panel-close" onClick={closeAppsPanel}>✕</button>
+              </div>
+
+              {panelLoading ? (
+                <div className="apps-panel-loading">Loading applications…</div>
+              ) : panelApps.length === 0 ? (
+                <div className="apps-panel-empty">No applications yet.</div>
+              ) : (
+                <div className="apps-panel-list">
+                  {panelApps.map((app) => (
+                    <div className="app-card" key={app._id}>
+                      <div className="app-card-top">
+                        <div className="app-card-info">
+                          <strong>{app.student?.fullName}</strong>
+                          <span className="app-card-meta">
+                            {app.student?.branch} • {app.student?.year} Year • {app.student?.course}
+                          </span>
+                          <span className="app-card-meta">
+                            CR: {app.student?.crNumber} &nbsp;|&nbsp; {app.student?.email}
+                          </span>
+                          {app.resume && (
+                            <a
+                              href={app.resume}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="app-card-resume"
+                            >
+                              📄 View Resume
+                            </a>
+                          )}
+                        </div>
+                        <div className="app-card-status">{getAppBadge(app.status)}</div>
+                      </div>
+
+                      {app.status === "approved" && (
+                        <div className="app-card-actions">
+                          <button
+                            className="select-btn"
+                            disabled={actionLoading === app._id}
+                            onClick={() => handleSelect(app._id)}
+                          >
+                            {actionLoading === app._id ? "…" : "✅ Select"}
+                          </button>
+                          <button
+                            className="reject-btn"
+                            disabled={actionLoading === app._id}
+                            onClick={() => openRejectModal(app)}
+                          >
+                            Reject
+                          </button>
+                        </div>
+                      )}
+
+                      {app.status === "rejected" && app.rejectionReason && (
+                        <p className="app-card-reason">Reason: {app.rejectionReason}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Reject Confirmation Modal */}
+        {rejectModal.show && (
+          <div className="modal-overlay" onClick={() => setRejectModal({ show: false, id: null, name: "" })}>
+            <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+              <div className="modal-icon">❌</div>
+              <h3 className="modal-title">Reject {rejectModal.name}</h3>
+              <textarea
+                className="reject-textarea"
+                placeholder="Provide a reason for rejection…"
+                value={rejectReason}
+                onChange={(e) => setRejectReason(e.target.value)}
+                rows={4}
+              />
+              <div className="modal-actions">
+                <button
+                  className="modal-cancel-btn"
+                  onClick={() => setRejectModal({ show: false, id: null, name: "" })}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="modal-delete-btn"
+                  onClick={confirmReject}
+                  disabled={!rejectReason.trim() || actionLoading}
+                >
+                  {actionLoading ? "Rejecting…" : "Reject"}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
