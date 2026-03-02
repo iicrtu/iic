@@ -16,6 +16,7 @@ import DashboardStudent from "./pages/DashboardStudent/DashboardStudent";
 import DashboardOrganisation from "./pages/DashboardOrganisation/DashboardOrganisation";
 import OrgOnboarding from "./pages/OrgOnboarding/OrgOnboarding";
 import PostInternship from "./pages/PostInternship/PostInternship";
+import StudentOnboarding from "./pages/StudentOnboarding/StudentOnboarding";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/dashboard/student" element={<DashboardStudent />} />
           <Route path="/dashboard/organisation" element={<DashboardOrganisation />} />
           <Route path="/onboarding/organisation" element={<OrgOnboarding />} />
+          <Route path="/onboarding/student" element={<StudentOnboarding />} />
           <Route path="/post-internship" element={<PostInternship />} />
           <Route path="/edit-internship/:id" element={<PostInternship />} />
         </Routes>
