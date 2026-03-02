@@ -1,0 +1,150 @@
+/* StudentOnboarding inherits most styles from OrgOnboarding.css via shared class names */
+/* These are additional styles specific to student onboarding */
+
+.section-description {
+  font-family: "Anek Latin", sans-serif;
+  font-size: 14px;
+  color: #6b7280;
+  margin: -8px 0 16px 0;
+  line-height: 1.5;
+}
+
+/* Resume Row */
+.resume-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.resume-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: #fafafa;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.resume-row:hover {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.06);
+}
+
+.resume-number {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.resume-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.resume-fields .form-group {
+  gap: 0;
+}
+
+.remove-resume-btn {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #fee2e2;
+  color: #ef4444;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+
+.remove-resume-btn:hover {
+  background: #fecaca;
+  transform: scale(1.1);
+}
+
+/* Add Resume Button */
+.add-resume-btn {
+  width: 100%;
+  padding: 14px;
+  border: 2px dashed #d1d5db;
+  border-radius: 12px;
+  background: transparent;
+  color: #667eea;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+}
+
+.add-resume-btn:hover {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.04);
+}
+
+.resume-hint {
+  margin-top: 8px;
+  display: block;
+}
+
+/* Section icon styling */
+.section-icon {
+  font-size: 22px;
+}
+
+/* Progress line active state */
+.progress-line.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.progress-step.completed .step-number {
+  background: #10b981;
+  color: white;
+}
+
+.progress-step.completed .step-label {
+  color: #10b981;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .resume-row {
+    flex-wrap: wrap;
+    padding: 12px;
+  }
+
+  .resume-fields {
+    width: 100%;
+    order: 2;
+  }
+
+  .resume-number {
+    order: 1;
+  }
+
+  .remove-resume-btn {
+    order: 1;
+    margin-left: auto;
+  }
+}
