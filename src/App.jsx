@@ -17,30 +17,52 @@ import DashboardOrganisation from "./pages/DashboardOrganisation/DashboardOrgani
 import OrgOnboarding from "./pages/OrgOnboarding/OrgOnboarding";
 import PostInternship from "./pages/PostInternship/PostInternship";
 import StudentOnboarding from "./pages/StudentOnboarding/StudentOnboarding";
+import AdminLogin from "./pages/Admin/AdminLogin";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
+import RequireAdmin from "./routes/RequireAdmin";
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/events" element={<EventsPage />} />
-          <Route path="/startups" element={<StartupsPage />} />
-          <Route path="/internships" element={<Internships />} />
-          <Route path="/announcements" element={<Announcements />} />
-          <Route path="/apply" element={<Apply />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard/student" element={<DashboardStudent />} />
-          <Route path="/dashboard/organisation" element={<DashboardOrganisation />} />
-          <Route path="/onboarding/organisation" element={<OrgOnboarding />} />
-          <Route path="/onboarding/student" element={<StudentOnboarding />} />
-          <Route path="/post-internship" element={<PostInternship />} />
-          <Route path="/edit-internship/:id" element={<PostInternship />} />
-        </Routes>
-        <Footer />
-      </div>
+      <Routes>
+        {/* ── Admin routes (no Header / Footer) ── */}
+        <Route path="/admin" element={<AdminLogin />} />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <RequireAdmin>
+              <AdminDashboard />
+            </RequireAdmin>
+          }
+        />
+
+        {/* ── Public / user routes ── */}
+        <Route
+          path="*"
+          element={
+            <div className="App">
+              <Header />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/events" element={<EventsPage />} />
+                <Route path="/startups" element={<StartupsPage />} />
+                <Route path="/internships" element={<Internships />} />
+                <Route path="/announcements" element={<Announcements />} />
+                <Route path="/apply" element={<Apply />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/dashboard/student" element={<DashboardStudent />} />
+                <Route path="/dashboard/organisation" element={<DashboardOrganisation />} />
+                <Route path="/onboarding/organisation" element={<OrgOnboarding />} />
+                <Route path="/onboarding/student" element={<StudentOnboarding />} />
+                <Route path="/post-internship" element={<PostInternship />} />
+                <Route path="/edit-internship/:id" element={<PostInternship />} />
+              </Routes>
+              <Footer />
+            </div>
+          }
+        />
+      </Routes>
     </Router>
   );
 }

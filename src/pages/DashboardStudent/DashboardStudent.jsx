@@ -2,24 +2,24 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./DashboardStudent.css";
 
+const API = import.meta.env.VITE_API_URL;
+
 const DashboardStudent = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [previewResume, setPreviewResume] = useState(null);
+  const [applications, setApplications] = useState([]);
+  const [expandedApp, setExpandedApp] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch user data
-        const userResponse = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/auth/me`,
-          {
-            credentials: "include",
-            cache: "no-cache",
-          }
-        );
+        const userResponse = await fetch(`${API}/api/auth/me`, {
+          credentials: "include",
+          cache: "no-cache",
+        });
 
         if (!userResponse.ok) {
           window.location.href = "/login";
@@ -29,18 +29,24 @@ const DashboardStudent = () => {
         const userData = await userResponse.json();
         setUser(userData.user);
 
-        // Fetch student profile
-        const studentResponse = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/student/profile`,
-          {
-            credentials: "include",
-            cache: "no-cache",
-          }
-        );
+        const studentResponse = await fetch(`${API}/api/student/profile`, {
+          credentials: "include",
+          cache: "no-cache",
+        });
 
         if (studentResponse.ok) {
           const studentData = await studentResponse.json();
           setStudent(studentData.student);
+        }
+
+        // Fetch applications
+        const appsResponse = await fetch(`${API}/api/applications/mine`, {
+          credentials: "include",
+          cache: "no-cache",
+        });
+        if (appsResponse.ok) {
+          const appsData = await appsResponse.json();
+          setApplications(appsData.applications || []);
         }
 
         setLoading(false);
@@ -266,17 +272,124 @@ const DashboardStudent = () => {
           <div className="stat-card">
             <div className="stat-icon">📋</div>
             <div className="stat-info">
-              <h3>0</h3>
+              <h3>{applications.length}</h3>
               <p>Applications Sent</p>
             </div>
           </div>
           <div className="stat-card">
             <div className="stat-icon">✅</div>
             <div className="stat-info">
-              <h3>0</h3>
-              <p>Shortlisted</p>
+              <h3>{applications.filter((a) => a.status === "approved").length}</h3>
+              <p>Approved</p>
             </div>
           </div>
+          <div className="stat-card">
+            <div className="stat-icon">🎉</div>
+            <div className="stat-info">
+              <h3>{applications.filter((a) => a.status === "selected").length}</h3>
+              <p>Selected</p>
+            </div>
+          </div>
+        </div>
+
+        {/* My Applications Section */}
+        <div className="applications-section">
+          <div className="section-header">
+            <h2>My Applications</h2>
+          </div>
+
+          {applications.length === 0 ? (
+            <div className="no-applications">
+              <p>You haven't applied to any internships yet.</p>
+              <button
+                className="browse-cta"
+                onClick={() => navigate("/internships")}
+              >
+                Browse Internships
+              </button>
+            </div>
+          ) : (
+            <div className="applications-table-container">
+              <table className="applications-table">
+                <thead>
+                  <tr>
+                    <th>Role</th>
+                    <th>Organization</th>
+                    <th>Status</th>
+                    <th>Applied</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {applications.map((app) => (
+                    <React.Fragment key={app._id}>
+                      <tr>
+                        <td className="app-role">
+                          {app.internship?.profile || "—"}
+                        </td>
+                        <td>
+                          {app.organization?.organizationName || "—"}
+                        </td>
+                        <td>
+                          <span className={`app-badge app-badge-${app.status}`}>
+                            {app.status === "pending_admin"
+                              ? "Pending"
+                              : app.status === "approved"
+                              ? "Approved"
+                              : app.status === "selected"
+                              ? "Selected"
+                              : "Rejected"}
+                          </span>
+                        </td>
+                        <td className="app-date">
+                          {new Date(app.createdAt).toLocaleDateString("en-IN", {
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                          })}
+                        </td>
+                        <td>
+                          {(app.status === "rejected" || app.status === "selected") && (
+                            <button
+                              className="expand-btn"
+                              onClick={() =>
+                                setExpandedApp(
+                                  expandedApp === app._id ? null : app._id
+                                )
+                              }
+                            >
+                              {expandedApp === app._id ? "▲" : "▼"}
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                      {expandedApp === app._id && app.status === "rejected" && (
+                        <tr className="expanded-row">
+                          <td colSpan={5}>
+                            <div className="expanded-content rejected-reason">
+                              <strong>Rejection Reason:</strong>{" "}
+                              {app.rejectionReason || "No reason provided"}
+                            </div>
+                          </td>
+                        </tr>
+                      )}
+                      {expandedApp === app._id && app.status === "selected" && (
+                        <tr className="expanded-row">
+                          <td colSpan={5}>
+                            <div className="expanded-content selected-info">
+                              <strong>🎉 Congratulations!</strong> You've been
+                              selected. The organization will reach out to you
+                              soon.
+                            </div>
+                          </td>
+                        </tr>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
         {/* Resume Preview Modal */}
         {previewResume && (

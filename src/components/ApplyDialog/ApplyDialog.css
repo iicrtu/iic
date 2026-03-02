@@ -1,0 +1,207 @@
+/* ═══════════════════════════════════════════════════════
+   ApplyDialog — modal for submitting an application
+   ═══════════════════════════════════════════════════════ */
+
+.apply-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.apply-dialog {
+  width: 100%;
+  max-width: 500px;
+  background: #fff;
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+/* ── header ─────────────────────────────────────────── */
+.apply-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+
+.apply-title {
+  margin: 0;
+  font-family: "Anek Latin", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.apply-close {
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  color: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.apply-org {
+  margin: 0 0 18px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+/* ── body ───────────────────────────────────────────── */
+.apply-status {
+  text-align: center;
+  padding: 30px 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.apply-success {
+  color: #16a34a;
+  font-weight: 500;
+}
+
+.apply-empty {
+  text-align: center;
+  padding: 24px 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.apply-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #5c5fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.apply-link:hover {
+  text-decoration: underline;
+}
+
+.apply-label {
+  margin: 0 0 12px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* ── resume cards ───────────────────────────────────── */
+.apply-resumes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.apply-resume-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.apply-resume-card:hover {
+  border-color: rgba(131, 152, 237, 0.4);
+}
+
+.apply-resume-card.selected {
+  border-color: #5c5fff;
+  background: rgba(92, 95, 255, 0.04);
+}
+
+.apply-radio {
+  accent-color: #5c5fff;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.apply-resume-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.apply-resume-name {
+  font-family: "Anek Latin", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.85);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.apply-resume-link {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  color: #79afe5;
+  text-decoration: none;
+}
+
+.apply-resume-link:hover {
+  text-decoration: underline;
+}
+
+/* ── error + submit ─────────────────────────────────── */
+.apply-error {
+  margin: 0 0 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  color: #dc2626;
+  text-align: center;
+}
+
+.apply-submit {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #79afe5 0%, #5c5fff 100%);
+  color: #fff;
+  font-family: "Anek Latin", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  min-height: 44px;
+}
+
+.apply-submit:hover:not(:disabled) {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.apply-submit:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ── responsive ─────────────────────────────────────── */
+@media (max-width: 480px) {
+  .apply-dialog {
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .apply-title {
+    font-size: 17px;
+  }
+}
