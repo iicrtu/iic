@@ -1,15 +1,10 @@
 import React from "react";
-import animatedIcon from "../../assets/animated-icon.gif";
 import "./LoadingSpinner.css";
 
-const LoadingSpinner = ({ size = 120 }) => (
+const LoadingSpinner = ({ size = 64 }) => (
   <div className="loading-spinner">
-    <img
-      src={animatedIcon}
-      alt="Loading…"
-      className="loading-spinner-img"
-      width={size}
-      height={size}
+    <div
+      className="loading-spinner-ring"
       style={{ width: size, height: size }}
     />
   </div>

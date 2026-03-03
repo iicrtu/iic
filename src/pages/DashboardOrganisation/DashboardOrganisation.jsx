@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import "./DashboardOrganisation.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { useAuth } from "../../context/AuthContext";
@@ -9,22 +10,18 @@ const API = import.meta.env.VITE_API_URL;
 
 const DashboardOrganisation = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { user, isAuthenticated, isLoading: authLoading } = useAuth();
 
   const queryEnabled = !authLoading && isAuthenticated;
   const { data: organization = null, isLoading: orgLoading } = useOrgProfile(queryEnabled);
   const { data: internshipsData = [], isLoading: intLoading } = useOrgInternships(queryEnabled);
+  const internships = internshipsData;
   const loading = orgLoading || intLoading;
 
-  const [internships, setInternships] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [deleteModal, setDeleteModal] = useState({ show: false, id: null, name: "" });
   const [deleting, setDeleting] = useState(false);
-
-  // Sync react-query data into local state so delete/select/reject mutations work
-  React.useEffect(() => {
-    setInternships(internshipsData);
-  }, [internshipsData]);
 
   // Applications panel state
   const [appsPanel, setAppsPanel] = useState(null); // { internshipId, internshipName }
@@ -33,6 +30,10 @@ const DashboardOrganisation = () => {
   const [rejectModal, setRejectModal] = useState({ show: false, id: null, name: "" });
   const [rejectReason, setRejectReason] = useState("");
   const [actionLoading, setActionLoading] = useState(null); // app id currently loading
+
+  const postedCount = useMemo(() => internships.filter((i) => i.status === "posted").length, [internships]);
+  const reviewCount = useMemo(() => internships.filter((i) => i.status === "under_review").length, [internships]);
+  const totalApps = useMemo(() => internships.reduce((sum, i) => sum + (i.applicationsCount || 0), 0), [internships]);
 
   // Redirect if not authenticated (after auth check completes)
   if (!authLoading && !isAuthenticated) {
@@ -64,13 +65,18 @@ const DashboardOrganisation = () => {
       );
 
       if (response.ok) {
-        setInternships(internships.filter((i) => i._id !== deleteModal.id));
+        queryClient.setQueryData(['orgInternships'], (old) => {
+          if (!old) return old;
+          return {
+            ...old,
+            internships: (old.internships || []).filter((i) => i._id !== deleteModal.id),
+          };
+        });
         closeDeleteModal();
       } else {
         closeDeleteModal();
       }
     } catch (error) {
-      console.error("Error deleting internship:", error);
       closeDeleteModal();
     } finally {
       setDeleting(false);
@@ -103,7 +109,7 @@ const DashboardOrganisation = () => {
         setPanelApps(data.applications || []);
       }
     } catch (err) {
-      console.error("Error fetching applications:", err);
+      // fetch error handled silently
     } finally {
       setPanelLoading(false);
     }
@@ -127,7 +133,7 @@ const DashboardOrganisation = () => {
         );
       }
     } catch (err) {
-      console.error(err);
+      // select error handled silently
     } finally {
       setActionLoading(null);
     }
@@ -158,7 +164,7 @@ const DashboardOrganisation = () => {
         );
       }
     } catch (err) {
-      console.error(err);
+      // reject error handled silently
     } finally {
       setActionLoading(null);
       setRejectModal({ show: false, id: null, name: "" });
@@ -373,21 +379,21 @@ const DashboardOrganisation = () => {
           <div className="stat-card">
             <div className="stat-icon">✅</div>
             <div className="stat-info">
-              <h3>{internships.filter((i) => i.status === "posted").length}</h3>
+              <h3>{postedCount}</h3>
               <p>Posted</p>
             </div>
           </div>
           <div className="stat-card">
             <div className="stat-icon">⏳</div>
             <div className="stat-info">
-              <h3>{internships.filter((i) => i.status === "under_review").length}</h3>
+              <h3>{reviewCount}</h3>
               <p>Under Review</p>
             </div>
           </div>
           <div className="stat-card">
             <div className="stat-icon">📋</div>
             <div className="stat-info">
-              <h3>{internships.reduce((sum, i) => sum + (i.applicationsCount || 0), 0)}</h3>
+              <h3>{totalApps}</h3>
               <p>Applications Received</p>
             </div>
           </div>

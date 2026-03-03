@@ -15,7 +15,6 @@ export const EVENTS_DATA = [
   {
     id: 1,
     featured: false,
-    badge: '',
     tag: 'SUMMIT',
     title: 'INTERNSHIP FAIR',
     badge: 'Upcoming',

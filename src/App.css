@@ -33,6 +33,25 @@ section {
     margin: 0 auto 60px;
 }
 
+.title-part1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 1.17;
+    color: var(--black);
+}
+
+.title-part2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 1.17;
+    background: var(--gradient-title);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 /* Responsive Design */
 @media (max-width: 1400px) {
     section {
@@ -56,10 +75,21 @@ section {
     .section-title {
         font-size: 48px;
     }
+
+    .title-part1,
+    .title-part2 {
+        font-size: 48px;
+    }
     
     .section-description {
         font-size: 18px;
     }
 }
 
-
+/* RequireAdmin loading */
+.require-admin-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+}

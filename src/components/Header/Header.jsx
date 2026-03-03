@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
 import animatedIcon from '../../assets/animated-icon.gif';
@@ -23,7 +23,7 @@ const Header = () => {
     }, []);
 
     // Scroll to top when route changes
-    useEffect(() => {
+    useLayoutEffect(() => {
         window.scrollTo(0, 0);
         setMenuOpen(false); // Close menu on route change
         setShowDropdown(false); // Close dropdown on route change

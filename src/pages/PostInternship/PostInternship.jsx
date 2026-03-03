@@ -59,7 +59,6 @@ const PostInternship = () => {
         setError("Failed to load internship details");
       }
     } catch (error) {
-      console.error("Error fetching internship:", error);
       setError("An error occurred while loading internship");
     }
   };
@@ -186,7 +185,6 @@ const PostInternship = () => {
         setLoading(false);
       }
     } catch (error) {
-      console.error("Error saving internship:", error);
       setError("An error occurred. Please try again.");
       setLoading(false);
     }
@@ -195,18 +193,17 @@ const PostInternship = () => {
   return (
     <div className="post-internship-page">
       {submitSuccess ? (
-        <div className="post-internship-card" style={{ textAlign: "center", padding: "60px 40px" }}>
-          <div style={{ fontSize: "56px", marginBottom: "20px" }}>✅</div>
-          <h2 className="post-internship-title" style={{ fontSize: "24px", marginBottom: "12px" }}>
+        <div className="post-internship-card post-success-card">
+          <div className="post-success-icon">✅</div>
+          <h2 className="post-internship-title post-success-title">
             Submitted for Review
           </h2>
-          <p style={{ fontFamily: "'Anek Latin', sans-serif", fontSize: "16px", color: "#6b7280", lineHeight: 1.6, marginBottom: "32px" }}>
+          <p className="post-success-text">
             Your internship has been submitted for admin review.<br />
             You'll be notified once it's approved and goes live.
           </p>
           <button
-            className="next-btn"
-            style={{ maxWidth: "280px", margin: "0 auto" }}
+            className="next-btn post-success-btn"
             onClick={() => navigate("/dashboard/organisation")}
           >
             Go to Dashboard
@@ -377,7 +374,7 @@ const PostInternship = () => {
                 {skills.length > 0 && (
                   <div className="skills-tags">
                     {skills.map((skill, index) => (
-                      <span key={index} className="skill-tag">
+                      <span key={skill} className="skill-tag">
                         {skill}
                         <button
                           type="button"

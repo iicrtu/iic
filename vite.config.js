@@ -14,7 +14,8 @@ export default defineConfig({
         manualChunks: {
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
           'vendor-motion': ['framer-motion'],
-          'vendor-ui': ['react-hot-toast', 'react-icons'],
+          'vendor-query': ['@tanstack/react-query'],
+          'vendor-ui': ['react-hot-toast'],
         },
       },
     },

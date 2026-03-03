@@ -4,6 +4,7 @@ import queryClient from './lib/queryClient';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import './App.css';
+import { Toaster } from 'react-hot-toast';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
@@ -17,7 +18,6 @@ const EventsPage = React.lazy(() => import('./pages/EventsPage/EventsPage'));
 const StartupsPage = React.lazy(() => import('./pages/StartupsPage/StartupsPage'));
 const Internships = React.lazy(() => import('./pages/Internships/Internships'));
 const Announcements = React.lazy(() => import('./pages/Announcements/Announcements'));
-const Apply = React.lazy(() => import('./pages/Announcements/apply'));
 const Login = React.lazy(() => import('./pages/Login/Login'));
 const DashboardStudent = React.lazy(() => import('./pages/DashboardStudent/DashboardStudent'));
 const DashboardOrganisation = React.lazy(() => import('./pages/DashboardOrganisation/DashboardOrganisation'));
@@ -30,6 +30,7 @@ const AdminDashboard = React.lazy(() => import('./pages/Admin/AdminDashboard'));
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+    <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
     <Router>
       <AuthProvider>
         <ErrorBoundary>
@@ -59,7 +60,6 @@ function App() {
                 <Route path="/startups" element={<StartupsPage />} />
                 <Route path="/internships" element={<Internships />} />
                 <Route path="/announcements" element={<Announcements />} />
-                <Route path="/apply" element={<Apply />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/dashboard/student" element={<DashboardStudent />} />
                 <Route path="/dashboard/organisation" element={<DashboardOrganisation />} />

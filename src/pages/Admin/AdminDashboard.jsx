@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import "./AdminDashboard.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
@@ -288,7 +288,6 @@ const AdminDashboard = () => {
   /* ── Render ─────────────────────────────────────────── */
   return (
     <div className="adm-page">
-      <Toaster position="top-center" toastOptions={{ duration: 2500 }} />
 
       {/* ── Top bar ─────────────────────────────────────── */}
       <div className="adm-topbar">

@@ -13,25 +13,6 @@
   flex-wrap: wrap;
 }
 
-.title-part1 {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  font-size: 64px;
-  line-height: 1.17;
-  color: var(--black);
-}
-
-.title-part2 {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 700;
-  font-size: 64px;
-  line-height: 1.17;
-  background: var(--gradient-title);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
 /* ===== Startups Grid ===== */
 
 .startups-grid {
@@ -193,11 +174,6 @@
 
   .startups-grid {
     grid-template-columns: 1fr;
-  }
-
-  .title-part1,
-  .title-part2 {
-    font-size: 48px;
   }
 
   .startup-name {

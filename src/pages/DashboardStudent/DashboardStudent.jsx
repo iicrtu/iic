@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import "./DashboardStudent.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
@@ -16,6 +16,9 @@ const DashboardStudent = () => {
 
   const [previewResume, setPreviewResume] = useState(null);
   const [expandedApp, setExpandedApp] = useState(null);
+
+  const approvedCount = useMemo(() => applications.filter((a) => a.status === "approved").length, [applications]);
+  const selectedCount = useMemo(() => applications.filter((a) => a.status === "selected").length, [applications]);
 
   // Redirect if not authenticated (after auth check completes)
   if (!authLoading && !isAuthenticated) {
@@ -243,14 +246,14 @@ const DashboardStudent = () => {
           <div className="stat-card">
             <div className="stat-icon">✅</div>
             <div className="stat-info">
-              <h3>{applications.filter((a) => a.status === "approved").length}</h3>
+              <h3>{approvedCount}</h3>
               <p>Approved</p>
             </div>
           </div>
           <div className="stat-card">
             <div className="stat-icon">🎉</div>
             <div className="stat-info">
-              <h3>{applications.filter((a) => a.status === "selected").length}</h3>
+              <h3>{selectedCount}</h3>
               <p>Selected</p>
             </div>
           </div>

@@ -6,8 +6,15 @@
   min-height: 100vh;
 }
 
-.loading-spinner-img {
-  object-fit: contain;
-  /* slight scale-up so the moving parts are clearly visible */
-  transform: scale(1.15);
+.loading-spinner-ring {
+  border: 5px solid #e5e7eb;
+  border-top: 5px solid #9d62bf;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import './Contact.css';
 import instagramIcon from '../../assets/instagram-icon.webp';
 import linkedinIcon from '../../assets/linkedin-icon.webp';
@@ -61,33 +61,6 @@ const Contact = () => {
 
     return (
         <>
-            <Toaster 
-                position="top-center"
-                toastOptions={{
-                    duration: 3000,
-                    style: {
-                        background: '#fff',
-                        color: '#000',
-                        fontFamily: 'Roboto, sans-serif',
-                        fontSize: '16px',
-                        padding: '16px',
-                        borderRadius: '8px',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                    },
-                    success: {
-                        iconTheme: {
-                            primary: '#10b981',
-                            secondary: '#fff',
-                        },
-                    },
-                    error: {
-                        iconTheme: {
-                            primary: '#ef4444',
-                            secondary: '#fff',
-                        },
-                    },
-                }}
-            />
             <section className="contact-section">
             <h2 className="section-title">{CONTACT_SECTION.title}</h2>
             <p className="section-description">
