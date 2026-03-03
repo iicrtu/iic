@@ -13,7 +13,7 @@ export const ACTION_BUTTONS = [
 ];
 
 export const STATS = [
-  { value: '10', label: 'companies' },
+  { value: '10', label: 'Companies' },
   { value: '60+', label: 'Positions' },
   { value: '100+', label: 'Applications' },
   { value: '10', label: 'Companies' },

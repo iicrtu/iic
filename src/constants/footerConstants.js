@@ -20,7 +20,7 @@ export const FOOTER_QUICK_LINKS = {
     // { text: 'EVENTS', path: '/events' },
     // { text: 'STARTUPS', path: '/startups' },
     { text: 'INTERNSHIPS', path: '/internships' },
-    { text: 'ANNOUCEMENT', path: '/announcements' }
+    { text: 'ANNOUNCEMENT', path: '/announcements' }
   ]
 };
 
