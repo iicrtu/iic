@@ -7,6 +7,7 @@ import {
   ACTION_BUTTONS,
   STATS,
 } from "../../constants/internshipsConstants";
+import { useAuth } from "../../context/AuthContext";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -36,8 +37,8 @@ const Internships = () => {
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [modeFilter, setModeFilter] = useState("");
 
-  /* auth state (lightweight check) */
-  const [user, setUser] = useState(null); // { role }
+  /* auth state from context */
+  const { user } = useAuth();
 
   /* UI state */
   const [openId, setOpenId] = useState(null); // card slider
@@ -71,14 +72,6 @@ const Internships = () => {
     }, 400);
     return () => clearTimeout(debounceRef.current);
   }, [search]);
-
-  /* ── check login state once ──────────────────────────── */
-  useEffect(() => {
-    fetch(`${API}/api/auth/me`, { credentials: "include" })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => d && setUser(d.user))
-      .catch(() => {});
-  }, []);
 
   /* ── fetch internships ───────────────────────────────── */
   useEffect(() => {

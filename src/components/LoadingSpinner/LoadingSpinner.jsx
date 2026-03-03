@@ -8,6 +8,8 @@ const LoadingSpinner = ({ size = 120 }) => (
       src={animatedIcon}
       alt="Loading…"
       className="loading-spinner-img"
+      width={size}
+      height={size}
       style={{ width: size, height: size }}
     />
   </div>

@@ -2,6 +2,10 @@ import React from 'react';
 import './StartupsPage.css';
 import { STARTUPS_HERO, STATS, STARTUPS_DATA, LABELS } from '../../constants/startupsConstants';
 
+// Vite-compatible dynamic import for startup images
+const startupAssets = import.meta.glob('../../assets/*.webp', { eager: true, import: 'default' });
+const getStartupImage = (filename) => startupAssets[`../../assets/${filename}`];
+
 const StartupsPage = () => {
     return (
         <div className="startups-page">
@@ -16,7 +20,7 @@ const StartupsPage = () => {
                 <div className="startups-list-container">
                     {STARTUPS_DATA.map((startup, index) => (
                         <div key={startup.id} className={`startup-card-detailed ${index % 2 === 0 ? 'left-card' : 'right-card'}`}>
-                            <div className="startup-floating-image"  > <img src={`/src/assets/${startup.image}`} height="140" width="140"></img></div>
+                            <div className="startup-floating-image"  > <img src={getStartupImage(startup.image)} height="140" width="140" loading="lazy" alt={startup.name}></img></div>
                             <div className="startup-details-section">
                                 <div className="startup-header">
                                     <div className="startup-status-badge">{startup.status}</div>

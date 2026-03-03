@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import './Hero.css';
-import ideasp from '../../assets/ideasp.jpeg';
-import intern from '../../assets/intern.jpeg';
-import linkedin from '../../assets/linkedin.jpeg';
+import ideasp from '../../assets/ideasp.webp';
+import intern from '../../assets/intern.webp';
+import linkedin from '../../assets/linkedin.webp';
 import { HERO_CONTENT } from "../../constants/heroConstants";
 import {useNavigate} from "react-router-dom";
 import {motion, AnimatePresence} from "framer-motion";
@@ -76,7 +76,7 @@ const Hero = () => {
                 <div className="gradient-blur blur-circle-1"></div>
                 <div className="gradient-blur blur-circle-2"></div>
                 <div className="hero-image-container">
-                    <img src={heroImages[currentImageIndex]} alt="IIC" className="hero-rotating-image"/>
+                    <img src={heroImages[currentImageIndex]} alt="IIC" className="hero-rotating-image" width="500" height="500" fetchPriority="high"/>
                 </div>
             </div>
         </section>

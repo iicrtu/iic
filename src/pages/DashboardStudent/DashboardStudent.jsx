@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./DashboardStudent.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import { useAuth } from "../../context/AuthContext";
 
 const API = import.meta.env.VITE_API_URL;
 
 const DashboardStudent = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const { user, isAuthenticated, isLoading: authLoading } = useAuth();
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [previewResume, setPreviewResume] = useState(null);
@@ -15,50 +16,44 @@ const DashboardStudent = () => {
   const [expandedApp, setExpandedApp] = useState(null);
 
   useEffect(() => {
+    if (authLoading) return;
+
+    if (!isAuthenticated) {
+      window.location.href = "/login";
+      return;
+    }
+
     const fetchData = async () => {
       try {
-        const userResponse = await fetch(`${API}/api/auth/me`, {
-          credentials: "include",
-          cache: "no-cache",
-        });
-
-        if (!userResponse.ok) {
-          window.location.href = "/login";
-          return;
-        }
-
-        const userData = await userResponse.json();
-        setUser(userData.user);
-
-        const studentResponse = await fetch(`${API}/api/student/profile`, {
-          credentials: "include",
-          cache: "no-cache",
-        });
+        const [studentResponse, appsResponse] = await Promise.all([
+          fetch(`${API}/api/student/profile`, {
+            credentials: "include",
+            cache: "no-cache",
+          }),
+          fetch(`${API}/api/applications/mine`, {
+            credentials: "include",
+            cache: "no-cache",
+          }),
+        ]);
 
         if (studentResponse.ok) {
           const studentData = await studentResponse.json();
           setStudent(studentData.student);
         }
 
-        // Fetch applications
-        const appsResponse = await fetch(`${API}/api/applications/mine`, {
-          credentials: "include",
-          cache: "no-cache",
-        });
         if (appsResponse.ok) {
           const appsData = await appsResponse.json();
           setApplications(appsData.applications || []);
         }
-
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+  }, [authLoading, isAuthenticated]);
 
   const handleEditProfile = () => {
     navigate("/onboarding/student?section=1");
@@ -116,7 +111,7 @@ const DashboardStudent = () => {
     }
   };
 
-  if (loading) {
+  if (authLoading || loading) {
     return (
       <div className="dashboard-loading">
         <LoadingSpinner />

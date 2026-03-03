@@ -1,29 +1,35 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import './App.css';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import Home from './pages/Home/Home';
-import About from './pages/About/About';
-import EventsPage from './pages/EventsPage/EventsPage';
-import StartupsPage from './pages/StartupsPage/StartupsPage';
-import Internships from './pages/Internships/Internships';
-import Announcements from './pages/Announcements/Announcements';
-import Apply from "./pages/Announcements/apply";
-import Login from "./pages/Login/Login";
-import DashboardStudent from "./pages/DashboardStudent/DashboardStudent";
-import DashboardOrganisation from "./pages/DashboardOrganisation/DashboardOrganisation";
-import OrgOnboarding from "./pages/OrgOnboarding/OrgOnboarding";
-import PostInternship from "./pages/PostInternship/PostInternship";
-import StudentOnboarding from "./pages/StudentOnboarding/StudentOnboarding";
-import AdminLogin from "./pages/Admin/AdminLogin";
-import AdminDashboard from "./pages/Admin/AdminDashboard";
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import RequireAdmin from "./routes/RequireAdmin";
+
+// Lazy-loaded page components
+const Home = React.lazy(() => import('./pages/Home/Home'));
+const About = React.lazy(() => import('./pages/About/About'));
+const EventsPage = React.lazy(() => import('./pages/EventsPage/EventsPage'));
+const StartupsPage = React.lazy(() => import('./pages/StartupsPage/StartupsPage'));
+const Internships = React.lazy(() => import('./pages/Internships/Internships'));
+const Announcements = React.lazy(() => import('./pages/Announcements/Announcements'));
+const Apply = React.lazy(() => import('./pages/Announcements/apply'));
+const Login = React.lazy(() => import('./pages/Login/Login'));
+const DashboardStudent = React.lazy(() => import('./pages/DashboardStudent/DashboardStudent'));
+const DashboardOrganisation = React.lazy(() => import('./pages/DashboardOrganisation/DashboardOrganisation'));
+const OrgOnboarding = React.lazy(() => import('./pages/OrgOnboarding/OrgOnboarding'));
+const PostInternship = React.lazy(() => import('./pages/PostInternship/PostInternship'));
+const StudentOnboarding = React.lazy(() => import('./pages/StudentOnboarding/StudentOnboarding'));
+const AdminLogin = React.lazy(() => import('./pages/Admin/AdminLogin'));
+const AdminDashboard = React.lazy(() => import('./pages/Admin/AdminDashboard'));
 
 function App() {
   return (
     <Router>
+      <AuthProvider>
+      <Suspense fallback={<LoadingSpinner />}>
       <Routes>
         {/* ── Admin routes (no Header / Footer) ── */}
         <Route path="/admin" element={<AdminLogin />} />
@@ -63,6 +69,8 @@ function App() {
           }
         />
       </Routes>
+      </Suspense>
+      </AuthProvider>
     </Router>
   );
 }

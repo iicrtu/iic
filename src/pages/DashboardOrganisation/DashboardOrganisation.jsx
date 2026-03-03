@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./DashboardOrganisation.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import { useAuth } from "../../context/AuthContext";
 
 const API = import.meta.env.VITE_API_URL;
 
 const DashboardOrganisation = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const { user, isAuthenticated, isLoading: authLoading } = useAuth();
   const [organization, setOrganization] = useState(null);
   const [internships, setInternships] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,59 +25,44 @@ const DashboardOrganisation = () => {
   const [actionLoading, setActionLoading] = useState(null); // app id currently loading
 
   useEffect(() => {
+    if (authLoading) return;
+
+    if (!isAuthenticated) {
+      window.location.href = "/login";
+      return;
+    }
+
     const fetchData = async () => {
       try {
-        // Fetch user data
-        const userResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
-          credentials: "include",
-          cache: "no-cache", // Disable caching
-        });
-
-        if (!userResponse.ok) {
-          window.location.href = "/login";
-          return;
-        }
-
-        const userData = await userResponse.json();
-        setUser(userData.user);
-
-        // Fetch organization data
-        const orgResponse = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/organization/profile`,
-          {
+        const [orgResponse, internshipsResponse] = await Promise.all([
+          fetch(`${API}/api/organization/profile`, {
             credentials: "include",
-            cache: "no-cache", // Disable caching
-          }
-        );
+            cache: "no-cache",
+          }),
+          fetch(`${API}/api/internships`, {
+            credentials: "include",
+            cache: "no-cache",
+          }),
+        ]);
 
         if (orgResponse.ok) {
           const orgData = await orgResponse.json();
           setOrganization(orgData.organization);
         }
 
-        // Fetch internships
-        const internshipsResponse = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/internships`,
-          {
-            credentials: "include",
-            cache: "no-cache",
-          }
-        );
-
         if (internshipsResponse.ok) {
           const internshipsData = await internshipsResponse.json();
           setInternships(internshipsData.internships || []);
         }
-
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+  }, [authLoading, isAuthenticated]);
 
   const handleEditProfile = () => {
     navigate("/onboarding/organisation");
@@ -213,7 +199,7 @@ const DashboardOrganisation = () => {
     return <span className={`orgapp-badge ${s.cls}`}>{s.label}</span>;
   };
 
-  if (loading) {
+  if (authLoading || loading) {
     return (
       <div className="dashboard-loading">
         <LoadingSpinner />
