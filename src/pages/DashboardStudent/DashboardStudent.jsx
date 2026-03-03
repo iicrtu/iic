@@ -1,59 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./DashboardStudent.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { useAuth } from "../../context/AuthContext";
-
-const API = import.meta.env.VITE_API_URL;
+import { useStudentProfile, useMyApplications } from "../../hooks/useApi";
 
 const DashboardStudent = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated, isLoading: authLoading } = useAuth();
-  const [student, setStudent] = useState(null);
-  const [loading, setLoading] = useState(true);
+
+  const queryEnabled = !authLoading && isAuthenticated;
+  const { data: student = null, isLoading: studentLoading } = useStudentProfile(queryEnabled);
+  const { data: applications = [], isLoading: appsLoading } = useMyApplications(queryEnabled);
+  const loading = studentLoading || appsLoading;
+
   const [previewResume, setPreviewResume] = useState(null);
-  const [applications, setApplications] = useState([]);
   const [expandedApp, setExpandedApp] = useState(null);
 
-  useEffect(() => {
-    if (authLoading) return;
-
-    if (!isAuthenticated) {
-      window.location.href = "/login";
-      return;
-    }
-
-    const fetchData = async () => {
-      try {
-        const [studentResponse, appsResponse] = await Promise.all([
-          fetch(`${API}/api/student/profile`, {
-            credentials: "include",
-            cache: "no-cache",
-          }),
-          fetch(`${API}/api/applications/mine`, {
-            credentials: "include",
-            cache: "no-cache",
-          }),
-        ]);
-
-        if (studentResponse.ok) {
-          const studentData = await studentResponse.json();
-          setStudent(studentData.student);
-        }
-
-        if (appsResponse.ok) {
-          const appsData = await appsResponse.json();
-          setApplications(appsData.applications || []);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [authLoading, isAuthenticated]);
+  // Redirect if not authenticated (after auth check completes)
+  if (!authLoading && !isAuthenticated) {
+    window.location.href = "/login";
+    return null;
+  }
 
   const handleEditProfile = () => {
     navigate("/onboarding/student?section=1");

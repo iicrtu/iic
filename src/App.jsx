@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
-
+import { QueryClientProvider } from '@tanstack/react-query';
+import queryClient from './lib/queryClient';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import './App.css';
@@ -27,6 +28,7 @@ const AdminDashboard = React.lazy(() => import('./pages/Admin/AdminDashboard'));
 
 function App() {
   return (
+    <QueryClientProvider client={queryClient}>
     <Router>
       <AuthProvider>
       <Suspense fallback={<LoadingSpinner />}>
@@ -72,6 +74,7 @@ function App() {
       </Suspense>
       </AuthProvider>
     </Router>
+    </QueryClientProvider>
   );
 }
 

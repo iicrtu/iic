@@ -1,20 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./DashboardOrganisation.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { useAuth } from "../../context/AuthContext";
+import { useOrgProfile, useOrgInternships } from "../../hooks/useApi";
 
 const API = import.meta.env.VITE_API_URL;
 
 const DashboardOrganisation = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated, isLoading: authLoading } = useAuth();
-  const [organization, setOrganization] = useState(null);
+
+  const queryEnabled = !authLoading && isAuthenticated;
+  const { data: organization = null, isLoading: orgLoading } = useOrgProfile(queryEnabled);
+  const { data: internshipsData = [], isLoading: intLoading } = useOrgInternships(queryEnabled);
+  const loading = orgLoading || intLoading;
+
   const [internships, setInternships] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
   const [deleteModal, setDeleteModal] = useState({ show: false, id: null, name: "" });
   const [deleting, setDeleting] = useState(false);
+
+  // Sync react-query data into local state so delete/select/reject mutations work
+  React.useEffect(() => {
+    setInternships(internshipsData);
+  }, [internshipsData]);
 
   // Applications panel state
   const [appsPanel, setAppsPanel] = useState(null); // { internshipId, internshipName }
@@ -24,45 +34,11 @@ const DashboardOrganisation = () => {
   const [rejectReason, setRejectReason] = useState("");
   const [actionLoading, setActionLoading] = useState(null); // app id currently loading
 
-  useEffect(() => {
-    if (authLoading) return;
-
-    if (!isAuthenticated) {
-      window.location.href = "/login";
-      return;
-    }
-
-    const fetchData = async () => {
-      try {
-        const [orgResponse, internshipsResponse] = await Promise.all([
-          fetch(`${API}/api/organization/profile`, {
-            credentials: "include",
-            cache: "no-cache",
-          }),
-          fetch(`${API}/api/internships`, {
-            credentials: "include",
-            cache: "no-cache",
-          }),
-        ]);
-
-        if (orgResponse.ok) {
-          const orgData = await orgResponse.json();
-          setOrganization(orgData.organization);
-        }
-
-        if (internshipsResponse.ok) {
-          const internshipsData = await internshipsResponse.json();
-          setInternships(internshipsData.internships || []);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [authLoading, isAuthenticated]);
+  // Redirect if not authenticated (after auth check completes)
+  if (!authLoading && !isAuthenticated) {
+    window.location.href = "/login";
+    return null;
+  }
 
   const handleEditProfile = () => {
     navigate("/onboarding/organisation");

@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Announcements.css';
 import { ANNOUNCEMENTS_HERO, LABELS } from '../../constants/announcementsConstants';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
-
-const API = import.meta.env.VITE_API_URL;
+import { useAnnouncements } from '../../hooks/useApi';
 
 const formatDate = (iso) => {
     if (!iso) return '—';
@@ -17,28 +16,11 @@ const formatDate = (iso) => {
 const PER_PAGE = 10;
 
 const Announcements = () => {
-    const [announcements, setAnnouncements] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const { data: announcements = [], isLoading: loading } = useAnnouncements();
     const [page, setPage] = useState(1);
 
     const totalPages = Math.ceil(announcements.length / PER_PAGE);
     const paged = announcements.slice((page - 1) * PER_PAGE, page * PER_PAGE);
-
-    useEffect(() => {
-        const fetchAnnouncements = async () => {
-            try {
-                const res = await fetch(`${API}/api/announcements`);
-                if (!res.ok) throw new Error('Failed to fetch');
-                const data = await res.json();
-                setAnnouncements(data.announcements || []);
-            } catch (err) {
-                console.error('Error fetching announcements:', err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchAnnouncements();
-    }, []);
 
     return (
         <div className="announcements-page">
