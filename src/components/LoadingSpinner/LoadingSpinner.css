@@ -1,0 +1,13 @@
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0;
+  width: 100%;
+}
+
+.loading-spinner-img {
+  object-fit: contain;
+  /* slight scale-up so the moving parts are clearly visible */
+  transform: scale(1.15);
+}

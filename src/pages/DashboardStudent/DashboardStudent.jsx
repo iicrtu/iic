@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./DashboardStudent.css";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -118,7 +119,7 @@ const DashboardStudent = () => {
   if (loading) {
     return (
       <div className="dashboard-loading">
-        <p>Loading...</p>
+        <LoadingSpinner />
       </div>
     );
   }
