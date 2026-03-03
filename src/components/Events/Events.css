@@ -45,7 +45,7 @@
 /* ===== Event Card ===== */
 
 .event-card {
-  background: rgba(rgb(150, 90, 171), green, blue, alpha);
+  background: rgba(255, 255, 255, 1);
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 28px;
   padding: 33px 35px 35px;

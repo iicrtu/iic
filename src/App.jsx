@@ -8,6 +8,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import RequireAdmin from "./routes/RequireAdmin";
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 // Lazy-loaded page components
 const Home = React.lazy(() => import('./pages/Home/Home'));
@@ -31,6 +32,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
     <Router>
       <AuthProvider>
+        <ErrorBoundary>
       <Suspense fallback={<LoadingSpinner />}>
       <Routes>
         {/* ── Admin routes (no Header / Footer) ── */}
@@ -72,6 +74,7 @@ function App() {
         />
       </Routes>
       </Suspense>
+      </ErrorBoundary>
       </AuthProvider>
     </Router>
     </QueryClientProvider>

@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './WhatWeOffer.css';
 import { WHAT_WE_OFFER_HEADING, OFFER_CARDS } from '../../constants/whatWeOfferConstants';
-import * as FaIcons from 'react-icons/fa';
+import {FaChalkboard, FaUsers, FaHandHoldingUsd, FaLightbulb, FaRocket, FaGlobe} from 'react-icons/fa';
+
+const ICON_MAP = {FaChalkboard, FaUsers, FaHandHoldingUsd, FaLightbulb, FaRocket, FaGlobe};
 
 const OfferCard = ({ iconColor, iconName, title, description, index }) => {
-    const IconComponent = FaIcons[iconName];
+    const IconComponent = ICON_MAP[iconName];
     const cardNumber = String(index + 1).padStart(2, '0');
 
     return (
