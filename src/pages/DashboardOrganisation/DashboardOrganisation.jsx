@@ -36,7 +36,7 @@ const DashboardOrganisation = () => {
 
   // Redirect if not authenticated (after auth check completes)
   if (!authLoading && !isAuthenticated) {
-    window.location.href = "/login";
+    navigate("/login", {replace: true});
     return null;
   }
 

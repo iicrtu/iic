@@ -5,7 +5,7 @@ import linkedinIconImg from '../../assets/linkedin-icon.webp';
 import emailIconImg from '../../assets/email.webp';
 
 // Vite-compatible dynamic import for team photos
-const teamAssets = import.meta.glob('../../assets/*.webp', { eager: true, import: 'default' });
+const teamAssets = import.meta.glob('../../assets/[A-Z]*.webp', { eager: true, import: 'default' });
 const getTeamImage = (filename) => teamAssets[`../../assets/${filename}`];
 
 const About = () => {

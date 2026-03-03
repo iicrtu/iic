@@ -2,7 +2,7 @@
     width: 100%;
     background: var(--white);
 }
-.section-title{
+.events-page .section-title{
     font-size: 72px;
     font-weight: 700;
     color: rgba(157, 98, 191, 0.82);

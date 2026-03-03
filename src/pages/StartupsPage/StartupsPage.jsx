@@ -3,7 +3,7 @@ import './StartupsPage.css';
 import { STARTUPS_HERO, STATS, STARTUPS_DATA, LABELS } from '../../constants/startupsConstants';
 
 // Vite-compatible dynamic import for startup images
-const startupAssets = import.meta.glob('../../assets/*.webp', { eager: true, import: 'default' });
+const startupAssets = import.meta.glob('../../assets/Startup.webp', { eager: true, import: 'default' });
 const getStartupImage = (filename) => startupAssets[`../../assets/${filename}`];
 
 const StartupsPage = () => {
