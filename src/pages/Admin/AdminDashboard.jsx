@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import "./AdminDashboard.css";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -253,7 +254,7 @@ const AdminDashboard = () => {
       {tab === "internships" && (
         <div className="adm-content">
           {intLoading ? (
-            <p className="adm-empty">Loading…</p>
+            <LoadingSpinner />
           ) : internships.length === 0 ? (
             <p className="adm-empty">No internships found.</p>
           ) : (
@@ -316,7 +317,7 @@ const AdminDashboard = () => {
       {tab === "applications" && (
         <div className="adm-content">
           {appLoading ? (
-            <p className="adm-empty">Loading…</p>
+            <LoadingSpinner />
           ) : applications.length === 0 ? (
             <p className="adm-empty">No applications found.</p>
           ) : (

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./DashboardOrganisation.css";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -215,7 +216,7 @@ const DashboardOrganisation = () => {
   if (loading) {
     return (
       <div className="dashboard-loading">
-        <p>Loading...</p>
+        <LoadingSpinner />
       </div>
     );
   }
@@ -461,7 +462,7 @@ const DashboardOrganisation = () => {
               </div>
 
               {panelLoading ? (
-                <div className="apps-panel-loading">Loading applications…</div>
+                <div className="apps-panel-loading"><LoadingSpinner size={80} /></div>
               ) : panelApps.length === 0 ? (
                 <div className="apps-panel-empty">No applications yet.</div>
               ) : (

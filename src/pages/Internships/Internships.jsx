@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Internships.css";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import ApplyDialog from "../../components/ApplyDialog/ApplyDialog";
 import {
   INTERNSHIPS_HERO,
@@ -177,7 +178,7 @@ const Internships = () => {
       {/* Cards */}
       <section className="internships-list-section">
         {loading ? (
-          <p className="internships-loading">Loading internships…</p>
+          <LoadingSpinner />
         ) : internships.length === 0 ? (
           <p className="internships-empty">No internships found.</p>
         ) : (

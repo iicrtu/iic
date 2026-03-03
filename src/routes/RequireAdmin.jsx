@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -15,7 +16,7 @@ const RequireAdmin = ({ children }) => {
   if (status === "loading") {
     return (
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "calc(100vh - 80px)" }}>
-        <p style={{ fontFamily: "Roboto, sans-serif", fontSize: 15, color: "rgba(0,0,0,0.5)" }}>Verifying…</p>
+        <LoadingSpinner />
       </div>
     );
   }

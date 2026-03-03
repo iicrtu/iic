@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
-import logo from '../../assets/logo.png';
+import animatedIcon from '../../assets/animated-icon.gif';
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -105,8 +105,7 @@ const Header = () => {
         <header className={`header ${scrolled ? 'scrolled' : ''}`}>
             <div className="header-container">
                 <Link to="/" className="logo-container">
-                    <img src={logo} alt="IIC Logo" className="logo" />
-                    <div className="line"></div>
+                    <img src={animatedIcon} alt="IIC" className="logo-animation" />
                     <div className="logo-text">IIC</div>
                 </Link>
                 

@@ -32,14 +32,11 @@
     color: inherit;
 }
 
-.logo {
-    width: 92px;
-    height: 75px;
+.logo-animation {
+    width: 70px;
+    height: 70px;
     object-fit: contain;
-}
-
-.line {
-    display: none;
+    border-radius: 8px;
 }
 
 .logo-text {
@@ -337,8 +334,8 @@
         height: 70px;
     }
     
-    .logo {
-        width: 50px;
+    .logo-animation {
+        width: 45px;
         height: 45px;
     }
     
@@ -374,8 +371,8 @@
         height: 65px;
     }
     
-    .logo {
-        width: 45px;
+    .logo-animation {
+        width: 40px;
         height: 40px;
     }
     
@@ -406,8 +403,8 @@
         height: 60px;
     }
     
-    .logo {
-        width: 40px;
+    .logo-animation {
+        width: 35px;
         height: 35px;
     }
     
