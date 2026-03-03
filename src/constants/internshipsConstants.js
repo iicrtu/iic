@@ -21,12 +21,6 @@ export const STATS = [
       
 ];
 
-/**
- * @deprecated Internships are now fetched from the API (GET /api/internships/public).
- * This static data is kept only as a reference / fallback and should NOT be used.
- */
-export const INTERNSHIPS_DATA = [];
-
 export const LABELS = {
   moreInfoBtn: 'MORE INFO'
 };
