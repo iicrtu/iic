@@ -79,6 +79,12 @@ const AdminDashboard = () => {
   const [rejectModal, setRejectModal] = useState(null); // { type, id, title }
   const [rejecting, setRejecting] = useState(false);
 
+  /* ── Announcements state ────────────────────────────── */
+  const [announcements, setAnnouncements] = useState([]);
+  const [annLoading, setAnnLoading] = useState(false);
+  const [annForm, setAnnForm] = useState(null); // null = closed, {} = open
+  const [annSaving, setAnnSaving] = useState(false);
+
   /* ── Fetch helpers ──────────────────────────────────── */
   const fetchInternships = useCallback(async () => {
     setIntLoading(true);
@@ -125,6 +131,93 @@ const AdminDashboard = () => {
   useEffect(() => {
     if (tab === "applications") fetchApplications();
   }, [tab, fetchApplications]);
+
+  /* ── Announcements fetch + actions ──────────────────── */
+  const fetchAnnouncements = useCallback(async () => {
+    setAnnLoading(true);
+    try {
+      const res = await fetch(`${API}/api/announcements/all`, { credentials: "include" });
+      if (res.status === 401) return navigate("/admin", { replace: true });
+      const data = await res.json();
+      setAnnouncements(data.announcements || []);
+    } catch {
+      toast.error("Failed to load announcements");
+    } finally {
+      setAnnLoading(false);
+    }
+  }, [navigate]);
+
+  useEffect(() => {
+    if (tab === "announcements") fetchAnnouncements();
+  }, [tab, fetchAnnouncements]);
+
+  const openAnnForm = (existing = null) => {
+    if (existing) {
+      setAnnForm({
+        _id: existing._id,
+        title: existing.title,
+        year: existing.year,
+        description: existing.description,
+        posted: existing.posted ? existing.posted.slice(0, 10) : "",
+        deadline: existing.deadline ? existing.deadline.slice(0, 10) : "",
+        applyLink: existing.applyLink || "",
+      });
+    } else {
+      setAnnForm({ title: "", year: "", description: "", posted: "", deadline: "", applyLink: "" });
+    }
+  };
+
+  const saveAnnouncement = async () => {
+    if (!annForm.title.trim() || !annForm.year.trim() || !annForm.description.trim() || !annForm.deadline) {
+      return toast.error("Title, year, description and deadline are required");
+    }
+    setAnnSaving(true);
+    const isEdit = !!annForm._id;
+    const url = isEdit
+      ? `${API}/api/announcements/${annForm._id}`
+      : `${API}/api/announcements`;
+    try {
+      const res = await fetch(url, {
+        method: isEdit ? "PUT" : "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          title: annForm.title,
+          year: annForm.year,
+          description: annForm.description,
+          posted: annForm.posted || undefined,
+          deadline: annForm.deadline,
+          applyLink: annForm.applyLink,
+        }),
+      });
+      if (!res.ok) {
+        const d = await res.json();
+        throw new Error(d.error || "Failed");
+      }
+      toast.success(isEdit ? "Announcement updated" : "Announcement created");
+      setAnnForm(null);
+      fetchAnnouncements();
+    } catch (err) {
+      toast.error(err.message);
+    } finally {
+      setAnnSaving(false);
+    }
+  };
+
+  const deleteAnnouncement = async (id) => {
+    if (!confirm("Delete this announcement?")) return;
+    try {
+      const res = await fetch(`${API}/api/announcements/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+      if (!res.ok) throw new Error();
+      setAnnouncements((prev) => prev.filter((a) => a._id !== id));
+      toast.success("Announcement deleted");
+    } catch {
+      toast.error("Failed to delete");
+    }
+  };
 
   /* ── Actions ────────────────────────────────────────── */
   const approveInternship = async (id) => {
@@ -219,6 +312,12 @@ const AdminDashboard = () => {
             onClick={() => { setTab("applications"); setAppPage(1); }}
           >
             Applications
+          </button>
+          <button
+            className={`adm-tab ${tab === "announcements" ? "active" : ""}`}
+            onClick={() => setTab("announcements")}
+          >
+            Announcements
           </button>
         </div>
 
@@ -376,6 +475,135 @@ const AdminDashboard = () => {
               <Pagination page={appPage} totalPages={appTotalPages} onPageChange={setAppPage} />
             </>
           )}
+        </div>
+      )}
+
+      {/* ── Announcements tab ──────────────────────────── */}
+      {tab === "announcements" && (
+        <div className="adm-content">
+          <div className="adm-ann-toolbar">
+            <button className="adm-btn adm-btn-approve" onClick={() => openAnnForm()}>
+              + New Announcement
+            </button>
+          </div>
+
+          {annLoading ? (
+            <LoadingSpinner />
+          ) : announcements.length === 0 ? (
+            <p className="adm-empty">No announcements yet.</p>
+          ) : (
+            <div className="adm-cards">
+              {announcements.map((a) => (
+                <div className="adm-card" key={a._id}>
+                  <div className="adm-card-header">
+                    <h3 className="adm-card-title">{a.title}</h3>
+                    <span className="adm-badge adm-badge-posted">{a.year}</span>
+                  </div>
+
+                  <p className="adm-card-desc">{a.description.length > 180 ? a.description.slice(0, 180) + "…" : a.description}</p>
+
+                  <div className="adm-card-meta">
+                    <span>📅 Posted: {new Date(a.posted).toLocaleDateString()}</span>
+                    <span>⏰ Deadline: {new Date(a.deadline).toLocaleDateString()}</span>
+                  </div>
+
+                  {a.applyLink && (
+                    <a className="adm-resume-link" href={a.applyLink} target="_blank" rel="noopener noreferrer">
+                      🔗 Apply Link
+                    </a>
+                  )}
+
+                  <div className="adm-card-actions">
+                    <button className="adm-btn adm-btn-approve" onClick={() => openAnnForm(a)}>
+                      Edit
+                    </button>
+                    <button className="adm-btn adm-btn-reject" onClick={() => deleteAnnouncement(a._id)}>
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ── Announcement form modal ────────────────────── */}
+      {annForm && (
+        <div className="adm-modal-overlay" onClick={() => setAnnForm(null)}>
+          <div className="adm-modal adm-modal-wide" onClick={(e) => e.stopPropagation()}>
+            <h3 className="adm-modal-title">{annForm._id ? "Edit Announcement" : "New Announcement"}</h3>
+
+            <div className="adm-form-grid">
+              <div className="adm-form-field">
+                <label>Title *</label>
+                <input
+                  type="text"
+                  className="adm-input"
+                  value={annForm.title}
+                  onChange={(e) => setAnnForm({ ...annForm, title: e.target.value })}
+                  placeholder="e.g. Summer Internship Program"
+                />
+              </div>
+              <div className="adm-form-field">
+                <label>Year / Target *</label>
+                <input
+                  type="text"
+                  className="adm-input"
+                  value={annForm.year}
+                  onChange={(e) => setAnnForm({ ...annForm, year: e.target.value })}
+                  placeholder="e.g. 1st Year, All Years"
+                />
+              </div>
+              <div className="adm-form-field adm-form-full">
+                <label>Description *</label>
+                <textarea
+                  className="adm-modal-textarea"
+                  value={annForm.description}
+                  onChange={(e) => setAnnForm({ ...annForm, description: e.target.value })}
+                  rows={3}
+                  placeholder="Announcement details…"
+                />
+              </div>
+              <div className="adm-form-field">
+                <label>Posted Date</label>
+                <input
+                  type="date"
+                  className="adm-input"
+                  value={annForm.posted}
+                  onChange={(e) => setAnnForm({ ...annForm, posted: e.target.value })}
+                />
+              </div>
+              <div className="adm-form-field">
+                <label>Deadline *</label>
+                <input
+                  type="date"
+                  className="adm-input"
+                  value={annForm.deadline}
+                  onChange={(e) => setAnnForm({ ...annForm, deadline: e.target.value })}
+                />
+              </div>
+              <div className="adm-form-field adm-form-full">
+                <label>Apply Link</label>
+                <input
+                  type="url"
+                  className="adm-input"
+                  value={annForm.applyLink}
+                  onChange={(e) => setAnnForm({ ...annForm, applyLink: e.target.value })}
+                  placeholder="https://..."
+                />
+              </div>
+            </div>
+
+            <div className="adm-modal-actions">
+              <button className="adm-btn adm-btn-cancel" onClick={() => setAnnForm(null)} disabled={annSaving}>
+                Cancel
+              </button>
+              <button className="adm-btn adm-btn-approve" onClick={saveAnnouncement} disabled={annSaving}>
+                {annSaving ? "Saving…" : annForm._id ? "Update" : "Create"}
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
