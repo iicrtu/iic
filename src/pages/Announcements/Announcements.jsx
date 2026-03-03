@@ -1,9 +1,39 @@
-import React from 'react';
-import {Link}from "react-router-dom";
+import React, { useState, useEffect } from 'react';
 import './Announcements.css';
-import { ANNOUNCEMENTS_HERO, ANNOUNCEMENTS_DATA, LABELS } from '../../constants/announcementsConstants';
+import { ANNOUNCEMENTS_HERO, LABELS } from '../../constants/announcementsConstants';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
+
+const API = import.meta.env.VITE_API_URL;
+
+const formatDate = (iso) => {
+    if (!iso) return '—';
+    return new Date(iso).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
+};
 
 const Announcements = () => {
+    const [announcements, setAnnouncements] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchAnnouncements = async () => {
+            try {
+                const res = await fetch(`${API}/api/announcements`);
+                if (!res.ok) throw new Error('Failed to fetch');
+                const data = await res.json();
+                setAnnouncements(data.announcements || []);
+            } catch (err) {
+                console.error('Error fetching announcements:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchAnnouncements();
+    }, []);
+
     return (
         <div className="announcements-page">
             <section className="announcements-hero">
@@ -16,38 +46,51 @@ const Announcements = () => {
                 </p>
             </section>
 
-               
-
             <section className="announcements-list-section">
-                <div className="announcements-list-container">
-                    {ANNOUNCEMENTS_DATA.map((announcement) => (
-                        <div key={announcement.id} className="announcement-card">
-                            <div className="announcement-header">
-                                <div className="announcement-type-badge">{announcement.year}</div>
-                            </div>
-                            <div className="announcement-content">
-                                <h2 className="announcement-title">{announcement.title}</h2>
-                                <p className="announcement-description">{announcement.description}</p>
-                                <div className="announcement-dates">
-                                    <div className="date-item">
-                                        <span className="date-label">{LABELS.postedLabel}</span>
-                                        <span className="date-value">{announcement.posted}</span>
-                                    </div>
-                                    <div className="date-item">
-                                        <span className="date-label">{LABELS.deadlineLabel}</span>
-                                        <span className="date-value">{announcement.deadline}</span>
-                                    </div>
+                {loading ? (
+                    <LoadingSpinner />
+                ) : announcements.length === 0 ? (
+                    <p style={{ textAlign: 'center', fontSize: '18px', color: '#888' }}>
+                        No announcements right now. Check back later!
+                    </p>
+                ) : (
+                    <div className="announcements-list-container">
+                        {announcements.map((announcement) => (
+                            <div key={announcement._id} className="announcement-card">
+                                <div className="announcement-header">
+                                    <div className="announcement-type-badge">{announcement.year}</div>
                                 </div>
-                                <Link to="/apply" className="explore-more-btn">
-                                    <span>{LABELS.exploreMoreBtn}</span>
-                                    <svg width="23" height="29" viewBox="0 0 23 29" fill="none">
-                                        <path d="M8.63 7.25L14.38 14.5L8.63 21.75" stroke="#1E1E1E" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                    </svg>
-                                </Link>
+                                <div className="announcement-content">
+                                    <h2 className="announcement-title">{announcement.title}</h2>
+                                    <p className="announcement-description">{announcement.description}</p>
+                                    <div className="announcement-dates">
+                                        <div className="date-item">
+                                            <span className="date-label">{LABELS.postedLabel}</span>
+                                            <span className="date-value">{formatDate(announcement.posted)}</span>
+                                        </div>
+                                        <div className="date-item">
+                                            <span className="date-label">{LABELS.deadlineLabel}</span>
+                                            <span className="date-value">{formatDate(announcement.deadline)}</span>
+                                        </div>
+                                    </div>
+                                    {announcement.applyLink && (
+                                        <a
+                                            href={announcement.applyLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="explore-more-btn"
+                                        >
+                                            <span>{LABELS.exploreMoreBtn}</span>
+                                            <svg width="23" height="29" viewBox="0 0 23 29" fill="none">
+                                                <path d="M8.63 7.25L14.38 14.5L8.63 21.75" stroke="#1E1E1E" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                            </svg>
+                                        </a>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
+                        ))}
+                    </div>
+                )}
             </section>
         </div>
     );

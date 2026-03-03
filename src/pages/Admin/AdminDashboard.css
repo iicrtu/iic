@@ -370,6 +370,57 @@
   gap: 8px;
 }
 
+/* ── Wide modal (announcement form) ──────────────────── */
+.adm-modal-wide {
+  max-width: 600px;
+}
+
+.adm-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.adm-form-full {
+  grid-column: 1 / -1;
+}
+
+.adm-form-field label {
+  display: block;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 5px;
+}
+
+.adm-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  color: #111;
+  outline: none;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.adm-input:focus {
+  border-color: rgba(102, 126, 234, 0.6);
+}
+
+/* ── Announcements toolbar ────────────────────────────── */
+.adm-ann-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
 /* ── Responsive ───────────────────────────────────────── */
 @media (max-width: 640px) {
   .adm-topbar {
@@ -384,6 +435,10 @@
   }
 
   .adm-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .adm-form-grid {
     grid-template-columns: 1fr;
   }
 }

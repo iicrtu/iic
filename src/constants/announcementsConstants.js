@@ -8,32 +8,11 @@ export const ANNOUNCEMENTS_HERO = {
 
 
 
-export const ANNOUNCEMENTS_DATA = [
-  {
-    id: 1,
-    year:'1st Year',
-    title: 'Summer Internship Program',
-    description: 'Apply for our exclusive Summer Internship Program with top tech companies. Get hands-on experience and .......',
-    posted: 'November 20, 2025',
-    deadline: 'March 20, 2026'
-  },
-  {
-    id: 2,
-    year:'2nd Year',
-    title: 'Summer Internship Program',
-    description: 'Apply for our exclusive Summer Internship Program with top tech companies. Get hands-on experience and .......',
-    posted: 'November 20, 2025',
-    deadline: 'March 20, 2026'
-  },
-  {
-    id: 3,
-    year:'3rd Year',
-    title: 'Summer Internship Program',
-    description: 'Apply for our exclusive Summer Internship Program with top tech companies. Get hands-on experience and .......',
-    posted: 'November 20, 2025',
-    deadline: 'March 20, 2026'
-  }
-];
+/**
+ * @deprecated Announcements are now fetched from the API.
+ * Kept as an empty array for backward compatibility.
+ */
+export const ANNOUNCEMENTS_DATA = [];
 
 export const LABELS = {
   exploreMoreBtn: 'Apply Now',
