@@ -14,9 +14,15 @@ const formatDate = (iso) => {
     });
 };
 
+const PER_PAGE = 10;
+
 const Announcements = () => {
     const [announcements, setAnnouncements] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(1);
+
+    const totalPages = Math.ceil(announcements.length / PER_PAGE);
+    const paged = announcements.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
     useEffect(() => {
         const fetchAnnouncements = async () => {
@@ -55,7 +61,7 @@ const Announcements = () => {
                     </p>
                 ) : (
                     <div className="announcements-list-container">
-                        {announcements.map((announcement) => (
+                        {paged.map((announcement) => (
                             <div key={announcement._id} className="announcement-card">
                                 <div className="announcement-header">
                                     <div className="announcement-type-badge">{announcement.year}</div>
@@ -91,11 +97,30 @@ const Announcements = () => {
                         ))}
                     </div>
                 )}
+
+                {/* Pagination */}
+                {!loading && totalPages > 1 && (
+                    <div className="ann-pagination">
+                        <button
+                            className="ann-page-btn"
+                            disabled={page <= 1}
+                            onClick={() => { setPage((p) => p - 1); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                        >
+                            ← Prev
+                        </button>
+                        <span className="ann-page-info">Page {page} of {totalPages}</span>
+                        <button
+                            className="ann-page-btn"
+                            disabled={page >= totalPages}
+                            onClick={() => { setPage((p) => p + 1); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                        >
+                            Next →
+                        </button>
+                    </div>
+                )}
             </section>
         </div>
     );
 };
 
 export default Announcements;
-
-
