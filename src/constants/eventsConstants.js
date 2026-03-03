@@ -1,10 +1,10 @@
 // Events Page Constants
 
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.webp";
 
-import linkedin from "../assets/linkedin.jpeg";
-import ideasp from "../assets/ideasp.jpeg";
-import intern from "../assets/intern.jpeg";
+import linkedin from "../assets/linkedin.webp";
+import ideasp from "../assets/ideasp.webp";
+import intern from "../assets/intern.webp";
 export const EVENTS_HERO = {
   title: 'Our Events',
   description:

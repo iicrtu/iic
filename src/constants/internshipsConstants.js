@@ -1,14 +1,14 @@
 // Internships Page Constants
 
 export const INTERNSHIPS_HERO = {
-  title: 'INTERNSHIPS',
+  title: 'Internships',
   description: 'Explore exciting internship opportunities from top companies. Find your perfect match and kickstart your career!'
 };
 
 export const ACTION_BUTTONS = [
-  { label: 'DOWNLOAD BROCHURE', type: 'primary' },
+  { label: 'Download Brochure', type: 'primary' },
   /*{ label: 'DOWNLOAD BROUCHER', type: 'secondary' },*/
-  { label: 'RESUME TEMPLATE', type: 'tertiary' },
+  { label: 'Resume Template', type: 'tertiary' },
   /*{ label: 'REGISTER AS COMPANY', type: 'gradient' }*/
 ];
 
