@@ -94,6 +94,7 @@ const AdminDashboard = () => {
   const [intPage, setIntPage] = useState(1);
   const [intTotalPages, setIntTotalPages] = useState(1);
   const [intLoading, setIntLoading] = useState(false);
+  const [intSearch, setIntSearch] = useState("");
 
   /* ── Applications state ─────────────────────────────── */
   const [applications, setApplications] = useState([]);
@@ -101,6 +102,7 @@ const AdminDashboard = () => {
   const [appPage, setAppPage] = useState(1);
   const [appTotalPages, setAppTotalPages] = useState(1);
   const [appLoading, setAppLoading] = useState(false);
+  const [appSearch, setAppSearch] = useState("");
 
   /* ── Reject modal ───────────────────────────────────── */
   const [rejectModal, setRejectModal] = useState(null); // { type, id, title }
@@ -111,6 +113,9 @@ const AdminDashboard = () => {
   const [annLoading, setAnnLoading] = useState(false);
   const [annForm, setAnnForm] = useState(null); // null = closed, {} = open
   const [annSaving, setAnnSaving] = useState(false);
+  const [annPage, setAnnPage] = useState(1);
+  const [annTotalPages, setAnnTotalPages] = useState(1);
+  const [annSearch, setAnnSearch] = useState("");
 
   /* ── Data export state ──────────────────────────────── */
   const [previewResume, setPreviewResume] = useState(null);
@@ -123,8 +128,9 @@ const AdminDashboard = () => {
     setIntLoading(true);
     try {
       const qs = intStatus === "all" ? "" : `status=${intStatus}&`;
+      const sq = intSearch ? `search=${encodeURIComponent(intSearch)}&` : "";
       const res = await fetch(
-        `${API}/api/admin/internships?${qs}page=${intPage}&limit=10`,
+        `${API}/api/admin/internships?${qs}${sq}page=${intPage}&limit=10`,
         { credentials: "include" }
       );
       if (res.status === 401) return navigate("/admin", { replace: true });
@@ -136,14 +142,15 @@ const AdminDashboard = () => {
     } finally {
       setIntLoading(false);
     }
-  }, [intStatus, intPage, navigate]);
+  }, [intStatus, intPage, intSearch, navigate]);
 
   const fetchApplications = useCallback(async () => {
     setAppLoading(true);
     try {
       const qs = appStatus === "all" ? "" : `status=${appStatus}&`;
+      const sq = appSearch ? `search=${encodeURIComponent(appSearch)}&` : "";
       const res = await fetch(
-        `${API}/api/admin/applications?${qs}page=${appPage}&limit=10`,
+        `${API}/api/admin/applications?${qs}${sq}page=${appPage}&limit=10`,
         { credentials: "include" }
       );
       if (res.status === 401) return navigate("/admin", { replace: true });
@@ -155,7 +162,7 @@ const AdminDashboard = () => {
     } finally {
       setAppLoading(false);
     }
-  }, [appStatus, appPage, navigate]);
+  }, [appStatus, appPage, appSearch, navigate]);
 
   useEffect(() => {
     if (tab === "internships") fetchInternships();
@@ -169,16 +176,21 @@ const AdminDashboard = () => {
   const fetchAnnouncements = useCallback(async () => {
     setAnnLoading(true);
     try {
-      const res = await fetch(`${API}/api/announcements/all`, { credentials: "include" });
+      const sq = annSearch ? `search=${encodeURIComponent(annSearch)}&` : "";
+      const res = await fetch(
+        `${API}/api/announcements/all?${sq}page=${annPage}&limit=10`,
+        { credentials: "include" }
+      );
       if (res.status === 401) return navigate("/admin", { replace: true });
       const data = await res.json();
       setAnnouncements(data.announcements || []);
+      setAnnTotalPages(data.pagination?.totalPages || 1);
     } catch {
       toast.error("Failed to load announcements");
     } finally {
       setAnnLoading(false);
     }
-  }, [navigate]);
+  }, [annPage, annSearch, navigate]);
 
   useEffect(() => {
     if (tab === "announcements") fetchAnnouncements();
@@ -335,19 +347,19 @@ const AdminDashboard = () => {
         <div className="adm-tabs">
           <button
             className={`adm-tab ${tab === "internships" ? "active" : ""}`}
-            onClick={() => { setTab("internships"); setIntPage(1); }}
+            onClick={() => { setTab("internships"); setIntPage(1); setIntSearch(""); }}
           >
             Internships
           </button>
           <button
             className={`adm-tab ${tab === "applications" ? "active" : ""}`}
-            onClick={() => { setTab("applications"); setAppPage(1); }}
+            onClick={() => { setTab("applications"); setAppPage(1); setAppSearch(""); }}
           >
             Applications
           </button>
           <button
             className={`adm-tab ${tab === "announcements" ? "active" : ""}`}
-            onClick={() => setTab("announcements")}
+            onClick={() => { setTab("announcements"); setAnnPage(1); setAnnSearch(""); }}
           >
             Announcements
           </button>
@@ -361,28 +373,55 @@ const AdminDashboard = () => {
 
         <div className="adm-filters">
           {tab === "internships" && (
-            <select
-              className="adm-select"
-              value={intStatus}
-              onChange={(e) => { setIntStatus(e.target.value); setIntPage(1); }}
-            >
-              <option value="under_review">Under Review</option>
-              <option value="posted">Posted</option>
-              <option value="rejected">Rejected</option>
-              <option value="all">All</option>
-            </select>
+            <>
+              <input
+                className="adm-search"
+                type="text"
+                placeholder="Search internships…"
+                value={intSearch}
+                onChange={(e) => { setIntSearch(e.target.value); setIntPage(1); }}
+              />
+              <select
+                className="adm-select"
+                value={intStatus}
+                onChange={(e) => { setIntStatus(e.target.value); setIntPage(1); }}
+              >
+                <option value="under_review">Under Review</option>
+                <option value="posted">Posted</option>
+                <option value="rejected">Rejected</option>
+                <option value="all">All</option>
+              </select>
+            </>
           )}
           {tab === "applications" && (
-            <select
-              className="adm-select"
-              value={appStatus}
-              onChange={(e) => { setAppStatus(e.target.value); setAppPage(1); }}
-            >
-              <option value="pending_admin">Pending Admin</option>
-              <option value="approved">Approved</option>
-              <option value="rejected">Rejected</option>
-              <option value="all">All</option>
-            </select>
+            <>
+              <input
+                className="adm-search"
+                type="text"
+                placeholder="Search applications…"
+                value={appSearch}
+                onChange={(e) => { setAppSearch(e.target.value); setAppPage(1); }}
+              />
+              <select
+                className="adm-select"
+                value={appStatus}
+                onChange={(e) => { setAppStatus(e.target.value); setAppPage(1); }}
+              >
+                <option value="pending_admin">Pending Admin</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+                <option value="all">All</option>
+              </select>
+            </>
+          )}
+          {tab === "announcements" && (
+            <input
+              className="adm-search"
+              type="text"
+              placeholder="Search announcements…"
+              value={annSearch}
+              onChange={(e) => { setAnnSearch(e.target.value); setAnnPage(1); }}
+            />
           )}
         </div>
       </div>
@@ -562,7 +601,7 @@ const AdminDashboard = () => {
               ))}
             </div>
           )}
-        </div>
+          <Pagination page={annPage} totalPages={annTotalPages} onPageChange={setAnnPage} />        </div>
       )}
 
       {/* ── Data export tab ────────────────────────────── */}
