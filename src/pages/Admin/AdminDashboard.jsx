@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import "./AdminDashboard.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import ResumePreview from "../../components/ResumePreview/ResumePreview";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -112,6 +113,7 @@ const AdminDashboard = () => {
   const [annSaving, setAnnSaving] = useState(false);
 
   /* ── Data export state ──────────────────────────────── */
+  const [previewResume, setPreviewResume] = useState(null);
   const [dlOrgs, setDlOrgs] = useState(false);
   const [dlStudents, setDlStudents] = useState(false);
   const [dlApps, setDlApps] = useState(false);
@@ -476,14 +478,13 @@ const AdminDashboard = () => {
                     </div>
 
                     {a.resume?.link && (
-                      <a
+                      <button
+                        type="button"
                         className="adm-resume-link"
-                        href={a.resume.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        onClick={() => setPreviewResume(a.resume)}
                       >
                         📄 {a.resume.name || "View Resume"}
-                      </a>
+                      </button>
                     )}
 
                     {appStatus === "pending_admin" && (
@@ -728,6 +729,9 @@ const AdminDashboard = () => {
           loading={rejecting}
         />
       )}
+
+      {/* ── Resume preview modal ──────────────────────── */}
+      <ResumePreview resume={previewResume} onClose={() => setPreviewResume(null)} />
     </div>
   );
 };

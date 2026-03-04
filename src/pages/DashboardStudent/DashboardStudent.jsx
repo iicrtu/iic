@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import "./DashboardStudent.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import ResumePreview, { getDomainFromUrl, getEmbedUrl } from "../../components/ResumePreview/ResumePreview";
 import { useAuth } from "../../context/AuthContext";
 import { useStudentProfile, useMyApplications } from "../../hooks/useApi";
 
@@ -32,54 +33,6 @@ const DashboardStudent = () => {
 
   const handleManageResumes = () => {
     navigate("/onboarding/student?section=2");
-  };
-
-  const getDomainFromUrl = (url) => {
-    try {
-      const hostname = new URL(url).hostname;
-      if (hostname.includes("drive.google")) return "Google Drive";
-      if (hostname.includes("docs.google")) return "Google Docs";
-      if (hostname.includes("dropbox")) return "Dropbox";
-      if (hostname.includes("github")) return "GitHub";
-      if (hostname.includes("linkedin")) return "LinkedIn";
-      if (hostname.includes("notion")) return "Notion";
-      return hostname.replace("www.", "");
-    } catch {
-      return "Link";
-    }
-  };
-
-  const getEmbedUrl = (url) => {
-    try {
-      const parsed = new URL(url);
-
-      // Google Drive file: /file/d/{id}/view → /file/d/{id}/preview
-      if (parsed.hostname.includes("drive.google.com")) {
-        const fileMatch = url.match(/\/file\/d\/([^/]+)/);
-        if (fileMatch) {
-          return `https://drive.google.com/file/d/${fileMatch[1]}/preview`;
-        }
-        // Shared link with ?id= param
-        const idParam = parsed.searchParams.get("id");
-        if (idParam) {
-          return `https://drive.google.com/file/d/${idParam}/preview`;
-        }
-      }
-
-      // Google Docs/Sheets/Slides: .../edit or .../view → .../preview
-      if (parsed.hostname.includes("docs.google.com")) {
-        return url.replace(/\/(edit|view)(\?.*)?$/, "/preview");
-      }
-
-      // Dropbox: dl=0 → raw=1 for direct embed
-      if (parsed.hostname.includes("dropbox.com")) {
-        return url.replace("dl=0", "raw=1").replace("www.dropbox.com", "dl.dropboxusercontent.com");
-      }
-
-      return url;
-    } catch {
-      return url;
-    }
   };
 
   if (authLoading || loading) {
@@ -359,40 +312,7 @@ const DashboardStudent = () => {
           )}
         </div>
         {/* Resume Preview Modal */}
-        {previewResume && (
-          <div className="preview-modal-overlay" onClick={() => setPreviewResume(null)}>
-            <div className="preview-modal-card" onClick={(e) => e.stopPropagation()}>
-              <div className="preview-modal-header">
-                <div className="preview-modal-title">
-                  <span className="resume-file-icon">📄</span>
-                  <h3>{previewResume.name}</h3>
-                  <span className="source-badge">{getDomainFromUrl(previewResume.link)}</span>
-                </div>
-                <div className="preview-modal-actions">
-                  <a
-                    href={previewResume.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="open-external-btn"
-                  >
-                    Open in new tab ↗
-                  </a>
-                  <button className="preview-close-btn" onClick={() => setPreviewResume(null)}>
-                    ✕
-                  </button>
-                </div>
-              </div>
-              <div className="preview-modal-body">
-                <iframe
-                  src={getEmbedUrl(previewResume.link)}
-                  title={previewResume.name}
-                  className="preview-iframe"
-                  allow="autoplay"
-                />
-              </div>
-            </div>
-          </div>
-        )}
+        <ResumePreview resume={previewResume} onClose={() => setPreviewResume(null)} />
       </div>
     </div>
   );
