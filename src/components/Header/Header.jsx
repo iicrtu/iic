@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
 import animatedIcon from '../../assets/animated-icon.gif';
+import { useAuth } from '../../context/AuthContext';
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
-    const [user, setUser] = useState(null);
     const [showDropdown, setShowDropdown] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
+    const { user, logout } = useAuth();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -21,28 +22,8 @@ const Header = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Fetch user data
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
-                    credentials: "include",
-                    cache: "no-cache",
-                });
-                if (response.ok) {
-                    const data = await response.json();
-                    setUser(data.user);
-                }
-            } catch (error) {
-                console.error("Error fetching user:", error);
-            }
-        };
-
-        fetchUser();
-    }, [location]);
-
     // Scroll to top when route changes
-    useEffect(() => {
+    useLayoutEffect(() => {
         window.scrollTo(0, 0);
         setMenuOpen(false); // Close menu on route change
         setShowDropdown(false); // Close dropdown on route change
@@ -71,16 +52,8 @@ const Header = () => {
     };
 
     const handleLogout = async () => {
-        try {
-            await fetch(`${import.meta.env.VITE_API_URL}/api/auth/logout`, {
-                method: "POST",
-                credentials: "include",
-            });
-            setUser(null);
-            navigate("/");
-        } catch (error) {
-            console.error("Error logging out:", error);
-        }
+        await logout();
+        navigate("/");
     };
 
     // Extract first name from full name
@@ -105,7 +78,7 @@ const Header = () => {
         <header className={`header ${scrolled ? 'scrolled' : ''}`}>
             <div className="header-container">
                 <Link to="/" className="logo-container">
-                    <img src={animatedIcon} alt="IIC" className="logo-animation" />
+                    <img src={animatedIcon} alt="IIC" className="logo-animation" width="48" height="48" />
                     <div className="logo-text">IIC</div>
                 </Link>
                 

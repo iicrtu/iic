@@ -1,7 +1,7 @@
 // Events Component Constants (for Home page)
-import graduationHatIcon from '../assets/graduation-hat.png';
-import ideaIcon from '../assets/idea.png';
-import partnersIcon from '../assets/partners.png';
+import graduationHatIcon from '../assets/graduation-hat.webp';
+import ideaIcon from '../assets/idea.webp';
+import partnersIcon from '../assets/partners.webp';
 
 export const EVENTS_SECTION = {
   title: 'Our Events',

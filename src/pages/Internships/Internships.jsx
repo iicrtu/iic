@@ -7,8 +7,8 @@ import {
   ACTION_BUTTONS,
   STATS,
 } from "../../constants/internshipsConstants";
-
-const API = import.meta.env.VITE_API_URL;
+import { useAuth } from "../../context/AuthContext";
+import { usePublicInternships } from "../../hooks/useApi";
 
 /* ── helpers ────────────────────────────────────────────── */
 function getPageSize() {
@@ -24,20 +24,25 @@ function locationLabel(i) {
 const Internships = () => {
   /* viewport-dependent page size */
   const [pageSize, setPageSize] = useState(getPageSize);
-
-  /* data state */
-  const [internships, setInternships] = useState([]);
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [loading, setLoading] = useState(true);
 
   /* filters */
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [modeFilter, setModeFilter] = useState("");
 
-  /* auth state (lightweight check) */
-  const [user, setUser] = useState(null); // { role }
+  /* data via react-query */
+  const { data, isLoading: loading } = usePublicInternships({
+    page,
+    limit: pageSize,
+    search: debouncedSearch || undefined,
+    mode: modeFilter || undefined,
+  });
+  const internships = data?.internships || [];
+  const totalPages = data?.totalPages || 1;
+
+  /* auth state from context */
+  const { user } = useAuth();
 
   /* UI state */
   const [openId, setOpenId] = useState(null); // card slider
@@ -71,43 +76,6 @@ const Internships = () => {
     }, 400);
     return () => clearTimeout(debounceRef.current);
   }, [search]);
-
-  /* ── check login state once ──────────────────────────── */
-  useEffect(() => {
-    fetch(`${API}/api/auth/me`, { credentials: "include" })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => d && setUser(d.user))
-      .catch(() => {});
-  }, []);
-
-  /* ── fetch internships ───────────────────────────────── */
-  useEffect(() => {
-    let cancelled = false;
-    setLoading(true);
-
-    const params = new URLSearchParams({
-      page,
-      limit: pageSize,
-    });
-    if (debouncedSearch) params.set("search", debouncedSearch);
-    if (modeFilter) params.set("mode", modeFilter);
-
-    fetch(`${API}/api/internships/public?${params}`)
-      .then((r) => r.json())
-      .then((d) => {
-        if (cancelled) return;
-        setInternships(d.internships || []);
-        setTotalPages(d.totalPages || 1);
-        setLoading(false);
-      })
-      .catch(() => {
-        if (!cancelled) setLoading(false);
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [page, pageSize, debouncedSearch, modeFilter]);
 
   /* ── handlers ────────────────────────────────────────── */
   const handleApply = (internship) => {

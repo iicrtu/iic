@@ -15,7 +15,7 @@ const Footer = () => {
             <div className="footer-container">
                 <div className="footer-brand">
                     <div className="footer-brand-header">
-                        <img src={FOOTER_BRAND.logo} alt="IIC Logo" className="footer-logo" />
+                        <img src={FOOTER_BRAND.logo} alt="IIC Logo" className="footer-logo" loading="lazy" width="48" height="48" />
                         <h3 className="footer-title">{FOOTER_BRAND.title}</h3>
                     </div>
                     <p className="footer-tagline">{FOOTER_BRAND.tagline}</p>
@@ -30,7 +30,7 @@ const Footer = () => {
                                 rel="noopener noreferrer"
                                 className="footer-social-link"
                             >
-                                <img src={social.icon} alt={social.alt} className="footer-social-icon" />
+                                <img src={social.icon} alt={social.alt} className="footer-social-icon" loading="lazy" width="24" height="24" />
                             </a>
                         ))}
                     </div>
@@ -51,7 +51,7 @@ const Footer = () => {
                         <ul className="footer-list">
                             {FOOTER_CONTACT_INFO.items.map((item, index) => (
                                 <li key={index} className="footer-contact-item">
-                                    {item.icon && <img src={item.icon} alt={item.type} className="footer-contact-icon" />}
+                                    {item.icon && <img src={item.icon} alt={item.type} className="footer-contact-icon" loading="lazy" width="20" height="20" />}
                                     {item.type === 'email' ? (
                                         <a href={`mailto:${item.text}`} className="footer-contact-link">{item.text}</a>
                                     ) : item.type === 'phone' ? (

@@ -84,7 +84,7 @@ const OrgOnboarding = () => {
           }
         }
       } catch (error) {
-        console.error("Error checking onboarding:", error);
+        // silently fail — profile may not exist yet
       }
     };
 
@@ -198,7 +198,6 @@ const OrgOnboarding = () => {
       // Success - redirect to dashboard
       navigate("/dashboard/organisation");
     } catch (error) {
-      console.error("Onboarding error:", error);
       setError("An error occurred. Please try again.");
       setLoading(false);
     }

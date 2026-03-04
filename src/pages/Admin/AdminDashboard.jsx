@@ -1,10 +1,36 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import "./AdminDashboard.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const API = import.meta.env.VITE_API_URL;
+
+/* ── Download helper ───────────────────────────────────── */
+const downloadExcel = async (endpoint, filename, navigate, setLoading) => {
+  setLoading(true);
+  try {
+    const res = await fetch(`${API}/api/admin/export/${endpoint}`, {
+      credentials: "include",
+    });
+    if (res.status === 401) return navigate("/admin", { replace: true });
+    if (!res.ok) throw new Error("Export failed");
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    toast.success(`${filename} downloaded`);
+  } catch {
+    toast.error("Failed to download file");
+  } finally {
+    setLoading(false);
+  }
+};
 
 /* ─── Rejection modal ──────────────────────────────────── */
 const RejectModal = ({ title, onConfirm, onCancel, loading }) => {
@@ -84,6 +110,11 @@ const AdminDashboard = () => {
   const [annLoading, setAnnLoading] = useState(false);
   const [annForm, setAnnForm] = useState(null); // null = closed, {} = open
   const [annSaving, setAnnSaving] = useState(false);
+
+  /* ── Data export state ──────────────────────────────── */
+  const [dlOrgs, setDlOrgs] = useState(false);
+  const [dlStudents, setDlStudents] = useState(false);
+  const [dlApps, setDlApps] = useState(false);
 
   /* ── Fetch helpers ──────────────────────────────────── */
   const fetchInternships = useCallback(async () => {
@@ -288,7 +319,6 @@ const AdminDashboard = () => {
   /* ── Render ─────────────────────────────────────────── */
   return (
     <div className="adm-page">
-      <Toaster position="top-center" toastOptions={{ duration: 2500 }} />
 
       {/* ── Top bar ─────────────────────────────────────── */}
       <div className="adm-topbar">
@@ -318,6 +348,12 @@ const AdminDashboard = () => {
             onClick={() => setTab("announcements")}
           >
             Announcements
+          </button>
+          <button
+            className={`adm-tab ${tab === "data" ? "active" : ""}`}
+            onClick={() => setTab("data")}
+          >
+            Data
           </button>
         </div>
 
@@ -525,6 +561,82 @@ const AdminDashboard = () => {
               ))}
             </div>
           )}
+        </div>
+      )}
+
+      {/* ── Data export tab ────────────────────────────── */}
+      {tab === "data" && (
+        <div className="adm-content">
+          <div className="adm-data-grid">
+            <div className="adm-data-card">
+              <div className="adm-data-icon">🏢</div>
+              <h3 className="adm-data-title">Organizations & Internships</h3>
+              <p className="adm-data-desc">
+                All registered organizations with their posted internships,
+                contact details, and internship info.
+              </p>
+              <button
+                className="adm-btn adm-btn-download"
+                disabled={dlOrgs}
+                onClick={() =>
+                  downloadExcel(
+                    "organizations",
+                    "Organizations_Internships.xlsx",
+                    navigate,
+                    setDlOrgs
+                  )
+                }
+              >
+                {dlOrgs ? "Exporting…" : "Download Excel"}
+              </button>
+            </div>
+
+            <div className="adm-data-card">
+              <div className="adm-data-icon">🎓</div>
+              <h3 className="adm-data-title">All Students</h3>
+              <p className="adm-data-desc">
+                Complete student list sorted by year, branch, and name — with
+                course, contact info, and resume links.
+              </p>
+              <button
+                className="adm-btn adm-btn-download"
+                disabled={dlStudents}
+                onClick={() =>
+                  downloadExcel(
+                    "students",
+                    "Students.xlsx",
+                    navigate,
+                    setDlStudents
+                  )
+                }
+              >
+                {dlStudents ? "Exporting…" : "Download Excel"}
+              </button>
+            </div>
+
+            <div className="adm-data-card">
+              <div className="adm-data-icon">📋</div>
+              <h3 className="adm-data-title">Applications Report</h3>
+              <p className="adm-data-desc">
+                All applications mapped by organization → internship → student,
+                with the resume used and application status.
+              </p>
+              <button
+                className="adm-btn adm-btn-download"
+                disabled={dlApps}
+                onClick={() =>
+                  downloadExcel(
+                    "applications",
+                    "Applications_Report.xlsx",
+                    navigate,
+                    setDlApps
+                  )
+                }
+              >
+                {dlApps ? "Exporting…" : "Download Excel"}
+              </button>
+            </div>
+          </div>
         </div>
       )}
 

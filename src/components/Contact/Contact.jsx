@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import './Contact.css';
-import instagramIcon from '../../assets/instagram-icon.png';
-import linkedinIcon from '../../assets/linkedin-icon.png';
-import whatsappIcon from '../../assets/whatsapp-icon.png';
+import instagramIcon from '../../assets/instagram-icon.webp';
+import linkedinIcon from '../../assets/linkedin-icon.webp';
+import whatsappIcon from '../../assets/whatsapp-icon.webp';
 import { CONTACT_SECTION, CONTACT_INFO, CONTACT_FORM, SOCIAL_SECTION, FORMSPREE_ENDPOINT } from '../../constants/contactConstants';
 
 const Contact = () => {
@@ -61,33 +61,6 @@ const Contact = () => {
 
     return (
         <>
-            <Toaster 
-                position="top-center"
-                toastOptions={{
-                    duration: 3000,
-                    style: {
-                        background: '#fff',
-                        color: '#000',
-                        fontFamily: 'Roboto, sans-serif',
-                        fontSize: '16px',
-                        padding: '16px',
-                        borderRadius: '8px',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                    },
-                    success: {
-                        iconTheme: {
-                            primary: '#10b981',
-                            secondary: '#fff',
-                        },
-                    },
-                    error: {
-                        iconTheme: {
-                            primary: '#ef4444',
-                            secondary: '#fff',
-                        },
-                    },
-                }}
-            />
             <section className="contact-section">
             <h2 className="section-title">{CONTACT_SECTION.title}</h2>
             <p className="section-description">
@@ -100,7 +73,7 @@ const Contact = () => {
                     <p className="contact-text">{CONTACT_INFO.text}</p>
                     <div className="contact-details">
                         <div className="contact-item">
-                            <img src={CONTACT_INFO.email.icon} alt="email" className="contact-icon" />
+                            <img src={CONTACT_INFO.email.icon} alt="email" className="contact-icon" loading="lazy" width="24" height="24" />
                             <div className="contact-info-content">
                                 <span className="contact-label">{CONTACT_INFO.email.label}</span>
                                 <a href={`mailto:${CONTACT_INFO.email.value}`} className="contact-value contact-link">
@@ -109,7 +82,7 @@ const Contact = () => {
                             </div>
                         </div>
                         <div className="contact-item">
-                            <img src={CONTACT_INFO.phone.icon} alt="phone" className="contact-icon" />
+                            <img src={CONTACT_INFO.phone.icon} alt="phone" className="contact-icon" loading="lazy" width="24" height="24" />
                             <div className="contact-info-content">
                                 <span className="contact-label">{CONTACT_INFO.phone.label}</span>
                                 <a href={`tel:${CONTACT_INFO.phone.value.replace(/\s+/g, '')}`} className="contact-value contact-link">
@@ -118,7 +91,7 @@ const Contact = () => {
                             </div>
                         </div>
                         <div className="contact-item">
-                            <img src={CONTACT_INFO.location.icon} alt="location" className="contact-icon" />
+                            <img src={CONTACT_INFO.location.icon} alt="location" className="contact-icon" loading="lazy" width="24" height="24" />
                             <div className="contact-info-content">
                                 <span className="contact-label">{CONTACT_INFO.location.label}</span>
                                 <span className="contact-value">{CONTACT_INFO.location.value}</span>
@@ -134,7 +107,7 @@ const Contact = () => {
                                 const icons = [instagramIcon, linkedinIcon, whatsappIcon];
                                 return (
                                     <a key={index} href={link.url} className="social-link" target="_blank" rel="noopener noreferrer">
-                                        <img src={icons[index]} alt={link.alt} />
+                                        <img src={icons[index]} alt={link.alt} loading="lazy" width="24" height="24" />
                                         <span>{link.name}</span>
                                     </a>
                                 );

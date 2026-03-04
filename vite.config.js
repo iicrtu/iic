@@ -9,5 +9,15 @@ export default defineConfig({
   },
   build: {
     outDir: 'build',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-motion': ['framer-motion'],
+          'vendor-query': ['@tanstack/react-query'],
+          'vendor-ui': ['react-hot-toast'],
+        },
+      },
+    },
   },
 });

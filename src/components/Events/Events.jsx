@@ -13,7 +13,7 @@ const EventCard = ({ tag, tagIcon, badge, title, year, description, date, locati
     <div className="event-card-header">
       {tagIcon ? (
         <div className="event-tag-icon-circle">
-          <img src={tagIcon} alt={tag} className="event-tag-icon" />
+          <img src={tagIcon} alt={tag} className="event-tag-icon" loading="lazy" width="24" height="24" />
         </div>
       ) : (
         <span className="event-tag">{tag}</span>

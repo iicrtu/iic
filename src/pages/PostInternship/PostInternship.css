@@ -371,3 +371,32 @@
     flex: 0.5;
   }
 }
+
+/* Success state */
+.post-success-card {
+  text-align: center;
+  padding: 60px 40px;
+}
+
+.post-success-icon {
+  font-size: 56px;
+  margin-bottom: 20px;
+}
+
+.post-success-title {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.post-success-text {
+  font-family: 'Anek Latin', sans-serif;
+  font-size: 16px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.post-success-btn {
+  max-width: 280px;
+  margin: 0 auto;
+}

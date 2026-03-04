@@ -1,10 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import './WhatWeOffer.css';
 import { WHAT_WE_OFFER_HEADING, OFFER_CARDS } from '../../constants/whatWeOfferConstants';
-import * as FaIcons from 'react-icons/fa';
+import {FaChalkboard, FaUsers, FaHandHoldingUsd, FaLightbulb, FaRocket, FaGlobe} from 'react-icons/fa';
+
+const ICON_MAP = {FaChalkboard, FaUsers, FaHandHoldingUsd, FaLightbulb, FaRocket, FaGlobe};
 
 const OfferCard = ({ iconColor, iconName, title, description, index }) => {
-    const IconComponent = FaIcons[iconName];
+    const IconComponent = ICON_MAP[iconName];
     const cardNumber = String(index + 1).padStart(2, '0');
 
     return (
@@ -53,40 +55,41 @@ const WhatWeOffer = () => {
     const handleMouseEnter = () => { isPaused.current = true; };
     const handleMouseLeave = () => { isPaused.current = false; };
 
-    const slideStyle = (index) => {
-        let diff = (index - current + total) % total;
-        if (diff > total / 2) diff -= total;
-        const abs = Math.abs(diff);
+    const slideStyles = useMemo(() => {
+        return OFFER_CARDS.map((_, index) => {
+            let diff = (index - current + total) % total;
+            if (diff > total / 2) diff -= total;
+            const abs = Math.abs(diff);
 
-        if (abs > 2) {
-            const off = diff > 0 ? 1200 : -1200;
+            if (abs > 2) {
+                const off = diff > 0 ? 1200 : -1200;
+                return {
+                    transform: `translate(-50%, -50%) translate3d(${off}px, 0px, -900px) scale(0.7)`,
+                    opacity: 0,
+                    visibility: 'hidden',
+                    pointerEvents: 'none',
+                    zIndex: 0,
+                };
+            }
+
+            const cardWidth = 360;
+            const spacing = Math.round(cardWidth * 0.7);
+            const translateX = diff * spacing;
+            const translateY = -abs * 6;
+            const translateZ = -abs * 80;
+            const scale = diff === 0 ? 1 : 0.96 - abs * 0.02;
+            const opacity = diff === 0 ? 1 : 0.7;
+            const zIndex = 100 - abs;
+
             return {
-                transform: `translate(-50%, -50%) translate3d(${off}px, 0px, -900px) scale(0.7)`,
-                opacity: 0,
-                visibility: 'hidden',
-                pointerEvents: 'none',
-                zIndex: 0,
+                transform: `translate(-50%, -50%) translate3d(${translateX}px, ${translateY}px, ${translateZ}px) scale(${scale})`,
+                opacity,
+                zIndex,
+                visibility: 'visible',
+                pointerEvents: diff === 0 ? 'auto' : 'none',
             };
-        }
-
-        // card width reduced to 360px; spacing set so 70% of background card is visible
-        const cardWidth = 360;
-        const spacing = Math.round(cardWidth * 0.7); // 70% visible -> 30% hidden behind previous
-        const translateX = diff * spacing;
-        const translateY = -abs * 6;
-        const translateZ = -abs * 80;
-        const scale = diff === 0 ? 1 : 0.96 - abs * 0.02;
-        const opacity = diff === 0 ? 1 : 0.7;
-        const zIndex = 100 - abs;
-
-        return {
-            transform: `translate(-50%, -50%) translate3d(${translateX}px, ${translateY}px, ${translateZ}px) scale(${scale})`,
-            opacity,
-            zIndex,
-            visibility: 'visible',
-            pointerEvents: diff === 0 ? 'auto' : 'none',
-        };
-    };
+        });
+    }, [current, total]);
 
     return (
         <section id="about" className="what-we-offer">
@@ -99,7 +102,7 @@ const WhatWeOffer = () => {
             {/* Desktop carousel (centered single card with background cards) */}
             <div className="offers-carousel" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                 {OFFER_CARDS.map((offer, i) => (
-                    <div key={offer.id} className="carousel-slide" style={slideStyle(i)}>
+                    <div key={offer.id} className="carousel-slide" style={slideStyles[i]}>
                         <OfferCard 
                             iconColor={offer.iconColor} 
                             iconName={offer.iconName}

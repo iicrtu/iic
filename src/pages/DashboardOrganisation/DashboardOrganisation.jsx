@@ -1,16 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import "./DashboardOrganisation.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import { useAuth } from "../../context/AuthContext";
+import { useOrgProfile, useOrgInternships } from "../../hooks/useApi";
 
 const API = import.meta.env.VITE_API_URL;
 
 const DashboardOrganisation = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-  const [organization, setOrganization] = useState(null);
-  const [internships, setInternships] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const queryClient = useQueryClient();
+  const { user, isAuthenticated, isLoading: authLoading } = useAuth();
+
+  const queryEnabled = !authLoading && isAuthenticated;
+  const { data: organization = null, isLoading: orgLoading } = useOrgProfile(queryEnabled);
+  const { data: internshipsData = [], isLoading: intLoading } = useOrgInternships(queryEnabled);
+  const internships = internshipsData;
+  const loading = orgLoading || intLoading;
+
   const [isEditing, setIsEditing] = useState(false);
   const [deleteModal, setDeleteModal] = useState({ show: false, id: null, name: "" });
   const [deleting, setDeleting] = useState(false);
@@ -23,60 +31,15 @@ const DashboardOrganisation = () => {
   const [rejectReason, setRejectReason] = useState("");
   const [actionLoading, setActionLoading] = useState(null); // app id currently loading
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Fetch user data
-        const userResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
-          credentials: "include",
-          cache: "no-cache", // Disable caching
-        });
+  const postedCount = useMemo(() => internships.filter((i) => i.status === "posted").length, [internships]);
+  const reviewCount = useMemo(() => internships.filter((i) => i.status === "under_review").length, [internships]);
+  const totalApps = useMemo(() => internships.reduce((sum, i) => sum + (i.applicationsCount || 0), 0), [internships]);
 
-        if (!userResponse.ok) {
-          window.location.href = "/login";
-          return;
-        }
-
-        const userData = await userResponse.json();
-        setUser(userData.user);
-
-        // Fetch organization data
-        const orgResponse = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/organization/profile`,
-          {
-            credentials: "include",
-            cache: "no-cache", // Disable caching
-          }
-        );
-
-        if (orgResponse.ok) {
-          const orgData = await orgResponse.json();
-          setOrganization(orgData.organization);
-        }
-
-        // Fetch internships
-        const internshipsResponse = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/internships`,
-          {
-            credentials: "include",
-            cache: "no-cache",
-          }
-        );
-
-        if (internshipsResponse.ok) {
-          const internshipsData = await internshipsResponse.json();
-          setInternships(internshipsData.internships || []);
-        }
-
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  // Redirect if not authenticated (after auth check completes)
+  if (!authLoading && !isAuthenticated) {
+    navigate("/login", {replace: true});
+    return null;
+  }
 
   const handleEditProfile = () => {
     navigate("/onboarding/organisation");
@@ -102,13 +65,18 @@ const DashboardOrganisation = () => {
       );
 
       if (response.ok) {
-        setInternships(internships.filter((i) => i._id !== deleteModal.id));
+        queryClient.setQueryData(['orgInternships'], (old) => {
+          if (!old) return old;
+          return {
+            ...old,
+            internships: (old.internships || []).filter((i) => i._id !== deleteModal.id),
+          };
+        });
         closeDeleteModal();
       } else {
         closeDeleteModal();
       }
     } catch (error) {
-      console.error("Error deleting internship:", error);
       closeDeleteModal();
     } finally {
       setDeleting(false);
@@ -141,7 +109,7 @@ const DashboardOrganisation = () => {
         setPanelApps(data.applications || []);
       }
     } catch (err) {
-      console.error("Error fetching applications:", err);
+      // fetch error handled silently
     } finally {
       setPanelLoading(false);
     }
@@ -165,7 +133,7 @@ const DashboardOrganisation = () => {
         );
       }
     } catch (err) {
-      console.error(err);
+      // select error handled silently
     } finally {
       setActionLoading(null);
     }
@@ -196,7 +164,7 @@ const DashboardOrganisation = () => {
         );
       }
     } catch (err) {
-      console.error(err);
+      // reject error handled silently
     } finally {
       setActionLoading(null);
       setRejectModal({ show: false, id: null, name: "" });
@@ -213,7 +181,7 @@ const DashboardOrganisation = () => {
     return <span className={`orgapp-badge ${s.cls}`}>{s.label}</span>;
   };
 
-  if (loading) {
+  if (authLoading || loading) {
     return (
       <div className="dashboard-loading">
         <LoadingSpinner />
@@ -411,21 +379,21 @@ const DashboardOrganisation = () => {
           <div className="stat-card">
             <div className="stat-icon">✅</div>
             <div className="stat-info">
-              <h3>{internships.filter((i) => i.status === "posted").length}</h3>
+              <h3>{postedCount}</h3>
               <p>Posted</p>
             </div>
           </div>
           <div className="stat-card">
             <div className="stat-icon">⏳</div>
             <div className="stat-info">
-              <h3>{internships.filter((i) => i.status === "under_review").length}</h3>
+              <h3>{reviewCount}</h3>
               <p>Under Review</p>
             </div>
           </div>
           <div className="stat-card">
             <div className="stat-icon">📋</div>
             <div className="stat-info">
-              <h3>{internships.reduce((sum, i) => sum + (i.applicationsCount || 0), 0)}</h3>
+              <h3>{totalApps}</h3>
               <p>Applications Received</p>
             </div>
           </div>

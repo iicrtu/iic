@@ -1,32 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./ApplyDialog.css";
+import { useStudentProfile } from "../../hooks/useApi";
 
 const API = import.meta.env.VITE_API_URL;
 
 const ApplyDialog = ({ internship, onClose }) => {
-  const [resumes, setResumes] = useState([]);
+  const { data: student, isLoading: loading } = useStudentProfile(true);
+  const resumes = student?.resumes || [];
   const [selectedIdx, setSelectedIdx] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-
-  /* ── fetch student profile → resumes ─────────────────── */
-  useEffect(() => {
-    fetch(`${API}/api/student/profile`, { credentials: "include" })
-      .then((r) => {
-        if (!r.ok) throw new Error("Could not load profile");
-        return r.json();
-      })
-      .then((d) => {
-        setResumes(d.student?.resumes || []);
-        setLoading(false);
-      })
-      .catch(() => {
-        setResumes([]);
-        setLoading(false);
-      });
-  }, []);
 
   /* ── submit application ──────────────────────────────── */
   const handleSubmit = async () => {

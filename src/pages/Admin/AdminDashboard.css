@@ -441,4 +441,62 @@
   .adm-form-grid {
     grid-template-columns: 1fr;
   }
+
+  .adm-data-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Data export tab ──────────────────────────────────── */
+.adm-data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.adm-data-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  transition: box-shadow 0.2s ease;
+}
+
+.adm-data-card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+}
+
+.adm-data-icon {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.adm-data-title {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  color: #111;
+}
+
+.adm-data-desc {
+  margin: 0;
+  font-family: "Anek Latin", sans-serif;
+  font-size: 13.5px;
+  color: rgba(0, 0, 0, 0.55);
+  line-height: 1.55;
+}
+
+.adm-btn-download {
+  margin-top: 6px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  padding: 10px 28px;
+  font-size: 14px;
+  border-radius: 10px;
 }

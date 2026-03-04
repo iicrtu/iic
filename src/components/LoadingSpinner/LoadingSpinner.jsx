@@ -7,8 +7,9 @@ const LoadingSpinner = ({ size = 120 }) => (
     <img
       src={animatedIcon}
       alt="Loading…"
-      className="loading-spinner-img"
-      style={{ width: size, height: size }}
+      width={size}
+      height={size}
+      className="loading-spinner-gif"
     />
   </div>
 );

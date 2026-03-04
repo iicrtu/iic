@@ -1,6 +1,12 @@
 import React from 'react';
 import './About.css';
 import { ABOUT_HERO, VISION, MISSION, TEAM_SECTION } from '../../constants/aboutConstants';
+import linkedinIconImg from '../../assets/linkedin-icon.webp';
+import emailIconImg from '../../assets/email.webp';
+
+// Vite-compatible dynamic import for team photos
+const teamAssets = import.meta.glob('../../assets/[A-Z]*.webp', { eager: true, import: 'default' });
+const getTeamImage = (filename) => teamAssets[`../../assets/${filename}`];
 
 const About = () => {
     return (
@@ -71,9 +77,12 @@ const About = () => {
                         <div className="team-member-card chairman-card">
                             <div className="member-image-container">
                                 <img
-                                    src={`/src/assets/${TEAM_SECTION.chairman.image}`}
+                                    src={getTeamImage(TEAM_SECTION.chairman.image)}
                                     alt={TEAM_SECTION.chairman.name}
                                     className="member-image"
+                                    loading="lazy"
+                                    width="300"
+                                    height="300"
                                 />
                             </div>
                             <div className="member-info">
@@ -82,10 +91,10 @@ const About = () => {
                                 
                                 <div className="member-socials">
                                         <a href={TEAM_SECTION.chairman.linkedin} target="_blank" rel="noopener noreferrer" className="social-icon">
-                                            <img src="/src/assets/linkedin-icon.png" alt="LinkedIn" />
+                                            <img src={linkedinIconImg} alt="LinkedIn" loading="lazy" width="24" height="24" />
                                         </a>
                                         <a href={`mailto:${TEAM_SECTION.chairman.email}`} className="social-icon">
-                                            <img src="/src/assets/email.webp" alt="Email" />
+                                            <img src={emailIconImg} alt="Email" loading="lazy" width="24" height="24" />
                                         </a>
                                     </div>
                             </div>
@@ -105,9 +114,12 @@ const About = () => {
                             <div key={index} className="team-member-card">
                                 <div className="member-image-container">
                                     <img 
-                                        src={`/src/assets/${member.image}`} 
+                                        src={getTeamImage(member.image)} 
                                         alt={member.name}
-                                        className="member-image" 
+                                        className="member-image"
+                                        loading="lazy"
+                                        width="300"
+                                        height="300"
                                     />
                                 </div>
                                 <div className="member-info">
@@ -115,10 +127,10 @@ const About = () => {
                                     <p className="member-position">{member.position}</p>
                                     <div className="member-socials">
                                         <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="social-icon">
-                                            <img src="/src/assets/linkedin-icon.png" alt="LinkedIn" />
+                                            <img src={linkedinIconImg} alt="LinkedIn" loading="lazy" width="24" height="24" />
                                         </a>
                                         <a href={`mailto:${member.email}`} className="social-icon">
-                                            <img src="/src/assets/email.webp" alt="Email" />
+                                            <img src={emailIconImg} alt="Email" loading="lazy" width="24" height="24" />
                                         </a>
                                     </div>
                                 </div>

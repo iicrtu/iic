@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import "./AdminLogin.css";
 
 const API = import.meta.env.VITE_API_URL;
@@ -39,7 +39,6 @@ const AdminLogin = () => {
 
   return (
     <div className="admin-login-page">
-      <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
       <form className="admin-login-card" onSubmit={handleSubmit}>
         <h1 className="admin-login-title">Admin Panel</h1>
         <p className="admin-login-subtitle">Enter the admin password to continue.</p>

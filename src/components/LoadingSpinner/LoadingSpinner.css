@@ -2,12 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 0;
   width: 100%;
+  min-height: 100vh;
 }
 
-.loading-spinner-img {
+.loading-spinner-gif {
   object-fit: contain;
-  /* slight scale-up so the moving parts are clearly visible */
-  transform: scale(1.15);
 }

@@ -2,9 +2,9 @@
 import mailIcon from '../assets/email.webp';
 import phoneIcon from '../assets/telephone.webp';
 import locationIcon from '../assets/gps.webp';
-import logoiic from '../assets/logo.png';
-import iglogo from '../assets/instagram-icon.png'
-import linkedinlogo from '../assets/linkedin-icon.png'
+import logoiic from '../assets/logo.webp';
+import iglogo from '../assets/instagram-icon.webp'
+import linkedinlogo from '../assets/linkedin-icon.webp'
 
 export const FOOTER_BRAND = {
   logo: logoiic,
@@ -20,7 +20,7 @@ export const FOOTER_QUICK_LINKS = {
     // { text: 'EVENTS', path: '/events' },
     // { text: 'STARTUPS', path: '/startups' },
     { text: 'INTERNSHIPS', path: '/internships' },
-    { text: 'ANNOUCEMENT', path: '/announcements' }
+    { text: 'ANNOUNCEMENT', path: '/announcements' }
   ]
 };
 

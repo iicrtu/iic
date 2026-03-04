@@ -27,7 +27,7 @@ const EventsPage = () => {
   
                 {/* LEFT IMAGE */}
                 <div className="events-left">
-                  <img src={event.image} alt={event.title} />
+                  <img src={event.image} alt={event.title} loading="lazy" width="600" height="400" />
                 </div>
   
                 {/* RIGHT TEXT */}

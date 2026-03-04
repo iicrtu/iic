@@ -274,7 +274,7 @@
         padding: 80px 60px;
     }
 }
- */
+
 @media (max-width: 1200px) {
     .hero {
         flex-direction: column;
@@ -310,7 +310,7 @@
         width: 100%;
         max-width: 600px;
         height: auto;
-       
+    }   
     
     .hero-image-container {
         width: calc(100% - 70px);

@@ -32,7 +32,7 @@
     font-weight: 700;
     font-size: 60px;
     line-height: 1.17;
-    background: linear-gradient(137deg, rgba(199, 112, 230, 1) 0%, rgba(69, 133, 253, 1) 80%);
+    background: linear-gradient(90deg, #0004FF 0%, #FF5DEF 86.058%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -40,15 +40,16 @@
 }
 
 .announcements-hero .section-description {
-    font-family: 'poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 24px;
     line-height: 1.17;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.05em;
     color: rgba(0, 0, 0, 0.78);
     text-align: center;
-    max-width: 909px;
+    max-width: 959px;
     margin: 0 auto;
+    white-space: pre-line;
 }
 
 .categories-section {

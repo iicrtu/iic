@@ -40,7 +40,7 @@ export const STARTUPS_DATA = [
   {
     id: 1,
     name: 'SEVAK',
-    image: 'Startup.jpeg',
+    image: 'Startup.webp',
     description: 'Connection between household main and people who want them',
     badge: 'Growing',
     status: 'Growing',
@@ -56,8 +56,8 @@ export const STARTUPS_DATA = [
   {
     id: 2,
     name: 'E gurukul',
-    image: 'Startup.jpeg',
-    description: 'An online learning platform',
+    image: 'Startup.webp',
+    description: 'An online learning platform for affordable and quality education at the fingertips' ,
     badge: 'Growing',
     status: 'Growing',
     category: 'Tech',
@@ -72,8 +72,8 @@ export const STARTUPS_DATA = [
   {
     id: 3,
     name: 'Testify',
-    image: 'Startup.jpeg',
-    description: 'A startup for online customized assessment and monitoring',
+    image: 'Startup.webp',
+    description: 'A startup for online assessment and monitoring with customized tests ',
     badge: 'Growing',
     status: 'Growing',
     category: 'Tech',

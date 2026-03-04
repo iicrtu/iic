@@ -1,64 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import "./DashboardStudent.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-
-const API = import.meta.env.VITE_API_URL;
+import { useAuth } from "../../context/AuthContext";
+import { useStudentProfile, useMyApplications } from "../../hooks/useApi";
 
 const DashboardStudent = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-  const [student, setStudent] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { user, isAuthenticated, isLoading: authLoading } = useAuth();
+
+  const queryEnabled = !authLoading && isAuthenticated;
+  const { data: student = null, isLoading: studentLoading } = useStudentProfile(queryEnabled);
+  const { data: applications = [], isLoading: appsLoading } = useMyApplications(queryEnabled);
+  const loading = studentLoading || appsLoading;
+
   const [previewResume, setPreviewResume] = useState(null);
-  const [applications, setApplications] = useState([]);
   const [expandedApp, setExpandedApp] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const userResponse = await fetch(`${API}/api/auth/me`, {
-          credentials: "include",
-          cache: "no-cache",
-        });
+  const approvedCount = useMemo(() => applications.filter((a) => a.status === "approved").length, [applications]);
+  const selectedCount = useMemo(() => applications.filter((a) => a.status === "selected").length, [applications]);
 
-        if (!userResponse.ok) {
-          window.location.href = "/login";
-          return;
-        }
-
-        const userData = await userResponse.json();
-        setUser(userData.user);
-
-        const studentResponse = await fetch(`${API}/api/student/profile`, {
-          credentials: "include",
-          cache: "no-cache",
-        });
-
-        if (studentResponse.ok) {
-          const studentData = await studentResponse.json();
-          setStudent(studentData.student);
-        }
-
-        // Fetch applications
-        const appsResponse = await fetch(`${API}/api/applications/mine`, {
-          credentials: "include",
-          cache: "no-cache",
-        });
-        if (appsResponse.ok) {
-          const appsData = await appsResponse.json();
-          setApplications(appsData.applications || []);
-        }
-
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  // Redirect if not authenticated (after auth check completes)
+  if (!authLoading && !isAuthenticated) {
+    navigate("/login", {replace: true});
+    return null;
+  }
 
   const handleEditProfile = () => {
     navigate("/onboarding/student?section=1");
@@ -116,7 +82,7 @@ const DashboardStudent = () => {
     }
   };
 
-  if (loading) {
+  if (authLoading || loading) {
     return (
       <div className="dashboard-loading">
         <LoadingSpinner />
@@ -280,14 +246,14 @@ const DashboardStudent = () => {
           <div className="stat-card">
             <div className="stat-icon">✅</div>
             <div className="stat-info">
-              <h3>{applications.filter((a) => a.status === "approved").length}</h3>
+              <h3>{approvedCount}</h3>
               <p>Approved</p>
             </div>
           </div>
           <div className="stat-card">
             <div className="stat-icon">🎉</div>
             <div className="stat-info">
-              <h3>{applications.filter((a) => a.status === "selected").length}</h3>
+              <h3>{selectedCount}</h3>
               <p>Selected</p>
             </div>
           </div>

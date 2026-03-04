@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import "../OrgOnboarding/OrgOnboarding.css";
 import "./StudentOnboarding.css";
 
 const BRANCHES = [
@@ -81,7 +82,7 @@ const StudentOnboarding = () => {
           }
         }
       } catch (error) {
-        console.error("Error fetching profile:", error);
+        // silently fail — profile may not exist yet
       }
     };
 
@@ -244,7 +245,6 @@ const StudentOnboarding = () => {
 
       navigate("/dashboard/student");
     } catch (error) {
-      console.error("Onboarding error:", error);
       setError("An error occurred. Please try again.");
       setLoading(false);
     }
@@ -418,7 +418,7 @@ const StudentOnboarding = () => {
 
               <div className="resume-list">
                 {resumes.map((resume, index) => (
-                  <div key={index} className="resume-row">
+                  <div key={`${resume.name}-${index}`} className="resume-row">
                     <div className="resume-number">{index + 1}</div>
                     <div className="resume-fields">
                       <div className="form-group">
@@ -481,7 +481,7 @@ const StudentOnboarding = () => {
             ) : (
               <button
                 type="button"
-                className="cancel-btn"
+                className="back-btn"
                 onClick={() => navigate(-1)}
                 disabled={loading}
               >
