@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import "../OrgOnboarding/OrgOnboarding.css";
 import "./StudentOnboarding.css";
 
 const BRANCHES = [
@@ -480,7 +481,7 @@ const StudentOnboarding = () => {
             ) : (
               <button
                 type="button"
-                className="cancel-btn"
+                className="back-btn"
                 onClick={() => navigate(-1)}
                 disabled={loading}
               >

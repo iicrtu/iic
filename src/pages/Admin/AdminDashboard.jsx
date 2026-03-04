@@ -112,7 +112,9 @@ const AdminDashboard = () => {
   const [annSaving, setAnnSaving] = useState(false);
 
   /* ── Data export state ──────────────────────────────── */
-  const [exporting, setExporting] = useState(false);
+  const [dlOrgs, setDlOrgs] = useState(false);
+  const [dlStudents, setDlStudents] = useState(false);
+  const [dlApps, setDlApps] = useState(false);
 
   /* ── Fetch helpers ──────────────────────────────────── */
   const fetchInternships = useCallback(async () => {
@@ -575,17 +577,17 @@ const AdminDashboard = () => {
               </p>
               <button
                 className="adm-btn adm-btn-download"
-                disabled={exporting}
+                disabled={dlOrgs}
                 onClick={() =>
                   downloadExcel(
                     "organizations",
                     "Organizations_Internships.xlsx",
                     navigate,
-                    setExporting
+                    setDlOrgs
                   )
                 }
               >
-                {exporting ? "Exporting…" : "Download Excel"}
+                {dlOrgs ? "Exporting…" : "Download Excel"}
               </button>
             </div>
 
@@ -598,17 +600,17 @@ const AdminDashboard = () => {
               </p>
               <button
                 className="adm-btn adm-btn-download"
-                disabled={exporting}
+                disabled={dlStudents}
                 onClick={() =>
                   downloadExcel(
                     "students",
                     "Students.xlsx",
                     navigate,
-                    setExporting
+                    setDlStudents
                   )
                 }
               >
-                {exporting ? "Exporting…" : "Download Excel"}
+                {dlStudents ? "Exporting…" : "Download Excel"}
               </button>
             </div>
 
@@ -621,17 +623,17 @@ const AdminDashboard = () => {
               </p>
               <button
                 className="adm-btn adm-btn-download"
-                disabled={exporting}
+                disabled={dlApps}
                 onClick={() =>
                   downloadExcel(
                     "applications",
                     "Applications_Report.xlsx",
                     navigate,
-                    setExporting
+                    setDlApps
                   )
                 }
               >
-                {exporting ? "Exporting…" : "Download Excel"}
+                {dlApps ? "Exporting…" : "Download Excel"}
               </button>
             </div>
           </div>
