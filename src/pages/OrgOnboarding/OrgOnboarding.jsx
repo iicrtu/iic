@@ -245,7 +245,11 @@ const OrgOnboarding = () => {
                   placeholder="Enter organization name"
                   value={organizationName}
                   onChange={(e) => setOrganizationName(e.target.value)}
+                  disabled={isEditing}
                 />
+                {isEditing && (
+                  <small className="form-hint">Organization name cannot be changed after registration</small>
+                )}
               </div>
 
               <div className="form-group">
@@ -264,13 +268,16 @@ const OrgOnboarding = () => {
                 <label>
                   Industry <span className="required">*</span>
                 </label>
-                <select value={industry} onChange={(e) => setIndustry(e.target.value)}>
+                <select value={industry} onChange={(e) => setIndustry(e.target.value)} disabled={isEditing}>
                   {INDUSTRIES.map((ind) => (
                     <option key={ind} value={ind}>
                       {ind}
                     </option>
                   ))}
                 </select>
+                {isEditing && (
+                  <small className="form-hint">Industry cannot be changed after registration</small>
+                )}
               </div>
 
               <div className="form-group">

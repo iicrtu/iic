@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import "./PostInternship.css";
 
 const WORK_MODES = ["Office", "Remote", "Hybrid"];
@@ -7,6 +8,7 @@ const WORK_MODES = ["Office", "Remote", "Hybrid"];
 const PostInternship = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const queryClient = useQueryClient();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [isEditing, setIsEditing] = useState(false);
@@ -178,6 +180,9 @@ const PostInternship = () => {
         return;
       }
 
+      // Invalidate cached internship list so dashboard shows fresh data
+      queryClient.invalidateQueries({ queryKey: ["orgInternships"] });
+
       if (isEditing) {
         navigate("/dashboard/organisation");
       } else {
@@ -258,9 +263,12 @@ const PostInternship = () => {
                   placeholder="e.g., Full Stack Developer, UI/UX Designer"
                   value={profile}
                   onChange={(e) => setProfile(e.target.value)}
+                  disabled={isEditing}
                 />
                 <small className="form-hint">
-                  The title candidates will see when browsing internships
+                  {isEditing
+                    ? "Profile / Role cannot be changed after posting"
+                    : "The title candidates will see when browsing internships"}
                 </small>
               </div>
 
@@ -319,7 +327,11 @@ const PostInternship = () => {
                     placeholder="e.g., 3 months, 6 months"
                     value={duration}
                     onChange={(e) => setDuration(e.target.value)}
+                    disabled={isEditing}
                   />
+                  {isEditing && (
+                    <small className="form-hint">Duration cannot be changed after posting</small>
+                  )}
                 </div>
 
                 <div className="form-group">
@@ -331,7 +343,11 @@ const PostInternship = () => {
                     placeholder="e.g., ₹10,000/month, Unpaid"
                     value={stipend}
                     onChange={(e) => setStipend(e.target.value)}
+                    disabled={isEditing}
                   />
+                  {isEditing && (
+                    <small className="form-hint">Stipend cannot be changed after posting</small>
+                  )}
                 </div>
               </div>
 
