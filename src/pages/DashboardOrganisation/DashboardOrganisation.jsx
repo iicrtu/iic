@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import "./DashboardOrganisation.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import ResumePreview from "../../components/ResumePreview/ResumePreview";
 import { useAuth } from "../../context/AuthContext";
 import { useOrgProfile, useOrgInternships } from "../../hooks/useApi";
 
@@ -30,6 +31,7 @@ const DashboardOrganisation = () => {
   const [rejectModal, setRejectModal] = useState({ show: false, id: null, name: "" });
   const [rejectReason, setRejectReason] = useState("");
   const [actionLoading, setActionLoading] = useState(null); // app id currently loading
+  const [previewResume, setPreviewResume] = useState(null);
 
   const postedCount = useMemo(() => internships.filter((i) => i.status === "posted").length, [internships]);
   const reviewCount = useMemo(() => internships.filter((i) => i.status === "under_review").length, [internships]);
@@ -447,14 +449,13 @@ const DashboardOrganisation = () => {
                             CR: {app.student?.crNumber} &nbsp;|&nbsp; {app.student?.email}
                           </span>
                           {app.resume && (
-                            <a
-                              href={app.resume}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                            <button
+                              type="button"
                               className="app-card-resume"
+                              onClick={() => setPreviewResume(app.resume)}
                             >
                               📄 View Resume
-                            </a>
+                            </button>
                           )}
                         </div>
                         <div className="app-card-status">{getAppBadge(app.status)}</div>
@@ -521,6 +522,8 @@ const DashboardOrganisation = () => {
             </div>
           </div>
         )}
+      {/* Resume Preview Modal */}
+      <ResumePreview resume={previewResume} onClose={() => setPreviewResume(null)} />
       </div>
     </div>
   );
