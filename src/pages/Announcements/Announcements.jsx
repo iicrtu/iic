@@ -45,11 +45,11 @@ const Announcements = () => {
                     <div className="announcements-list-container">
                         {paged.map((announcement) => (
                             <div key={announcement._id} className="announcement-card">
-                                <div className="announcement-header">
-                                    <div className="announcement-type-badge">{announcement.year}</div>
-                                </div>
                                 <div className="announcement-content">
-                                    <h2 className="announcement-title">{announcement.title}</h2>
+                                    <div className="announcement-header">
+                                        <h2 className="announcement-title">{announcement.title}</h2>
+                                        <div className="announcement-type-badge">{announcement.year}</div>
+                                    </div>
                                     <p className="announcement-description">{announcement.description}</p>
                                     <div className="announcement-dates">
                                         <div className="date-item">

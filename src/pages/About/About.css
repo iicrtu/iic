@@ -101,19 +101,21 @@
 .mission-card {
     display: flex;
     align-items: flex-start;
-    gap: 60px;
+    gap: 40px;
     width: 100%;
     position: relative;
 }
 
 .vision-card-box,
 .mission-card-box {
-    width: 640px;
-    height: 438px;
+    width: 100%;
+    max-width: 640px;
+    min-height: 380px;
     border-radius: 54px;
     border: 1px solid rgba(0, 0, 0, 0.77);
     background: #FFF;
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     padding: 40px;
@@ -135,6 +137,23 @@
     height: 60px;
 }
 
+.box-quote {
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.55);
+    margin-top: 24px;
+}
+
+.quote-author {
+    font-style: italic;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.4);
+    margin-top: 6px;
+    display: inline-block;
+}
+
 .mission-card {
     flex-direction: row-reverse;
 }
@@ -148,11 +167,11 @@
 .mission-title {
     color: #000;
     font-family: 'Roboto', sans-serif;
-    font-size: 60px;
+    font-size: 52px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     text-align: left;
 }
 
@@ -160,10 +179,10 @@
 .mission-text {
     color: #000;
     font-family: 'Roboto', sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
+    line-height: 1.6;
     text-align: left;
 }
 
@@ -444,11 +463,37 @@
     .team-section {
         padding: 60px 40px;
     }
-    
-    .vision-mission-container {
-        grid-template-columns: 1fr;
+
+    .vision-card,
+    .mission-card {
+        flex-direction: column;
+        align-items: center;
     }
-    
+
+    .mission-card {
+        flex-direction: column;
+    }
+
+    .vision-card-box,
+    .mission-card-box {
+        max-width: 100%;
+    }
+
+    .vision-content,
+    .mission-content {
+        text-align: center;
+    }
+
+    .vision-title,
+    .mission-title {
+        text-align: center;
+    }
+
+    .vision-text,
+    .mission-text {
+        text-align: center;
+    }
+
     .team-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -472,9 +517,25 @@
     
     .vision-title,
     .mission-title {
-        font-size: 40px;
+        font-size: 36px;
     }
-    
+
+    .vision-text,
+    .mission-text {
+        font-size: 18px;
+    }
+
+    .vision-card-box,
+    .mission-card-box {
+        padding: 24px;
+        border-radius: 32px;
+        min-height: auto;
+    }
+
+    .vision-mission-container {
+        gap: 40px;
+    }
+
     .team-grid {
         grid-template-columns: 1fr;
     }

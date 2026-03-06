@@ -39,6 +39,11 @@ const EventCard = ({ tag, tagIcon, badge, title, year, description, date, locati
   const Events = () => {
     return (
       <section id="events" className="events-section">
+        <h2 className="section-title">
+          <span className="title-part1">{EVENTS_SECTION.titlePart1}</span>{' '}
+          <span className="title-part2">{EVENTS_SECTION.titlePart2}</span>
+        </h2>
+        <p className="section-description">{EVENTS_SECTION.description}</p>
         <div className="events-grid">
           {EVENTS_DATA.map((event) => (
             <EventCard key={event.id} {...event} />

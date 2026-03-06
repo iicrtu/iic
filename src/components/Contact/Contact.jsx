@@ -62,7 +62,10 @@ const Contact = () => {
     return (
         <>
             <section className="contact-section">
-            <h2 className="section-title">{CONTACT_SECTION.title}</h2>
+            <h2 className="section-title">
+                <span className="title-part1">{CONTACT_SECTION.titlePart1}</span>{' '}
+                <span className="title-part2">{CONTACT_SECTION.titlePart2}</span>
+            </h2>
             <p className="section-description">
                 {CONTACT_SECTION.description}
             </p>
