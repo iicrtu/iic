@@ -35,6 +35,10 @@ const About = () => {
                                     <circle cx="30" cy="30" r="4" fill="white"/>
                                 </svg>
                             </div>
+                            <p className="box-quote">
+                                "The best way to predict the future is to create it."<br />
+                                <span className="quote-author">— Peter Drucker</span>
+                            </p>
                         </div>
                         <div className="vision-content">
                             <h2 className="vision-title">{VISION.title}</h2>
@@ -55,6 +59,10 @@ const About = () => {
                                     <path d="M22 38 L18 48 L22 46 L30 50 L38 46 L42 48 L38 38" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
                                 </svg>
                             </div>
+                            <p className="box-quote">
+                                "The way to get started is to quit talking and begin doing."<br />
+                                <span className="quote-author">— Walt Disney</span>
+                            </p>
                         </div>
                         <div className="mission-content">
                             <h2 className="mission-title">{MISSION.title}</h2>

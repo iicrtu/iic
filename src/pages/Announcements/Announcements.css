@@ -125,8 +125,15 @@
 
 .announcement-header {
     display: flex;
-    justify-content: flex-end;
-    margin-bottom: 16px;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.announcement-header .announcement-title {
+    margin: 0;
+    flex: 1;
+    min-width: 0;
 }
 
 .announcement-type-badge {
