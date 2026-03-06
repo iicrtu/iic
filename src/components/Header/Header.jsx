@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
-import animatedIcon from '../../assets/animated-icon.gif';
+import logo from '../../assets/logo.webp';
 import { useAuth } from '../../context/AuthContext';
 
 const Header = () => {
@@ -79,7 +79,7 @@ const Header = () => {
         <header className={`header ${scrolled ? 'scrolled' : ''}`}>
             <div className="header-container">
                 <Link to="/" className="logo-container">
-                    <img src={animatedIcon} alt="IIC" className="logo-animation" width="48" height="48" />
+                    <img src={logo} alt="IIC" className="logo-animation" width="48" height="48" />
                     <div className="logo-text">IIC</div>
                 </Link>
                 
