@@ -4,7 +4,8 @@ import ideaIcon from '../assets/idea.webp';
 import partnersIcon from '../assets/partners.webp';
 
 export const EVENTS_SECTION = {
-  title: 'Our Events',
+  titlePart1: 'Our',
+  titlePart2: 'Events',
   description:
     'Join our exciting events, workshops, and competitions designed to fuel your entrepreneurial journey.',
   viewAllButtonText: 'View All Events',

@@ -6,7 +6,8 @@ import locationIcon from '../assets/gps.webp';
 export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xlgwjanb';
 
 export const CONTACT_SECTION = {
-  title: 'Get In Touch',
+  titlePart1: 'Get In',
+  titlePart2: 'Touch',
   description: 'Have questions or want to join IIC? We\'d love to hear from you!'
 };
 

@@ -3,6 +3,14 @@
     padding: 50px 60px;
 }
 
+.contact-section .section-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
 .contact-container {
     display: grid;
     grid-template-columns: 520px 520px;
