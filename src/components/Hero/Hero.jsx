@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./Hero.css";
-import ideasp from "../../assets/ideasp.webp";
-import intern from "../../assets/intern.webp";
-import linkedin from "../../assets/linkedin.webp";
 import { HERO_CONTENT } from "../../constants/heroConstants";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 const rotatingWords = ["Innovate", "Build", "Scale", "Transform", "Launch"];
-const heroImages = [ideasp, intern, linkedin];
 
 const Hero = () => {
   const navigate = useNavigate();
   const [currentRotatingWordIndex, setCurrentRotatingWordIndex] = useState(0);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Rotating words effect
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentRotatingWordIndex((prev) => (prev + 1) % rotatingWords.length);
@@ -23,20 +17,23 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Rotating images effect
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section id="home" className="hero">
-      <div className="hero-background">
-        <div className="gradient-circle circle-1"></div>
-        <div className="gradient-circle circle-2"></div>
+      {/* Full-width background video */}
+      <div className="hero-video-bg">
+        <video
+          className="hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
+        <div className="hero-video-gradient-fade"></div>
       </div>
+
       <div className="hero-content">
         <div className="hero-badge">
           <div className="badge-bg"></div>
@@ -73,21 +70,6 @@ const Hero = () => {
           <button className="join-us-btn">
             {HERO_CONTENT.primaryButtonText}
           </button>
-        </div>
-      </div>
-
-      <div className="hero-right">
-        <div className="gradient-blur blur-circle-1"></div>
-        <div className="gradient-blur blur-circle-2"></div>
-        <div className="hero-image-container">
-          <img
-            src={heroImages[currentImageIndex]}
-            alt="IIC"
-            className="hero-rotating-image"
-            width="500"
-            height="500"
-            fetchPriority="high"
-          />
         </div>
       </div>
     </section>

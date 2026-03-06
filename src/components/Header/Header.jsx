@@ -14,8 +14,9 @@ const Header = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            const isScrolled = window.scrollY > 100;
-            setScrolled(isScrolled);
+            const hero = document.getElementById('home');
+            const threshold = hero ? hero.offsetHeight - 80 : 100;
+            setScrolled(window.scrollY > threshold);
         };
 
         window.addEventListener('scroll', handleScroll);
