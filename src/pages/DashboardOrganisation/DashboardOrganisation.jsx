@@ -154,7 +154,7 @@ const DashboardOrganisation = () => {
         method: "PATCH",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ reason: rejectReason }),
+        body: JSON.stringify({ rejectionReason: rejectReason }),
       });
       if (res.ok) {
         setPanelApps((prev) =>

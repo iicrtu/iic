@@ -418,7 +418,7 @@ const StudentOnboarding = () => {
 
               <div className="resume-list">
                 {resumes.map((resume, index) => (
-                  <div key={`${resume.name}-${index}`} className="resume-row">
+                  <div key={index} className="resume-row">
                     <div className="resume-number">{index + 1}</div>
                     <div className="resume-fields">
                       <div className="form-group">
