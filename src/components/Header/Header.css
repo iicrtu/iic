@@ -4,14 +4,22 @@
     left: 0;
     right: 0;
     padding: 0;
-    background: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: box-shadow 0.3s ease;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: background 0.4s ease, box-shadow 0.4s ease, border-bottom 0.4s ease,
+                backdrop-filter 0.4s ease;
     z-index: 1000;
 }
 
 .header.scrolled {
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.12);
+    background: #ffffff;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .header-container {
@@ -45,6 +53,11 @@
     font-size: 60px;
     font-style: normal;
     line-height: normal;
+    color: #fff;
+    transition: color 0.4s ease;
+}
+
+.header.scrolled .logo-text {
     color: #000;
 }
 
@@ -60,15 +73,23 @@
     font-size: 20px;
     font-style: normal;
     line-height: normal;
-    color: #2A2525;
+    color: rgba(255, 255, 255, 0.92);
     text-decoration: none;
     padding: 8px 0;
-    transition: color 0.3s ease;
+    transition: color 0.4s ease;
     cursor: pointer;
     position: relative;
 }
 
+.header.scrolled .nav-link {
+    color: #2A2525;
+}
+
 .nav-link:hover {
+    color: #a5b4fc;
+}
+
+.header.scrolled .nav-link:hover {
     color: #6366f1;
 }
 
@@ -230,9 +251,13 @@
 .hamburger span {
     width: 100%;
     height: 3px;
-    background: #000;
+    background: #fff;
     border-radius: 3px;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
+}
+
+.header.scrolled .hamburger span {
+    background: #000;
 }
 
 .hamburger.active span:nth-child(1) {
