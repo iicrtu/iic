@@ -27,18 +27,11 @@ const About = () => {
                 <div className="vision-mission-container">
                     <div className="vision-card">
                         <div className="vision-card-box">
-                            <div className="icon-background">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none" className="icon">
-                                    {/* Eye icon for Vision */}
-                                    <ellipse cx="30" cy="30" rx="20" ry="12" stroke="white" strokeWidth="2.5" fill="none"/>
-                                    <circle cx="30" cy="30" r="7" stroke="white" strokeWidth="2.5" fill="none"/>
-                                    <circle cx="30" cy="30" r="4" fill="white"/>
-                                </svg>
-                            </div>
-                            <p className="box-quote">
-                                "The best way to predict the future is to create it."<br />
-                                <span className="quote-author">— Peter Drucker</span>
-                            </p>
+                            <img
+                                src="/vision.jpeg"
+                                alt="Our Vision"
+                                className="card-image"
+                            />
                         </div>
                         <div className="vision-content">
                             <h2 className="vision-title">{VISION.title}</h2>
@@ -49,20 +42,11 @@ const About = () => {
                     </div>
                     <div className="mission-card">
                         <div className="mission-card-box">
-                            <div className="icon-background">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none" className="icon">
-                                    {/* Rocket icon for Mission */}
-                                    <path d="M30 10 L30 42" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-                                    <path d="M30 10 L22 20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-                                    <path d="M30 10 L38 20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-                                    <ellipse cx="30" cy="25" rx="8" ry="12" stroke="white" strokeWidth="2.5" fill="none"/>
-                                    <path d="M22 38 L18 48 L22 46 L30 50 L38 46 L42 48 L38 38" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-                                </svg>
-                            </div>
-                            <p className="box-quote">
-                                "The way to get started is to quit talking and begin doing."<br />
-                                <span className="quote-author">— Walt Disney</span>
-                            </p>
+                            <img
+                                src="/mission.jpeg"
+                                alt="Our Mission"
+                                className="card-image"
+                            />
                         </div>
                         <div className="mission-content">
                             <h2 className="mission-title">{MISSION.title}</h2>
