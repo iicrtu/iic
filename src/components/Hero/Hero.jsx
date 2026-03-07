@@ -29,7 +29,7 @@ const Hero = () => {
           playsInline
           preload="metadata"
         >
-          <source src="/hero.mp4" type="video/mp4" />
+          <source src="/Hero.mp4" type="video/mp4" />
         </video>
         <div className="hero-video-gradient-fade"></div>
       </div>

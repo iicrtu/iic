@@ -27,6 +27,11 @@ const About = () => {
                 <div className="vision-mission-container">
                     <div className="vision-card">
                         <div className="vision-card-box">
+                            <img
+                                src="/vision.jpeg"
+                                alt="Our Vision Illustration"
+                                className="card-image"
+                            />
                             <div className="icon-background">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none" className="icon">
                                     {/* Eye icon for Vision */}
@@ -49,6 +54,11 @@ const About = () => {
                     </div>
                     <div className="mission-card">
                         <div className="mission-card-box">
+                            <img
+                                src="/mission.jpeg"
+                                alt="Our Mission Illustration"
+                                className="card-image"
+                            />
                             <div className="icon-background">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none" className="icon">
                                     {/* Rocket icon for Mission */}
