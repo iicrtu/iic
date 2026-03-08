@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./Hero.css";
 import { HERO_CONTENT } from "../../constants/heroConstants";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,8 @@ const rotatingWords = ["Innovate", "Build", "Scale", "Transform", "Launch"];
 const Hero = () => {
   const navigate = useNavigate();
   const [currentRotatingWordIndex, setCurrentRotatingWordIndex] = useState(0);
+  const videoRef = useRef(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -17,17 +19,56 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Pause the main video when it ends (no loop)
+  const handleVideoEnded = useCallback(() => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  }, []);
+
+  // Start the hero video once the preloader finishes
+  useEffect(() => {
+    const startVideo = () => {
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.play().catch(() => {});
+      }
+    };
+    window.addEventListener('preloaderDone', startVideo);
+    return () => window.removeEventListener('preloaderDone', startVideo);
+  }, []);
+
+  // Replay video from start when the hero section re-enters the viewport
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && videoRef.current) {
+          videoRef.current.currentTime = 0;
+          videoRef.current.play().catch(() => {});
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="home" className="hero">
+    <section id="home" className="hero" ref={sectionRef}>
       {/* Full-width background video */}
       <div className="hero-video-bg">
         <video
+          ref={videoRef}
           className="hero-video"
-          autoPlay
           muted
-          loop
           playsInline
           preload="metadata"
+          poster="/hero-poster.webp"
+          onEnded={handleVideoEnded}
         >
           <source src="/hero.mp4" type="video/mp4" />
         </video>
