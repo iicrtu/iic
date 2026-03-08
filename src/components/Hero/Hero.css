@@ -9,34 +9,6 @@
     padding: 120px 115px 80px;
 }
 
-/* ── Preloader overlay ── */
-.hero-preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    opacity: 1;
-    transition: opacity 0.8s ease;
-}
-
-.hero-preloader--hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.hero-preloader-video {
-    width: 180px;
-    height: 180px;
-    object-fit: contain;
-    display: block;
-}
-
 /* ── Full-width background video ── */
 .hero-video-bg {
     position: absolute;

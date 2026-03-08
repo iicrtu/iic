@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState, useCallback } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import queryClient from './lib/queryClient';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -10,6 +10,7 @@ import Footer from './components/Footer/Footer';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import RequireAdmin from "./routes/RequireAdmin";
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import Preloader from './components/Preloader/Preloader';
 
 // Lazy-loaded page components
 const Home = React.lazy(() => import('./pages/Home/Home'));
@@ -28,9 +29,16 @@ const AdminLogin = React.lazy(() => import('./pages/Admin/AdminLogin'));
 const AdminDashboard = React.lazy(() => import('./pages/Admin/AdminDashboard'));
 
 function App() {
+  const [showPreloader, setShowPreloader] = useState(true);
+
+  const handlePreloaderFinished = useCallback(() => {
+    setShowPreloader(false);
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
     <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
+    {showPreloader && <Preloader onFinished={handlePreloaderFinished} />}
     <Router>
       <AuthProvider>
         <ErrorBoundary>
