@@ -6,7 +6,13 @@ import {
   INTERNSHIPS_HERO,
   ACTION_BUTTONS,
   STATS,
+  BROCHURE_FILE_NAME,
+  RESUME_TEMPLATE_URL,
 } from "../../constants/internshipsConstants";
+
+// import brochure asset so that the bundler can resolve its path
+import brochurePdf from "../../assets/Company Brochure Internship Fair.pdf"; // ensure the filename matches BROCHURE_FILE_NAME
+
 import { useAuth } from "../../context/AuthContext";
 import { usePublicInternships } from "../../hooks/useApi";
 
@@ -87,6 +93,21 @@ const Internships = () => {
     setApplyInternship(internship);
   };
 
+  const handleDownloadBrochure = () => {
+    // create a temporary link to trigger download
+    const link = document.createElement('a');
+    link.href = brochurePdf;
+    link.download = BROCHURE_FILE_NAME;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleResumeTemplate = () => {
+    // open the Overleaf link in a new tab
+    window.open(RESUME_TEMPLATE_URL, '_blank');
+  };
+
   /* ── render ──────────────────────────────────────────── */
   return (
     <div className="internships-page">
@@ -99,11 +120,21 @@ const Internships = () => {
       {/* Action Buttons */}
       <section className="internships-actions">
         <div className="actions-container">
-          {ACTION_BUTTONS.map((button, i) => (
-            <button key={i} className={`action-btn ${button.type}`}>
-              {button.label}
-            </button>
-          ))}
+          {ACTION_BUTTONS.map((button, i) => {
+            let onClick;
+            if (button.label === 'Download Brochure') onClick = handleDownloadBrochure;
+            if (button.label === 'Resume Template') onClick = handleResumeTemplate;
+            return (
+              <button
+                key={i}
+                className={`action-btn ${button.type}`}
+                onClick={onClick}
+                type="button"
+              >
+                {button.label}
+              </button>
+            );
+          })}
         </div>
       </section>
 
