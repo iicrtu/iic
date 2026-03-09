@@ -6,7 +6,7 @@
 
 
 .about-hero {
-    padding: 80px 115px;
+    padding: 60px 40px;
     max-width: 1530px;
     margin: 0 auto;
     background: var(--white);
@@ -54,7 +54,7 @@
 }
 
 .about-title {
-    margin: 0 auto 30px;
+    margin: 0 auto 15px;
     color: #000;
     font-family: 'Roboto', sans-serif;
     font-size: 80px;
@@ -76,15 +76,15 @@
     letter-spacing: 0.05em;
     color: rgba(0, 0, 0, 0.97);
     text-align: center;
-    max-width: 959px;
+    max-width: 750px;
     margin: 0 auto;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    white-space: pre-line;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    white-space: normal;
 }
 
 .vision-mission-section {
-    padding: 80px 115px;
+    padding: 20px 115px 80px;
     max-width: 1530px;
     margin: 0 auto;
     background: var(--white);
@@ -94,7 +94,7 @@
     display: flex;
     flex-direction: column;
     gap: 60px;
-    margin-top: 60px;
+    margin-top: 20px;
 }
 
 .vision-card,
@@ -462,7 +462,7 @@
     object-fit: contain;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 992px) {
     .about-hero,
     .vision-mission-section,
     .team-section {
