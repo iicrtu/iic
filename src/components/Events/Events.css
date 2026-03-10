@@ -1,223 +1,289 @@
-/* ===== Events Section (Home Page) ===== */
+/* ===== Events Section ===== */
 
-.events-section {
+.events-section{
   background: var(--white);
   padding: 80px 115px;
+  position: relative;
 }
 
-.events-section .section-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+.events-section .section-title{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
-/* ===== Events Grid ===== */
 
-.events-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  max-width: 1300px;
-  margin: 0 auto 40px;
+/* ===== Slider Wrapper ===== */
+
+.events-slider-wrapper{
+  position:relative;
+  width:100%;
+  display:flex;
+  align-items:center;
 }
+
+
+/* ===== Slider Track ===== */
+
+.events-grid{
+  display:flex;
+  gap:20px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  scroll-snap-type:x mandatory;
+
+  width:100%;
+
+  padding:20px 0;
+
+  scrollbar-width:none;
+}
+
+.events-grid::-webkit-scrollbar{
+  display:none;
+}
+
 
 /* ===== Event Card ===== */
 
-.event-card {
-  background: rgba(255, 255, 255, 1);
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: 28px;
-  padding: 33px 35px 35px;
-  text-align: left;
-  box-shadow: 0 10px 30px rgba(196, 129, 213, 0.6);
-  transition: 0.3s ease;
-  transition: transform 0.3s, box-shadow 0.3s;
+.event-card{
+  background:rgba(255,255,255,1);
+  border:1px solid rgba(0,0,0,0.5);
+  border-radius:28px;
+
+  padding:33px 35px 35px;
+  text-align:left;
+
+  box-shadow:0 10px 30px rgba(196,129,213,0.6);
+  transition:transform .3s, box-shadow .3s;
+
+  min-width:300px;
+  max-width:320px;
+  width:100%;
+
+  flex-shrink:0;
+
+  scroll-snap-align:start;
+
+  box-sizing:border-box;
 }
 
-.event-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(195, 86, 214, 0.1);
+.event-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 10px 30px rgba(195,86,214,0.1);
 }
 
-/* ===== Card Header (Tag + Badge) ===== */
 
-.event-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 15px;
+/* ===== Arrow Buttons ===== */
+
+.slider-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+
+  width:42px;
+  height:42px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:white;
+  border-radius:50%;
+  border:none;
+
+  font-size:22px;
+  cursor:pointer;
+
+  box-shadow:0 6px 16px rgba(0,0,0,0.2);
+  transition:all .2s ease;
+
+  z-index:50;
 }
 
-.event-tag {
-  display: inline-block;
-  background: var(--white);
-  border: 1px solid rgba(0, 0, 0, 0.52);
-  border-radius: 17px;
-  padding: 8px 20px;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 1.17;
-  color: var(--black);
+
+/* LEFT ARROW */
+
+.slider-btn.left{
+  left:-50px;
 }
 
-.event-tag-icon-circle {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: rgba(150, 150, 150, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  opacity: 0.8;
-  flex-shrink: 0;
-  border: 2px solid white;
-  backdrop-filter: blur(10px);
+
+/* RIGHT ARROW */
+
+.slider-btn.right{
+  right:-50px;
 }
 
-.event-tag-icon {
-  width: 35px;
-  height: 35px;
-  object-fit: contain;
+
+.slider-btn:hover{
+  transform:translateY(-50%) scale(1.08);
 }
 
-.event-badge {
-  display: inline-block;
-  background: linear-gradient(257deg, rgb(60, 135, 255), rgb(242, 105, 222));
-  border-radius: 23px;
-  padding: 12px 33px;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 1.17;
-  color: var(--white);
+.slider-btn:inactive{
+  opacity:0.3;
+
 }
+
+
+/* ===== Card Header ===== */
+
+.event-card-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:15px;
+}
+
+.event-tag{
+  display:inline-block;
+  background:var(--white);
+  border:1px solid rgba(0,0,0,0.52);
+  border-radius:17px;
+  padding:8px 20px;
+
+  font-family:'Roboto', sans-serif;
+  font-size:15px;
+}
+
+.event-tag-icon-circle{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+
+  background:rgba(150,150,150,0.4);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+
+  border:2px solid white;
+}
+
+.event-tag-icon{
+  width:35px;
+  height:35px;
+  object-fit:contain;
+}
+
+.event-badge{
+  background:linear-gradient(257deg,rgb(60,135,255),rgb(242,105,222));
+
+  border-radius:23px;
+  padding:12px 33px;
+
+  font-family:'Roboto', sans-serif;
+  font-size:13px;
+
+  color:var(--white);
+}
+
 
 /* ===== Card Content ===== */
 
-.event-title {
-  font-family: 'Anek Latin', sans-serif;
-  font-weight: 500;
-  font-size: 36px;
-  line-height: 1.1;
-  color: rgba(48, 81, 180, 0.82);
-  margin-bottom: 5px;
-  margin-top: 0;
+.event-title{
+  font-family:'Anek Latin', sans-serif;
+  font-weight:500;
+  font-size:36px;
+
+  color:rgba(48,81,180,0.82);
+
+  margin-bottom:5px;
 }
 
-.event-year {
-  font-family: 'Anek Latin', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.1;
-  color: var(--black);
-  margin-bottom: 15px;
+.event-year{
+  font-family:'Anek Latin', sans-serif;
+  font-size:16px;
+  margin-bottom:15px;
 }
 
-.event-description {
-  font-family: 'Anek Latin', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.4;
-  color: rgba(0, 0, 0, 0.72);
-  margin-bottom: 20px;
+.event-description{
+  font-family:'Anek Latin', sans-serif;
+  font-size:16px;
+  line-height:1.4;
+
+  color:rgba(0,0,0,0.72);
+
+  margin-bottom:20px;
 }
 
-/* ===== Card Meta (Date + Location) ===== */
 
-.event-meta {
-  margin-top: auto;
+/* ===== Card Meta ===== */
+
+.event-meta{
+  margin-top:auto;
 }
 
 .event-date-container,
-.event-location-container {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 10px;
+.event-location-container{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  margin-bottom:10px;
 }
 
-.event-date-container:last-child,
-.event-location-container:last-child {
-  margin-bottom: 8px;
+.event-icon{
+  width:20px;
+  height:20px;
+  flex-shrink:0;
+  margin-top:1px;
+  color:rgba(48,81,180,0.82);
 }
 
-.event-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  margin-top: 1px;
-  color: rgba(48, 81, 180, 0.82);
-  stroke-width: 2;
-  transition: color 0.3s ease;
-}
 .event-date,
-.event-location {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.4;
-  color: rgba(0, 0, 0, 0.69);
-  margin: 0;
+.event-location{
+  font-family:'Roboto', sans-serif;
+  font-size:16px;
+  color:rgba(0,0,0,0.69);
 }
 
-.event-date {
-  margin-bottom: 4px;
-}
-
-/* ===== View All Button ===== */
-
-.view-all-btn {
-  display: block;
-  margin: 40px auto 0;
-  background: var(--white);
-  border: 1px solid rgba(0, 0, 0, 0.72);
-  border-radius: 40px;
-  padding: 15px 40px;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  font-size: 22px;
-  line-height: 1.17;
-  color: var(--black);
-  cursor: pointer;
-  transition: all 0.3s;
-  text-decoration: none;
-  text-align: center;
-  width: fit-content;
-}
-
-.view-all-btn:hover {
-  background: var(--black);
-  color: var(--white);
-  transform: scale(1.05);
-}
 
 /* ===== Responsive ===== */
 
-@media (max-width: 1200px) {
-  .events-section {
-    padding: 60px 40px;
-  }
+@media (max-width:1200px){
 
-  .events-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.events-section{
+  padding:60px 40px;
+}
+.slider-btn.left{
+  left: -50px;
+}
+.slider-btn.right{
+  right: 80px;
+}
 }
 
-@media (max-width: 768px) {
-  .events-section {
-    padding: 60px 20px;
-  }
+@media (max-width:768px){
 
-  .events-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .event-title {
-    font-size: 28px;
-  }
+.events-section{
+  padding:60px 20px;
 }
 
+.event-card{
+  min-width:85%;
+  max-width:85%;
+}
+
+.slider-btn{
+  width:32px;
+  height:34px;
+  font-size:18px;
+}
+
+.slider-btn.left{
+  left:-15px;
+}
+
+.slider-btn.right{
+  right:15px;
+}
+
+.event-title{
+  font-size:28px;
+}
+
+}
