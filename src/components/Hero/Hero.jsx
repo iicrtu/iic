@@ -70,47 +70,52 @@ const Hero = () => {
           poster="/hero-poster.webp"
           onEnded={handleVideoEnded}
         >
+          <source src="/k.mp4" type="video/mp4" media="(max-width: 768px)" />
           <source src="/hero.mp4" type="video/mp4" />
         </video>
         <div className="hero-video-gradient-fade"></div>
       </div>
 
       <div className="hero-content">
-        <div className="hero-badge">
-          <div className="badge-bg"></div>
-          <span className="badge-text">{HERO_CONTENT.badge}</span>
-        </div>
-        <h1 className="hero-title">
-          {HERO_CONTENT.titlePart1}
-          <span className="hero-title-gradient">{HERO_CONTENT.titlePart2}</span>
-        </h1>
-        <p className="hero-description">{HERO_CONTENT.description}</p>
-
-        <div className="hero-rotating-section">
-          <span className="rotating-prefix">We help you</span>
-          <div className="rotating-words-container">
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={currentRotatingWordIndex}
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -50, opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="rotating-word"
-              >
-                {rotatingWords[currentRotatingWordIndex]}
-              </motion.span>
-            </AnimatePresence>
+        <div className="hero-top-content">
+          <div className="hero-badge">
+            <div className="badge-bg"></div>
+            <span className="badge-text">{HERO_CONTENT.badge}</span>
           </div>
+          <h1 className="hero-title">
+            {HERO_CONTENT.titlePart1}
+            <span className="hero-title-gradient">{HERO_CONTENT.titlePart2}</span>
+          </h1>
+          <p className="hero-description">{HERO_CONTENT.description}</p>
         </div>
 
-        <div className="hero-buttons">
-          <button className="explore-more-btn">
-            {HERO_CONTENT.secondaryButtonText}
-          </button>
-          <button className="join-us-btn">
-            {HERO_CONTENT.primaryButtonText}
-          </button>
+        <div className="hero-bottom-content">
+          <div className="hero-rotating-section">
+            <span className="rotating-prefix">We help you</span>
+            <div className="rotating-words-container">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={currentRotatingWordIndex}
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -50, opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="rotating-word"
+                >
+                  {rotatingWords[currentRotatingWordIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </div>
+          </div>
+
+          <div className="hero-buttons">
+            <button className="explore-more-btn">
+              {HERO_CONTENT.secondaryButtonText}
+            </button>
+            <button className="join-us-btn">
+              {HERO_CONTENT.primaryButtonText}
+            </button>
+          </div>
         </div>
       </div>
     </section>
